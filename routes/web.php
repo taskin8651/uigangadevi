@@ -37,6 +37,25 @@ Route::post('college-profile/update','CollegeProfileController@update')->name('c
 Route::get('principal-message','PrincipalMessageController@index')->name('principal-messages.index');
 
 Route::post('principal-message/update','PrincipalMessageController@update')->name('principal-messages.update');
+
+// Courses
+Route::delete(
+    'courses/destroy',
+    'CoursesController@massDestroy'
+)->name('courses.massDestroy');
+
+Route::resource('courses', 'CoursesController');    
+
+// Subjects
+Route::delete(
+    'subjects/destroy',
+    'SubjectsController@massDestroy'
+)->name('subjects.massDestroy');
+
+Route::resource(
+    'subjects',
+    'SubjectsController'
+);
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
