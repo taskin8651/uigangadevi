@@ -108,6 +108,65 @@
             </div>
         @endcan
 
+        {{-- ABOUT MANAGEMENT GROUP --}}
+@can('about_management_access')
+    @php
+        $aboutActive = request()->is('admin/college-profile*')
+            || request()->is('admin/principal-message*');
+    @endphp
+
+    <div x-data="{ open: {{ $aboutActive ? 'true' : 'false' }} }">
+
+        <button type="button"
+                @click="open = !open"
+                data-tooltip="About"
+                class="nav-link nav-group-btn {{ $aboutActive ? 'active' : '' }}">
+
+            <div class="nav-group-left">
+                <i class="fas fa-university nav-icon"></i>
+
+                <span class="nav-label">
+                    About
+                </span>
+            </div>
+
+            <i class="fas fa-chevron-right chevron"
+               :style="open ? 'transform:rotate(90deg)' : ''"></i>
+        </button>
+
+        <div class="submenu"
+             x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-150"
+             x-transition:enter-start="opacity-0 -translate-y-1"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-100"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-1">
+
+            @can('college_profile_access')
+                <a href="{{ route('admin.college-profiles.index') }}"
+                   class="sub-link {{ request()->is('admin/college-profile*') ? 'active' : '' }}">
+
+                    <i class="fas fa-landmark"></i>
+
+                    College Profile
+                </a>
+            @endcan
+            @can('principal_message_access')
+                <a href="{{ route('admin.principal-messages.index') }}"
+                   class="sub-link {{ request()->is('admin/principal-message*') ? 'active' : '' }}">
+
+                    <i class="fas fa-user-tie"></i>
+
+                    Principal Message
+                </a>
+            @endcan
+
+        </div>
+    </div>
+@endcan
+
         <div class="nav-divider"></div>
 
         <p class="sidebar-section-title compact nav-label">Account</p>

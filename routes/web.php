@@ -28,7 +28,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
-    
+    // College Profile
+Route::get('college-profile','CollegeProfileController@index')->name('college-profiles.index');
+
+Route::post('college-profile/update','CollegeProfileController@update')->name('college-profiles.update');
+
+// Principal Message
+Route::get('principal-message','PrincipalMessageController@index')->name('principal-messages.index');
+
+Route::post('principal-message/update','PrincipalMessageController@update')->name('principal-messages.update');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
@@ -40,3 +48,5 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
     }
 });
 
+
+Route::get('/about',[\App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('frontend.about');
