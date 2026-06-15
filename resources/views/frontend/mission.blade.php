@@ -1,142 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Ganga Devi Mahila Mahavidyalaya | Official College Website</title>
-
-    <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- ICONS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- GOOGLE FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="assets/css/style.css">
-
-</head>
-
-
-
-
-
-
-<body>
-
-  <!-- TOP BAR START -->
-  <div class="topbar">
-      <div class="container">
-          <div class="row align-items-center">
-              <div class="col-lg-6">
-                  <span><i class="bi bi-geo-alt me-1"></i> Kankarbagh, Patna, Bihar</span>
-                  <span class="ms-3"><i class="bi bi-envelope me-1"></i> gangadevimahilacollege@gmail.com</span>
-              </div>
-
-              <div class="col-lg-6">
-                  <div class="top-links">
-                      <a href="rti.html"><i class="bi bi-file-earmark-text me-1"></i> RTI</a>
-                      <a href="naac.html"><i class="bi bi-shield-check me-1"></i> NAAC / IQAC</a>
-                      <a href="download.html"><i class="bi bi-download me-1"></i> Admission</a>
-                      <a href="#"><i class="bi bi-person-lock me-1"></i> Admin Login</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  <!-- TOP BAR END -->
-
-
-
-<!-- HEADER START -->
-<header class="main-header">
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-
-      <a class="navbar-brand" href="#">
-        <img src="assets/img/logo.png" alt="">
-        <div class="brand-text">
-          <h1>Ganga Devi Mahila Mahavidyalaya</h1>
-          <span>Official College Website | gdmm.ac.in</span>
-        </div>
-      </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html">Home</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="about.html" data-bs-toggle="dropdown">
-              About Us
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="about.html">College Profile</a></li>
-              <li><a class="dropdown-item" href="/">Vision & Mission</a></li>
-              <li><a class="dropdown-item" href="principal.html">Principal's Message</a></li>
-              <li><a class="dropdown-item" href="college.html">College at a Glance</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-              Academics
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="courses.html">Courses Offered</a></li>
-              <li><a class="dropdown-item" href="Academic-Calendar.html">Academic Calendar</a></li>
-              <li><a class="dropdown-item" href="syllabus.html">Syllabus</a></li>
-              <li><a class="dropdown-item" href="examination.html">Examination</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="departments.html">Departments</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="admissions.html">Admissions</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="notices.html">Notices</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="students-corner.html" data-bs-toggle="dropdown">
-              Students Corner
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="online-admission.html">Online-Admission</a></li>
-              <li><a class="dropdown-item" href="online-fee.html">Online Fee</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-
-        </ul>
-      </div>
-
-    </div>
-  </nav>
-</header>
-<!-- HEADER END -->
-
+@extends('frontend.master')
+@section('content')
 
 <!-- ================= VISION & MISSION PAGE START ================= -->
 
@@ -224,68 +87,119 @@
 
 
   <!-- MAIN VISION MISSION START -->
-  <section class="vm-main-section">
-    <div class="container">
+ @if($collegeProfile)
 
-      <div class="vm-section-head text-center">
-        <span class="vm-section-badge">
-          <i class="bi bi-compass-fill"></i>
-          Our Direction
-        </span>
+    @php
+        $activeVisionPoints = collect(
+            $collegeProfile->vision_points ?? []
+        )->filter(function ($point) {
+            return !empty($point['text'])
+                && !empty($point['status']);
+        });
 
-        <h2>Vision, Mission and Core Objectives</h2>
+        $activeMissionPoints = collect(
+            $collegeProfile->mission_points ?? []
+        )->filter(function ($point) {
+            return !empty($point['text'])
+                && !empty($point['status']);
+        });
+    @endphp
 
-        <p>
-          A clear academic direction to support student growth, institutional excellence
-          and women empowerment.
-        </p>
-      </div>
+    <section class="vm-main-section">
+        <div class="container">
 
-      <div class="vm-main-grid">
+            <div class="vm-section-head text-center">
 
-        <div class="vm-card vm-card-blue">
-          <div class="vm-icon">
-            <i class="bi bi-eye-fill"></i>
-          </div>
+                <span class="vm-section-badge">
+                    <i class="bi bi-compass-fill"></i>
+                    Our Direction
+                </span>
 
-          <h3>Our Vision</h3>
+                <h2>
+                    Vision and Mission
+                </h2>
 
-          <p>
-            To create an inclusive, disciplined and progressive academic environment
-            that empowers women through quality higher education, knowledge, values
-            and confidence.
-          </p>
+                <p>
+                    A clear academic direction to support student growth,
+                    institutional excellence and women empowerment.
+                </p>
 
-          <ul>
-            <li><i class="bi bi-check2-circle"></i> Quality higher education</li>
-            <li><i class="bi bi-check2-circle"></i> Women empowerment</li>
-            <li><i class="bi bi-check2-circle"></i> Inclusive academic growth</li>
-          </ul>
+            </div>
+
+            <div class="vm-main-grid">
+
+                {{-- VISION CARD --}}
+                <div class="vm-card vm-card-blue">
+
+                    <div class="vm-icon">
+                        <i class="bi bi-eye-fill"></i>
+                    </div>
+
+                    <h3>
+                        {{ $collegeProfile->vision_title ?: 'Our Vision' }}
+                    </h3>
+
+                    @if($collegeProfile->vision_description)
+                        <p>
+                            {{ $collegeProfile->vision_description }}
+                        </p>
+                    @endif
+
+                    @if($activeVisionPoints->isNotEmpty())
+                        <ul>
+                            @foreach($activeVisionPoints as $point)
+                                <li>
+                                    <i class="bi bi-check2-circle"></i>
+
+                                    <span>
+                                        {{ $point['text'] }}
+                                    </span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+
+                </div>
+
+                {{-- MISSION CARD --}}
+                <div class="vm-card vm-card-red">
+
+                    <div class="vm-icon">
+                        <i class="bi bi-bullseye"></i>
+                    </div>
+
+                    <h3>
+                        {{ $collegeProfile->mission_title ?: 'Our Mission' }}
+                    </h3>
+
+                    @if($collegeProfile->mission_description)
+                        <p>
+                            {{ $collegeProfile->mission_description }}
+                        </p>
+                    @endif
+
+                    @if($activeMissionPoints->isNotEmpty())
+                        <ul>
+                            @foreach($activeMissionPoints as $point)
+                                <li>
+                                    <i class="bi bi-check2-circle"></i>
+
+                                    <span>
+                                        {{ $point['text'] }}
+                                    </span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+
+                </div>
+
+            </div>
+
         </div>
+    </section>
 
-        <div class="vm-card vm-card-red">
-          <div class="vm-icon">
-            <i class="bi bi-bullseye"></i>
-          </div>
-
-          <h3>Our Mission</h3>
-
-          <p>
-            To provide accessible education, promote academic excellence, encourage
-            discipline and develop responsible, skilled and confident women citizens.
-          </p>
-
-          <ul>
-            <li><i class="bi bi-check2-circle"></i> Student-centered learning</li>
-            <li><i class="bi bi-check2-circle"></i> Discipline and values</li>
-            <li><i class="bi bi-check2-circle"></i> Career and life readiness</li>
-          </ul>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
+@endif
   <!-- MAIN VISION MISSION END -->
 
 
@@ -500,76 +414,4 @@
 
  <!-- ================= VISION & MISSION PAGE START  ================= -->
 
-
-<!-- FOOTER START -->
-  <footer class="footer">
-    <div class="container">
-      <div class="row g-4">
-          <img src="assets/img/logo.png" alt="">
-        <div class="col-lg-4">
-          <h4>Ganga Devi Mahila Mahavidyalaya</h4>
-          <p>
-            Official college website for academic information, notices,
-            admission updates, statutory disclosures and student support services.
-          </p>
-        </div>
-
-        <div class="col-lg-2 col-md-4">
-          <h4>Quick Links</h4>
-          <div class="footer-links">
-            <a href="#">Home</a>
-            <a href="#">About College</a>
-            <a href="#">Academics</a>
-            <a href="#">Departments</a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4">
-          <h4>Students</h4>
-          <div class="footer-links">
-            <a href="#">Admissions</a>
-            <a href="#">Notices</a>
-            <a href="#">Downloads</a>
-            <a href="#">Students Corner</a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4">
-          <h4>Disclosure</h4>
-          <div class="footer-links">
-            <a href="#">NAAC / IQAC</a>
-            <a href="#">RTI</a>
-            <a href="#">Statutory Disclosure</a>
-            <a href="#">Policies</a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4">
-          <h4>Contact</h4>
-          <div class="footer-links">
-            <a href="#">Kankarbagh, Patna</a>
-            <a href="#">Contact Office</a>
-            <a href="#">Google Map</a>
-            <a href="#">Admin Login</a>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-        © 2026 Ganga Devi Mahila Mahavidyalaya. All Rights Reserved.
-      </div>
-    </div>
-  </footer>
-  <!-- FOOTER END -->
-
-  <script src="assets/js/main.js"></script>
-
-
-  <!-- BOOTSTRAP JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
- 
-
-</body>
-</html>
+@endsection

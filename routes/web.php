@@ -50,3 +50,6 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
 
 
 Route::get('/about',[\App\Http\Controllers\Frontend\AboutController::class, 'index'])->name('frontend.about');
+Route::get('/mission',[\App\Http\Controllers\Frontend\AboutController::class, 'mission'])->name('frontend.mission');
+Route::get('/principal',[\App\Http\Controllers\Frontend\AboutController::class, 'principal'])->name('frontend.principal');
+Route::get('/college',[\App\Http\Controllers\Frontend\AboutController::class, 'college'])->name('frontend.college');

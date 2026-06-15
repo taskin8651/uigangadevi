@@ -280,40 +280,77 @@
 
 
   <!-- PRINCIPAL MESSAGE START -->
-  <section class="cp-principal-section">
-    <div class="container">
+ @if($principalMessage)
 
-      <div class="cp-principal-wrap">
+    @php
+        $principalImage = $principalMessage->getFirstMediaUrl(
+            'principal_image'
+        );
+    @endphp
 
-        <div class="cp-principal-photo">
-          <img src="assets/img/principal.png" alt="Principal">
+    <section class="cp-principal-section">
+        <div class="container">
+
+            <div class="cp-principal-wrap">
+
+                {{-- PRINCIPAL IMAGE --}}
+                <div class="cp-principal-photo">
+                    <img
+                        src="{{ $principalImage ?: asset('assets/img/principal.png') }}"
+                        alt="{{ $principalMessage->principal_name ?: 'Principal' }}"
+                    >
+                </div>
+
+                {{-- PRINCIPAL CONTENT --}}
+                <div class="cp-principal-content">
+
+                    {{-- Static badge and icon --}}
+                    <span class="cp-section-badge">
+                        <i class="bi bi-person-badge-fill"></i>
+                        Principal's Message
+                    </span>
+
+                    @if($principalMessage->title)
+                        <h2>
+                            {{ $principalMessage->title }}
+                        </h2>
+                    @endif
+
+                    @if($principalMessage->description)
+                        <div class="cp-principal-description">
+                            {!! $principalMessage->description !!}
+                        </div>
+                    @endif
+
+                    @if(
+                        $principalMessage->principal_name ||
+                        $principalMessage->college_name
+                    )
+                        <div class="cp-principal-sign">
+
+                            @if($principalMessage->principal_name)
+                                <strong>
+                                    {{ $principalMessage->principal_name }}
+                                </strong>
+                            @endif
+
+                            @if($principalMessage->college_name)
+                                <span>
+                                    {{ $principalMessage->college_name }}
+                                </span>
+                            @endif
+
+                        </div>
+                    @endif
+
+                </div>
+
+            </div>
+
         </div>
+    </section>
 
-        <div class="cp-principal-content">
-          <span class="cp-section-badge">
-            <i class="bi bi-person-badge-fill"></i>
-            Principal's Message
-          </span>
-
-          <h2>Guiding Students Towards Knowledge, Confidence and Responsibility.</h2>
-
-          <p>
-            The college is dedicated to nurturing academic growth, ethical values and
-            confidence among students. Our focus is to provide a disciplined and supportive
-            learning environment where students can develop their potential and prepare for
-            future opportunities.
-          </p>
-
-          <div class="cp-principal-sign">
-            <strong>Prof. Dr. Shyama Roy</strong>
-            <span>Ganga Devi Mahila Mahavidyalaya</span>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
+@endif
   <!-- PRINCIPAL MESSAGE END -->
 
 
