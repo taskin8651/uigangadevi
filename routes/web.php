@@ -47,15 +47,15 @@ Route::delete(
 Route::resource('courses', 'CoursesController');    
 
 // Subjects
-Route::delete(
-    'subjects/destroy',
-    'SubjectsController@massDestroy'
-)->name('subjects.massDestroy');
+Route::delete('subjects/destroy','SubjectsController@massDestroy')->name('subjects.massDestroy');
 
-Route::resource(
-    'subjects',
-    'SubjectsController'
-);
+Route::resource('subjects','SubjectsController');
+
+// Faculty Members
+Route::delete('faculty-members/destroy','FacultyMembersController@massDestroy')->name('faculty-members.massDestroy');
+
+Route::resource('faculty-members','FacultyMembersController');
+
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
@@ -72,3 +72,11 @@ Route::get('/about',[\App\Http\Controllers\Frontend\AboutController::class, 'ind
 Route::get('/mission',[\App\Http\Controllers\Frontend\AboutController::class, 'mission'])->name('frontend.mission');
 Route::get('/principal',[\App\Http\Controllers\Frontend\AboutController::class, 'principal'])->name('frontend.principal');
 Route::get('/college',[\App\Http\Controllers\Frontend\AboutController::class, 'college'])->name('frontend.college');
+Route::get('/courses', [\App\Http\Controllers\Frontend\AcademicController::class, 'courses'])->name('frontend.courses');
+Route::get('/departments', [\App\Http\Controllers\Frontend\AcademicController::class, 'departments'])->name('frontend.departments');
+Route::get('/departments/{subject:slug}', [\App\Http\Controllers\Frontend\AcademicController::class, 'departmentDetail'])->name('frontend.departments.show');
+
+
+
+Route::get('/faculty/{slug}', [\App\Http\Controllers\Frontend\FacultyController::class, 'show'])
+    ->name('frontend.faculty.show');

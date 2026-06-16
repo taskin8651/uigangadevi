@@ -138,99 +138,36 @@
       </div>
 
       <div class="course-programmes-grid">
+        @forelse($courses as $course)
+          <div class="course-card">
+            <div class="course-card-icon">
+              <i class="bi bi-journal-richtext"></i>
+            </div>
 
-        <div class="course-card">
-          <div class="course-card-icon">
-            <i class="bi bi-journal-richtext"></i>
+            <span class="course-level">{{ $course->level ?: 'Academic Programme' }}</span>
+            <h3>{{ $course->name }}</h3>
+            <p>{{ $course->short_description ?: 'Programme details are available as per the approved academic structure and university guidelines.' }}</p>
+
+            <ul>
+              @forelse(collect($course->highlights)->where('status', 1)->take(3) as $highlight)
+                <li><i class="bi bi-check-circle"></i> {{ $highlight['text'] }}</li>
+              @empty
+                @foreach($course->subjects->take(3) as $subject)
+                  <li><i class="bi bi-check-circle"></i> {{ $subject->name }}</li>
+                @endforeach
+              @endforelse
+            </ul>
+
+            <a href="{{ route('frontend.departments') }}" class="course-card-link">
+              View Departments <i class="bi bi-arrow-right"></i>
+            </a>
           </div>
-
-          <span class="course-level">Undergraduate</span>
-          <h3>Bachelor of Arts</h3>
-          <p>
-            Humanities and social science stream for students interested in literature,
-            social studies, history, political science and related disciplines.
-          </p>
-
-          <ul>
-            <li><i class="bi bi-check-circle"></i> University prescribed syllabus</li>
-            <li><i class="bi bi-check-circle"></i> Subject combination as per rules</li>
-            <li><i class="bi bi-check-circle"></i> Examination and academic support</li>
-          </ul>
-
-          <a href="departments.html" class="course-card-link">
-            View Details <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-
-        <div class="course-card">
-          <div class="course-card-icon">
-            <i class="bi bi-calculator-fill"></i>
+        @empty
+          <div class="course-card">
+            <h3>Courses will be updated soon.</h3>
+            <p>Please check again for the latest academic programme information.</p>
           </div>
-
-          <span class="course-level">Undergraduate</span>
-          <h3>Bachelor of Science</h3>
-          <p>
-            Science stream for students pursuing academic growth in science subjects,
-            practical learning and structured university curriculum.
-          </p>
-
-          <ul>
-            <li><i class="bi bi-check-circle"></i> Science subject groups</li>
-            <li><i class="bi bi-check-circle"></i> Practical and theory learning</li>
-            <li><i class="bi bi-check-circle"></i> University examination pattern</li>
-          </ul>
-
-          <a href="departments.html" class="course-card-link">
-            View Details <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-
-        <div class="course-card">
-          <div class="course-card-icon">
-            <i class="bi bi-briefcase-fill"></i>
-          </div>
-
-          <span class="course-level">Undergraduate</span>
-          <h3>Bachelor of Commerce</h3>
-          <p>
-            Commerce programme focused on accounting, business studies, economics,
-            finance and professional academic development.
-          </p>
-
-          <ul>
-            <li><i class="bi bi-check-circle"></i> Commerce curriculum</li>
-            <li><i class="bi bi-check-circle"></i> Business and finance subjects</li>
-            <li><i class="bi bi-check-circle"></i> Career-oriented academic base</li>
-          </ul>
-
-          <a href="departments.html" class="course-card-link">
-            View Details <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-
-        <div class="course-card">
-          <div class="course-card-icon">
-            <i class="bi bi-mortarboard-fill"></i>
-          </div>
-
-          <span class="course-level">Postgraduate</span>
-          <h3>Postgraduate Programmes</h3>
-          <p>
-            Postgraduate academic opportunities may be offered as per university approval,
-            department availability and current academic rules.
-          </p>
-
-          <ul>
-            <li><i class="bi bi-check-circle"></i> Subject-wise availability</li>
-            <li><i class="bi bi-check-circle"></i> University guidelines applicable</li>
-            <li><i class="bi bi-check-circle"></i> Latest notices to be verified</li>
-          </ul>
-
-          <a href="departments.html" class="course-card-link">
-            View Details <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-
+        @endforelse
       </div>
 
     </div>
@@ -257,31 +194,18 @@
       </div>
 
       <div class="course-subject-grid">
-
-        <div class="course-subject-card">
-          <i class="bi bi-translate"></i>
-          <h4>Languages</h4>
-          <p>Hindi, English, Urdu, Sanskrit and related language studies.</p>
-        </div>
-
-        <div class="course-subject-card">
-          <i class="bi bi-globe-central-south-asia"></i>
-          <h4>Social Sciences</h4>
-          <p>History, Political Science, Sociology, Psychology and related subjects.</p>
-        </div>
-
-        <div class="course-subject-card">
-          <i class="bi bi-graph-up-arrow"></i>
-          <h4>Commerce</h4>
-          <p>Accounting, business studies, economics and finance-oriented subjects.</p>
-        </div>
-
-        <div class="course-subject-card">
-          <i class="bi bi-flower1"></i>
-          <h4>Science</h4>
-          <p>Science stream subjects as per approved academic structure.</p>
-        </div>
-
+        @forelse($subjects as $subject)
+          <a href="{{ route('frontend.departments.show', $subject->slug) }}" class="course-subject-card">
+            <i class="bi bi-book-half"></i>
+            <h4>{{ $subject->name }}</h4>
+            <p>{{ $subject->short_description ?: ($subject->department_name ?: 'Academic subject information and learning resources.') }}</p>
+          </a>
+        @empty
+          <div class="course-subject-card">
+            <i class="bi bi-book-half"></i>
+            <h4>Subjects will be updated soon.</h4>
+          </div>
+        @endforelse
       </div>
 
     </div>

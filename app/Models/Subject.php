@@ -79,4 +79,9 @@ class Subject extends Model implements HasMedia
             'size' => $media->size,
         ];
     }
+
+    public function facultyMembers()
+    {
+        return $this->hasMany(FacultyMember::class);
+    }
 }

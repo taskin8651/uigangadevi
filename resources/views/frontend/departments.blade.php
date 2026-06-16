@@ -157,115 +157,24 @@
     </div>
 
     <div class="dept-wise-grid">
-
-      <a href="departments.html" class="dept-wise-card">
-        <div class="dept-wise-icon">
-          <i class="bi bi-translate"></i>
+      @forelse($subjects as $subject)
+        <a href="{{ route('frontend.departments.show', $subject->slug) }}" class="dept-wise-card">
+          <div class="dept-wise-icon">
+            <i class="bi bi-book-half"></i>
+          </div>
+          <h3>{{ $subject->name }}</h3>
+          <p>{{ $subject->short_description ?: ($subject->department_name ?: 'Department academic information, syllabus and student resources.') }}</p>
+          <span>View Department <i class="bi bi-arrow-right"></i></span>
+        </a>
+      @empty
+        <div class="dept-wise-card">
+          <div class="dept-wise-icon">
+            <i class="bi bi-book-half"></i>
+          </div>
+          <h3>Departments will be updated soon.</h3>
+          <p>Please check again for the latest department information.</p>
         </div>
-        <h3>Hindi</h3>
-        <p>Language, literature, poetry, prose and Hindi academic studies.</p>
-        <span>View Department <i class="bi bi-arrow-right"></i></span>
-      </a>
-
-      <a href="departments.html" class="dept-wise-card">
-        <div class="dept-wise-icon">
-          <i class="bi bi-book-half"></i>
-        </div>
-        <h3>English</h3>
-        <p>English language, literature, communication and academic writing.</p>
-        <span>View Department <i class="bi bi-arrow-right"></i></span>
-      </a>
-
-      <a href="departments.html" class="dept-wise-card">
-        <div class="dept-wise-icon">
-          <i class="bi bi-journal-richtext"></i>
-        </div>
-        <h3>Sanskrit</h3>
-        <p>Classical language, grammar, literature and traditional studies.</p>
-        <span>View Department <i class="bi bi-arrow-right"></i></span>
-      </a>
-
-      <a href="departments.html" class="dept-wise-card">
-        <div class="dept-wise-icon">
-          <i class="bi bi-chat-quote-fill"></i>
-        </div>
-        <h3>Urdu</h3>
-        <p>Urdu language, poetry, literature and cultural academic studies.</p>
-        <span>View Department <i class="bi bi-arrow-right"></i></span>
-      </a>
-
-      <a href="departments.html" class="dept-wise-card">
-        <div class="dept-wise-icon">
-          <i class="bi bi-bank2"></i>
-        </div>
-        <h3>History</h3>
-        <p>Indian history, world history, civilization and heritage studies.</p>
-        <span>View Department <i class="bi bi-arrow-right"></i></span>
-      </a>
-
-      <a href="departments.html" class="dept-wise-card">
-        <div class="dept-wise-icon">
-          <i class="bi bi-globe-central-south-asia"></i>
-        </div>
-        <h3>Political Science</h3>
-        <p>Governance, constitution, political theory and public administration.</p>
-        <span>View Department <i class="bi bi-arrow-right"></i></span>
-      </a>
-
-      <a href="departments.html" class="dept-wise-card">
-        <div class="dept-wise-icon">
-          <i class="bi bi-people-fill"></i>
-        </div>
-        <h3>Sociology</h3>
-        <p>Society, social structure, community and development studies.</p>
-        <span>View Department <i class="bi bi-arrow-right"></i></span>
-      </a>
-
-      <a href="departments.html" class="dept-wise-card">
-        <div class="dept-wise-icon">
-          <i class="bi bi-person-heart"></i>
-        </div>
-        <h3>Psychology</h3>
-        <p>Human behavior, mental processes and applied psychology studies.</p>
-        <span>View Department <i class="bi bi-arrow-right"></i></span>
-      </a>
-
-      <a href="departments.html" class="dept-wise-card">
-        <div class="dept-wise-icon">
-          <i class="bi bi-cash-coin"></i>
-        </div>
-        <h3>Economics</h3>
-        <p>Economic theory, development, finance and policy studies.</p>
-        <span>View Department <i class="bi bi-arrow-right"></i></span>
-      </a>
-
-      <a href="departments.html" class="dept-wise-card">
-        <div class="dept-wise-icon">
-          <i class="bi bi-flower1"></i>
-        </div>
-        <h3>Botany</h3>
-        <p>Plant science, environment, biology and laboratory learning.</p>
-        <span>View Department <i class="bi bi-arrow-right"></i></span>
-      </a>
-
-      <a href="departments.html" class="dept-wise-card">
-        <div class="dept-wise-icon">
-          <i class="bi bi-bug-fill"></i>
-        </div>
-        <h3>Zoology</h3>
-        <p>Animal science, life science and practical academic learning.</p>
-        <span>View Department <i class="bi bi-arrow-right"></i></span>
-      </a>
-
-      <a href="departments.html" class="dept-wise-card">
-        <div class="dept-wise-icon">
-          <i class="bi bi-calculator-fill"></i>
-        </div>
-        <h3>Mathematics</h3>
-        <p>Algebra, calculus, statistics and logical academic learning.</p>
-        <span>View Department <i class="bi bi-arrow-right"></i></span>
-      </a>
-
+      @endforelse
     </div>
 
   </div>
@@ -273,213 +182,93 @@
 
 <!-- ================= DEPARTMENT-WISE SECTION END ================= -->
 
-
-
 <!-- ================= FACULTY LIST SECTION START ================= -->
 
-<section class="faculty-list-section">
-  <div class="container">
+@if($facultyMembers->isNotEmpty())
 
-    <div class="faculty-list-head text-center">
-      <span class="faculty-list-badge">
-        <i class="bi bi-person-badge-fill"></i>
-        Faculty Members
-      </span>
+    <section class="faculty-list-section">
+        <div class="container">
 
-      <h2>Department-wise Faculty List</h2>
+            <div class="faculty-list-head text-center">
+                <span class="faculty-list-badge">
+                    <i class="bi bi-person-badge-fill"></i>
+                    Faculty Members
+                </span>
 
-      <p>
-        Meet the experienced faculty members of Ganga Devi Mahila Mahavidyalaya
-        who guide students through academic learning, discipline and development.
-      </p>
-    </div>
+                <h2>
+                    Department-wise Faculty List
+                </h2>
 
-    <div class="faculty-filter-box">
-      <a href="#" class="active">All Faculty</a>
-      <a href="#">Arts</a>
-      <a href="#">Science</a>
-      <a href="#">Commerce</a>
-      <a href="#">Language</a>
-      <a href="#">Administration</a>
-    </div>
+                <p>
+                    Meet the experienced faculty members of Ganga Devi Mahila Mahavidyalaya.
+                </p>
+            </div>
 
-    <div class="faculty-list-grid">
+            <div class="faculty-list-grid">
 
-      <div class="faculty-card">
-        <div class="faculty-photo">
-          <img src="assets/img/dep.jpeg" alt="Faculty Member">
+                @foreach($facultyMembers as $facultyMember)
+
+                    <div class="faculty-card">
+
+                        <div class="faculty-photo">
+                            <img
+                                src="{{ $facultyMember->image ?: asset('assets/img/dep.jpeg') }}"
+                                alt="{{ $facultyMember->name }}"
+                            >
+                        </div>
+
+                        <div class="faculty-info">
+
+                            <span class="faculty-dept">
+                                {{ optional($facultyMember->subject)->department_name
+                                    ?: optional($facultyMember->subject)->name
+                                    ?: 'Faculty Member' }}
+                            </span>
+
+                            <h3>{{ $facultyMember->name }}</h3>
+
+                            @if($facultyMember->designation)
+                                <p>
+                                    {{ $facultyMember->designation }}
+                                </p>
+                            @endif
+
+                            <div class="faculty-meta">
+                                @if($facultyMember->faculty_category)
+                                    <span>
+                                        <i class="bi bi-person-vcard"></i>
+                                        {{ $facultyMember->faculty_category }}
+                                    </span>
+                                @endif
+
+                                @if($facultyMember->email)
+                                    <span>
+                                        <i class="bi bi-envelope-fill"></i>
+                                        {{ $facultyMember->email }}
+                                    </span>
+                                @endif
+                            </div>
+
+                            <a href="{{ route('frontend.faculty.show', $facultyMember->slug) }}"
+                               class="faculty-link">
+
+                                View Profile
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+
+                        </div>
+                    </div>
+
+                @endforeach
+
+            </div>
+
         </div>
+    </section>
 
-        <div class="faculty-info">
-          <span class="faculty-dept">Department of Hindi</span>
-          <h3>Dr. Anjali Kumari</h3>
-          <p>Assistant Professor</p>
-
-          <div class="faculty-meta">
-            <span><i class="bi bi-mortarboard-fill"></i> M.A., Ph.D.</span>
-            <span><i class="bi bi-envelope-fill"></i> faculty@gdmm.ac.in</span>
-          </div>
-
-          <a href="gallery.html" class="faculty-link">
-            View Profile <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="faculty-card">
-        <div class="faculty-photo">
-          <img src="assets/img/dep-1.jpeg" alt="Faculty Member">
-        </div>
-
-        <div class="faculty-info">
-          <span class="faculty-dept">Department of English</span>
-          <h3>Dr. Priya Sharma</h3>
-          <p>Associate Professor</p>
-
-          <div class="faculty-meta">
-            <span><i class="bi bi-mortarboard-fill"></i> M.A., Ph.D.</span>
-            <span><i class="bi bi-envelope-fill"></i> faculty@gdmm.ac.in</span>
-          </div>
-
-          <a href="gallery.html" class="faculty-link">
-            View Profile <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="faculty-card">
-        <div class="faculty-photo">
-          <img src="assets/img/dep-2.jpeg" alt="Faculty Member">
-        </div>
-
-        <div class="faculty-info">
-          <span class="faculty-dept">Department of History</span>
-          <h3>Dr. Neha Sinha</h3>
-          <p>Assistant Professor</p>
-
-          <div class="faculty-meta">
-            <span><i class="bi bi-mortarboard-fill"></i> M.A., Ph.D.</span>
-            <span><i class="bi bi-envelope-fill"></i> faculty@gdmm.ac.in</span>
-          </div>
-
-          <a href="gallery.html" class="faculty-link">
-            View Profile <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="faculty-card">
-        <div class="faculty-photo">
-          <img src="assets/img/dep-3.jpeg" alt="Faculty Member">
-        </div>
-
-        <div class="faculty-info">
-          <span class="faculty-dept">Department of Political Science</span>
-          <h3>Dr. Ritu Verma</h3>
-          <p>Assistant Professor</p>
-
-          <div class="faculty-meta">
-            <span><i class="bi bi-mortarboard-fill"></i> M.A., Ph.D.</span>
-            <span><i class="bi bi-envelope-fill"></i> faculty@gdmm.ac.in</span>
-          </div>
-
-          <a href="gallery.html" class="faculty-link">
-            View Profile <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="faculty-card">
-        <div class="faculty-photo">
-          <img src="assets/img/dep-4.jpeg" alt="Faculty Member">
-        </div>
-
-        <div class="faculty-info">
-          <span class="faculty-dept">Department of Economics</span>
-          <h3>Dr. Sweta Singh</h3>
-          <p>Assistant Professor</p>
-
-          <div class="faculty-meta">
-            <span><i class="bi bi-mortarboard-fill"></i> M.A., Ph.D.</span>
-            <span><i class="bi bi-envelope-fill"></i> faculty@gdmm.ac.in</span>
-          </div>
-
-          <a href="gallery.html" class="faculty-link">
-            View Profile <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="faculty-card">
-        <div class="faculty-photo">
-          <img src="assets/img/dep-5.jpeg" alt="Faculty Member">
-        </div>
-
-        <div class="faculty-info">
-          <span class="faculty-dept">Department of Commerce</span>
-          <h3>Dr. Kavita Gupta</h3>
-          <p>Assistant Professor</p>
-
-          <div class="faculty-meta">
-            <span><i class="bi bi-mortarboard-fill"></i> M.Com., Ph.D.</span>
-            <span><i class="bi bi-envelope-fill"></i> faculty@gdmm.ac.in</span>
-          </div>
-
-          <a href="gallery.html" class="faculty-link">
-            View Profile <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="faculty-card">
-        <div class="faculty-photo">
-          <img src="assets/img/dep-6.jpeg" alt="Faculty Member">
-        </div>
-
-        <div class="faculty-info">
-          <span class="faculty-dept">Department of Botany</span>
-          <h3>Dr. Poonam Kumari</h3>
-          <p>Assistant Professor</p>
-
-          <div class="faculty-meta">
-            <span><i class="bi bi-mortarboard-fill"></i> M.Sc., Ph.D.</span>
-            <span><i class="bi bi-envelope-fill"></i> faculty@gdmm.ac.in</span>
-          </div>
-
-          <a href="gallery.html" class="faculty-link">
-            View Profile <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="faculty-card">
-        <div class="faculty-photo">
-          <img src="assets/img/dep-7.jpeg" alt="Faculty Member">
-        </div>
-
-        <div class="faculty-info">
-          <span class="faculty-dept">Department of Zoology</span>
-          <h3>Dr. Meena Raj</h3>
-          <p>Assistant Professor</p>
-
-          <div class="faculty-meta">
-            <span><i class="bi bi-mortarboard-fill"></i> M.Sc., Ph.D.</span>
-            <span><i class="bi bi-envelope-fill"></i> faculty@gdmm.ac.in</span>
-          </div>
-
-          <a href="gallery.html" class="faculty-link">
-            View Profile <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
+@endif
 
 <!-- ================= FACULTY LIST SECTION END ================= -->
-
 
 
 

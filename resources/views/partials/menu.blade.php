@@ -227,6 +227,53 @@
         </div>
     </div>
 @endcan
+{{-- FACULTY MANAGEMENT GROUP --}}
+@can('faculty_management_access')
+    @php
+        $facultyActive = request()->is('admin/faculty-members*');
+    @endphp
+
+    <div x-data="{ open: {{ $facultyActive ? 'true' : 'false' }} }">
+
+        <button type="button"
+                @click="open = !open"
+                data-tooltip="Faculty"
+                class="nav-link nav-group-btn {{ $facultyActive ? 'active' : '' }}">
+
+            <div class="nav-group-left">
+                <i class="fas fa-chalkboard-teacher nav-icon"></i>
+
+                <span class="nav-label">
+                    Faculty Management
+                </span>
+            </div>
+
+            <i class="fas fa-chevron-right chevron"
+               :style="open ? 'transform:rotate(90deg)' : ''"></i>
+        </button>
+
+        <div class="submenu"
+             x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-150"
+             x-transition:enter-start="opacity-0 -translate-y-1"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-100"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-1">
+
+            @can('faculty_member_access')
+                <a href="{{ route('admin.faculty-members.index') }}"
+                   class="sub-link {{ request()->is('admin/faculty-members*') ? 'active' : '' }}">
+
+                    <i class="fas fa-user-tie"></i>
+                    Faculty Members
+                </a>
+            @endcan
+
+        </div>
+    </div>
+@endcan
 
         <div class="nav-divider"></div>
 

@@ -15421,6 +15421,281 @@
 /* ================= FACULTY LIST SECTION PREMIUM CSS END ================= */
 
 
+/* ================= FACULTY PROFILE PAGE CSS START ================= */
+
+.faculty-profile-page {
+  background: var(--light-bg);
+}
+
+.faculty-profile-hero {
+  position: relative;
+  padding: 76px 0;
+  background:
+    linear-gradient(135deg, rgba(13, 45, 85, 0.94), rgba(23, 63, 115, 0.88)),
+    url("../img/hero.png") center/cover no-repeat;
+  overflow: hidden;
+}
+
+.faculty-profile-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 7px;
+  background: linear-gradient(90deg, var(--secondary), var(--accent), var(--primary));
+}
+
+.faculty-profile-hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+  gap: 44px;
+  align-items: center;
+}
+
+.faculty-profile-photo {
+  border-radius: 26px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+}
+
+.faculty-profile-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 20px;
+}
+
+.faculty-profile-intro .faculty-list-badge {
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.faculty-profile-intro h1 {
+  margin: 18px 0 10px;
+  color: #ffffff;
+  font-size: 54px;
+  line-height: 1.08;
+  font-weight: 950;
+}
+
+.faculty-profile-role {
+  margin: 0 0 14px;
+  color: var(--accent);
+  font-size: 21px;
+  line-height: 1.35;
+  font-weight: 900;
+}
+
+.faculty-profile-summary {
+  max-width: 780px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 16px;
+  line-height: 1.75;
+  font-weight: 500;
+}
+
+.faculty-profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.faculty-profile-section {
+  padding: 70px 0;
+}
+
+.faculty-profile-layout {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.faculty-profile-sidebar,
+.faculty-profile-main {
+  display: grid;
+  gap: 22px;
+}
+
+.faculty-profile-side-card,
+.faculty-profile-content-card {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 16px 42px rgba(13, 45, 85, 0.08);
+  padding: 26px;
+}
+
+.faculty-profile-side-card h2,
+.faculty-profile-content-card h2 {
+  margin: 0 0 18px;
+  color: var(--primary-dark);
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 950;
+}
+
+.faculty-profile-facts {
+  display: grid;
+  gap: 14px;
+}
+
+.faculty-profile-facts div {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 2px 12px;
+  align-items: start;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+.faculty-profile-facts div:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.faculty-profile-facts i {
+  grid-row: span 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  color: var(--primary);
+  background: var(--soft-blue);
+}
+
+.faculty-profile-facts span {
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.25;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.faculty-profile-facts strong {
+  color: var(--dark);
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 900;
+  word-break: break-word;
+}
+
+.faculty-contact-list {
+  display: grid;
+  gap: 12px;
+}
+
+.faculty-contact-list a {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--primary);
+  font-size: 14px;
+  line-height: 1.45;
+  font-weight: 850;
+  word-break: break-word;
+}
+
+.faculty-contact-list i {
+  color: var(--secondary);
+  margin-top: 2px;
+}
+
+.faculty-profile-group-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.faculty-profile-list {
+  display: grid;
+  gap: 11px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.faculty-profile-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 650;
+}
+
+.faculty-profile-list i {
+  flex: 0 0 auto;
+  color: var(--secondary);
+  margin-top: 3px;
+}
+
+@media (max-width: 991px) {
+  .faculty-profile-hero {
+    padding: 58px 0;
+  }
+
+  .faculty-profile-hero-grid,
+  .faculty-profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-profile-photo {
+    max-width: 330px;
+  }
+
+  .faculty-profile-intro h1 {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 767px) {
+  .faculty-profile-section {
+    padding: 52px 0;
+  }
+
+  .faculty-profile-group-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faculty-profile-side-card,
+  .faculty-profile-content-card {
+    border-radius: 16px;
+    padding: 22px;
+  }
+}
+
+@media (max-width: 575px) {
+  .faculty-profile-hero-grid {
+    gap: 28px;
+  }
+
+  .faculty-profile-intro h1 {
+    font-size: 34px;
+  }
+
+  .faculty-profile-role {
+    font-size: 18px;
+  }
+
+  .faculty-profile-actions .course-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ================= FACULTY PROFILE PAGE CSS END ================= */
+
+
 
 /* ================= ACTIVITIES SECTION CSS START ================= */
 

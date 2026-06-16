@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Ganga Devi Mahila Mahavidyalaya | Official College Website</title>
+  <title>@yield('title', 'Ganga Devi Mahila Mahavidyalaya | Official College Website')</title>
 
   <!-- BOOTSTRAP -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
   <!-- GOOGLE FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
 </head>
 
@@ -51,7 +51,7 @@
     <div class="container">
 
       <a class="navbar-brand" href="#">
-        <img src="assets/img/logo.png" alt="">
+        <img src="{{ asset('assets/img/logo.png') }}" alt="">
         <div class="brand-text">
           <h1>Ganga Devi Mahila Mahavidyalaya</h1>
           <span>Official College Website | gdmm.ac.in</span>
@@ -88,7 +88,7 @@
             </a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="courses.html">Courses Offered</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.courses') }}">Courses Offered</a></li>
               <li><a class="dropdown-item" href="Academic-Calendar.html">Academic Calendar</a></li>
               <li><a class="dropdown-item" href="syllabus.html">Syllabus</a></li>
               <li><a class="dropdown-item" href="examination.html">Examination</a></li>
@@ -96,7 +96,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="departments.html">Departments</a>
+            <a class="nav-link" href="{{ route('frontend.departments') }}">Departments</a>
           </li>
 
           <li class="nav-item">
@@ -141,7 +141,7 @@
   <footer class="footer">
     <div class="container">
       <div class="row g-4">
-          <img src="assets/img/logo.png" alt="">
+          <img src="{{ asset('assets/img/logo.png') }}" alt="">
         <div class="col-lg-4">
           <h4>Ganga Devi Mahila Mahavidyalaya</h4>
           <p>
@@ -156,7 +156,7 @@
             <a href="/">Home</a>
             <a href="about.html">About College</a>
             <a href="Academic-Calendar.html">Academics</a>
-            <a href="departments.html">Departments</a>
+            <a href="{{ route('frontend.departments') }}">Departments</a>
           </div>
         </div>
 
@@ -199,7 +199,7 @@
   </footer>
   <!-- FOOTER END -->
 
-  <script src="assets/js/main.js"></script>
+  <script src="{{ asset('assets/js/main.js') }}"></script>
 
 
   <!-- BOOTSTRAP JS -->
