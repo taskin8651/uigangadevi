@@ -340,6 +340,68 @@
 
 @endcan
 
+{{-- ACADEMIC CALENDAR GROUP --}}
+@can('academic_calendar_management_access')
+
+    @php
+        $academicCalendarActive =
+            request()->is('admin/academic-calendars*');
+    @endphp
+
+    <div x-data="{ open: {{ $academicCalendarActive ? 'true' : 'false' }} }">
+
+        <button type="button"
+                @click="open = !open"
+                data-tooltip="Academic Calendar"
+                class="nav-link nav-group-btn {{ $academicCalendarActive ? 'active' : '' }}">
+
+            <div class="nav-group-left">
+
+                <i class="fas fa-calendar-alt nav-icon"></i>
+
+                <span class="nav-label">
+                    Academic Calendar
+                </span>
+
+            </div>
+
+            <i class="fas fa-chevron-right chevron"
+               :style="open ? 'transform:rotate(90deg)' : ''"></i>
+        </button>
+
+        <div class="submenu"
+             x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-150"
+             x-transition:enter-start="opacity-0 -translate-y-1"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-100"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-1">
+
+            @can('academic_calendar_access')
+                <a href="{{ route('admin.academic-calendars.index') }}"
+                   class="sub-link {{ request()->is('admin/academic-calendars*') ? 'active' : '' }}">
+
+                    <i class="fas fa-calendar-check"></i>
+                    All Calendars
+                </a>
+            @endcan
+
+            @can('academic_calendar_create')
+                <a href="{{ route('admin.academic-calendars.create') }}"
+                   class="sub-link {{ request()->is('admin/academic-calendars/create') ? 'active' : '' }}">
+
+                    <i class="fas fa-plus-circle"></i>
+                    Add Calendar
+                </a>
+            @endcan
+
+        </div>
+
+    </div>
+
+@endcan
         <div class="nav-divider"></div>
 
         <p class="sidebar-section-title compact nav-label">Account</p>

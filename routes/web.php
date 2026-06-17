@@ -60,6 +60,11 @@ Route::resource('faculty-members','FacultyMembersController');
 Route::delete('student-activities/destroy','StudentActivitiesController@massDestroy')->name('student-activities.massDestroy');
 
 Route::resource('student-activities','StudentActivitiesController');
+
+// Academic Calendars
+Route::delete('academic-calendars/destroy','AcademicCalendarsController@massDestroy')->name('academic-calendars.massDestroy');
+
+Route::resource('academic-calendars','AcademicCalendarsController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
@@ -90,3 +95,6 @@ Route::get('/activities', [\App\Http\Controllers\Frontend\StudentActivityControl
 
 Route::get('/activities/{slug}', [\App\Http\Controllers\Frontend\StudentActivityController::class, 'show'])
     ->name('frontend.activities.show');
+
+Route::get('/academic-calendar', [\App\Http\Controllers\Frontend\AcademicCalendarController::class, 'index'])
+    ->name('frontend.academic-calendar.index');
