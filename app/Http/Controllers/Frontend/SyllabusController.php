@@ -85,9 +85,30 @@ class SyllabusController extends Controller
             ->where('status', true)
             ->firstOrFail();
 
+        $relatedSyllabusDocuments = SyllabusDocument::query()
+            ->with([
+                'course',
+                'subject',
+            ])
+            ->where('status', true)
+            ->where('id', '!=', $syllabusDocument->id)
+            ->where(function ($query) use ($syllabusDocument) {
+                $query
+                    ->where('course_id', $syllabusDocument->course_id)
+                    ->orWhere('academic_session', $syllabusDocument->academic_session);
+            })
+            ->orderByDesc('is_featured')
+            ->orderBy('sort_order')
+            ->orderByDesc('id')
+            ->limit(4)
+            ->get();
+
         return view(
             'frontend.syllabus-show',
-            compact('syllabusDocument')
+            compact(
+                'syllabusDocument',
+                'relatedSyllabusDocuments'
+            )
         );
     }
 }
