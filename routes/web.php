@@ -70,6 +70,11 @@ Route::resource('academic-calendars','AcademicCalendarsController');
 Route::delete('syllabus-documents/destroy','SyllabusDocumentsController@massDestroy')->name('syllabus-documents.massDestroy');
 
 Route::resource('syllabus-documents','SyllabusDocumentsController');
+
+// Notices
+Route::delete('notices/destroy','NoticesController@massDestroy')->name('notices.massDestroy');
+
+Route::resource('notices','NoticesController');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
@@ -109,3 +114,8 @@ Route::get('/syllabus', [\App\Http\Controllers\Frontend\SyllabusController::clas
 
 Route::get('/syllabus/{slug}', [\App\Http\Controllers\Frontend\SyllabusController::class, 'show'])
     ->name('frontend.syllabus.show');
+
+Route::get('/notices', [\App\Http\Controllers\Frontend\NoticeController::class, 'index'])
+    ->name('frontend.notices.index');
+
+    Route::view('/examination', 'frontend.examination')->name('frontend.examination');

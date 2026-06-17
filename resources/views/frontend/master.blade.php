@@ -104,7 +104,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="notices.html">Notices</a>
+            <a class="nav-link" href="{{ route('frontend.notices.index') }}">Notices</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -164,7 +164,7 @@
           <h4>Students</h4>
           <div class="footer-links">
             <a href="admissions.html">Admissions</a>
-            <a href="notices.html">Notices</a>
+            <a href="{{ route('frontend.notices.index') }}">Notices</a>
             <a href="download.html">Downloads</a>
             <a href="students-corner.html">Students Corner</a>
           </div>

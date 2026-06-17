@@ -104,7 +104,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="notices.html">Notices</a>
+            <a class="nav-link" href="{{ route('frontend.notices.index') }}">Notices</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -176,7 +176,7 @@
         </p>
 
         <div class="hero-actions">
-          <a href="notices.html" class="hero-btn primary">Latest Notices</a>
+          <a href="{{ route('frontend.notices.index') }}" class="hero-btn primary">Latest Notices</a>
           <a href="admissions.html" class="hero-btn light">Admission Updates</a>
         </div>
       </div>
@@ -485,7 +485,7 @@
     </div>
 
     <div class="card-grid-4">
-      <a href="notices.html" class="premium-card">
+      <a href="{{ route('frontend.notices.index') }}" class="premium-card">
         <div class="icon-box"><i class="bi bi-megaphone-fill"></i></div>
         <h4>Latest Notices</h4>
         <p>College notices, circulars and announcements.</p>
@@ -835,7 +835,7 @@
           <h4>Students</h4>
           <div class="footer-links">
             <a href="admissions.html">Admissions</a>
-            <a href="notices.html">Notices</a>
+            <a href="{{ route('frontend.notices.index') }}">Notices</a>
             <a href="download.html">Downloads</a>
             <a href="students-corner.html">Students Corner</a>
           </div>

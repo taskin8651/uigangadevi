@@ -86,8 +86,37 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 24,
                 'title' => 'profile_password_edit',
             ],
+            [
+                'id'    => 70,
+                'title' => 'notice_management_access',
+            ],
+            [
+                'id'    => 71,
+                'title' => 'notice_create',
+            ],
+            [
+                'id'    => 72,
+                'title' => 'notice_edit',
+            ],
+            [
+                'id'    => 73,
+                'title' => 'notice_show',
+            ],
+            [
+                'id'    => 74,
+                'title' => 'notice_delete',
+            ],
+            [
+                'id'    => 75,
+                'title' => 'notice_access',
+            ],
         ];
 
-        Permission::insert($permissions);
+        foreach ($permissions as $permission) {
+            Permission::updateOrInsert(
+                ['id' => $permission['id']],
+                ['title' => $permission['title']]
+            );
+        }
     }
 }
