@@ -57,108 +57,77 @@
           </div>
         </div>
 
-        <a href="notices.html" class="admission-main-btn">
+        <a href="{{ route('frontend.notices.index') }}" class="admission-main-btn">
           View All Admission Notices <i class="bi bi-arrow-right"></i>
         </a>
       </div>
 
       <div class="admission-notice-list">
 
-        <a href="notices.html" class="admission-notice-item">
-          <div class="admission-notice-date">
-            <strong>08</strong>
-            <span>Jun</span>
-          </div>
+        @forelse($frontendAdmissionNotices as $notice)
+          @php
+            $noticeDate = $notice->notice_date;
+            $noticeUrl = $notice->download_url ?: route('frontend.notices.index');
+          @endphp
 
-          <div class="admission-notice-content">
-            <div class="admission-notice-top">
-              <span class="admission-category new">New Admission</span>
-              <small><i class="bi bi-clock-fill"></i> Latest</small>
+          <a href="{{ $noticeUrl }}"
+             class="admission-notice-item"
+             @if($notice->download_url) target="_blank" rel="noopener" @endif>
+            <div class="admission-notice-date">
+              <strong>{{ $noticeDate ? $noticeDate->format('d') : '--' }}</strong>
+              <span>{{ $noticeDate ? $noticeDate->format('M') : 'New' }}</span>
             </div>
 
-            <h4>Admission notice for upcoming academic session</h4>
+            <div class="admission-notice-content">
+              <div class="admission-notice-top">
+                <span class="admission-category new">{{ $notice->category ?: 'Admission' }}</span>
+                <small>
+                  @if($notice->document)
+                    <i class="bi bi-file-earmark-pdf-fill"></i> PDF
+                  @elseif($notice->is_latest)
+                    <i class="bi bi-clock-fill"></i> Latest
+                  @else
+                    <i class="bi bi-info-circle-fill"></i> Notice
+                  @endif
+                </small>
+              </div>
 
-            <p>
-              Important information regarding admission process, application schedule and required documents.
-            </p>
-          </div>
+              <h4>{{ $notice->title }}</h4>
 
-          <div class="admission-notice-action">
-            <i class="bi bi-arrow-right"></i>
-          </div>
-        </a>
-
-        <a href="notices.html" class="admission-notice-item">
-          <div class="admission-notice-date">
-            <strong>05</strong>
-            <span>Jun</span>
-          </div>
-
-          <div class="admission-notice-content">
-            <div class="admission-notice-top">
-              <span class="admission-category merit">Merit List</span>
-              <small><i class="bi bi-file-earmark-pdf-fill"></i> PDF</small>
+              <p>
+                {{ $notice->short_description ?: 'Official admission notice, schedule and student instructions.' }}
+              </p>
             </div>
 
-            <h4>Merit list publication and admission instruction</h4>
-
-            <p>
-              Students can check merit list details, reporting date and verification instructions.
-            </p>
-          </div>
-
-          <div class="admission-notice-action">
-            <i class="bi bi-arrow-right"></i>
-          </div>
-        </a>
-
-        <a href="notices.html" class="admission-notice-item">
-          <div class="admission-notice-date">
-            <strong>02</strong>
-            <span>Jun</span>
-          </div>
-
-          <div class="admission-notice-content">
-            <div class="admission-notice-top">
-              <span class="admission-category document">Documents</span>
-              <small><i class="bi bi-folder-check"></i> Required</small>
+            <div class="admission-notice-action">
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </a>
+        @empty
+          <a href="{{ route('frontend.notices.index') }}" class="admission-notice-item">
+            <div class="admission-notice-date">
+              <strong>--</strong>
+              <span>New</span>
             </div>
 
-            <h4>Document verification schedule for selected students</h4>
+            <div class="admission-notice-content">
+              <div class="admission-notice-top">
+                <span class="admission-category new">Admission</span>
+                <small><i class="bi bi-info-circle-fill"></i> Info</small>
+              </div>
 
-            <p>
-              Selected applicants must bring original documents and required photocopies for verification.
-            </p>
-          </div>
+              <h4>No admission notices published yet</h4>
 
-          <div class="admission-notice-action">
-            <i class="bi bi-arrow-right"></i>
-          </div>
-        </a>
-
-        <a href="notices.html" class="admission-notice-item">
-          <div class="admission-notice-date">
-            <strong>28</strong>
-            <span>May</span>
-          </div>
-
-          <div class="admission-notice-content">
-            <div class="admission-notice-top">
-              <span class="admission-category fee">Fee Update</span>
-              <small><i class="bi bi-cash-coin"></i> Info</small>
+              <p>
+                Admission notices, merit list updates and document instructions will appear here.
+              </p>
             </div>
 
-            <h4>Admission fee submission and college office notice</h4>
-
-            <p>
-              Important notice regarding admission fee payment, receipt and office support timing.
-            </p>
-          </div>
-
-          <div class="admission-notice-action">
-            <i class="bi bi-arrow-right"></i>
-          </div>
-        </a>
+            <div class="admission-notice-action">
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </a>
+        @endforelse
 
       </div>
 
@@ -231,7 +200,7 @@
 
       <div class="courses-available-grid">
 
-        <a href="notices.html" class="course-available-card">
+        <a href="{{ route('frontend.notices.index') }}" class="course-available-card">
           <div class="course-card-icon">
             <i class="bi bi-translate"></i>
           </div>
@@ -251,7 +220,7 @@
           </div>
         </a>
 
-        <a href="notices.html" class="course-available-card">
+        <a href="{{ route('frontend.notices.index') }}" class="course-available-card">
           <div class="course-card-icon">
             <i class="bi bi-flower1"></i>
           </div>
@@ -271,7 +240,7 @@
           </div>
         </a>
 
-        <a href="notices.html" class="course-available-card">
+        <a href="{{ route('frontend.notices.index') }}" class="course-available-card">
           <div class="course-card-icon">
             <i class="bi bi-graph-up-arrow"></i>
           </div>
@@ -291,7 +260,7 @@
           </div>
         </a>
 
-        <a href="notices.html" class="course-available-card">
+        <a href="{{ route('frontend.notices.index') }}" class="course-available-card">
           <div class="course-card-icon">
             <i class="bi bi-award-fill"></i>
           </div>
@@ -540,7 +509,7 @@
           </div>
         </div>
 
-        <a href="notices.html" class="important-main-btn">
+        <a href="{{ route('frontend.notices.index') }}" class="important-main-btn">
           View Latest Notices <i class="bi bi-arrow-right"></i>
         </a>
       </div>
@@ -962,7 +931,7 @@
           </div>
         </a>
 
-        <a href="notices.html" class="merit-list-card">
+        <a href="{{ route('frontend.notices.index') }}" class="merit-list-card">
           <div class="merit-card-icon">
             <i class="bi bi-file-earmark-text-fill"></i>
           </div>
@@ -1012,7 +981,7 @@
           </div>
         </a>
 
-        <a href="notices.html" class="merit-list-card">
+        <a href="{{ route('frontend.notices.index') }}" class="merit-list-card">
           <div class="merit-card-icon">
             <i class="bi bi-folder-check"></i>
           </div>
@@ -1500,7 +1469,7 @@
 
     <div class="prospectus-quick-row">
 
-      <a href="notices.html" class="prospectus-quick-card">
+      <a href="{{ route('frontend.notices.index') }}" class="prospectus-quick-card">
         <i class="bi bi-megaphone-fill"></i>
         <span>Latest Notices</span>
       </a>

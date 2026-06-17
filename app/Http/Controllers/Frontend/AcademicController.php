@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\FacultyMember;
+use App\Models\Notice;
 use App\Models\StudentActivity;
 use App\Models\Subject;
 
@@ -56,9 +57,23 @@ class AcademicController extends Controller
             ->limit(6)
             ->get();
 
+        $frontendLatestNotices = Notice::query()
+            ->where('status', true)
+            ->orderByDesc('is_latest')
+            ->orderByDesc('notice_date')
+            ->orderBy('sort_order')
+            ->orderByDesc('id')
+            ->limit(4)
+            ->get();
+
         return view(
             'frontend.departments',
-            compact('subjects', 'facultyMembers', 'studentActivities')
+            compact(
+                'subjects',
+                'facultyMembers',
+                'studentActivities',
+                'frontendLatestNotices'
+            )
         );
     }
 

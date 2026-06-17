@@ -100,7 +100,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="admissions.html">Admissions</a>
+            <a class="nav-link" href="{{ route('frontend.admissions.index') }}">Admissions</a>
           </li>
 
           <li class="nav-item">
@@ -177,7 +177,7 @@
 
         <div class="hero-actions">
           <a href="{{ route('frontend.notices.index') }}" class="hero-btn primary">Latest Notices</a>
-          <a href="admissions.html" class="hero-btn light">Admission Updates</a>
+          <a href="{{ route('frontend.admissions.index') }}" class="hero-btn light">Admission Updates</a>
         </div>
       </div>
     </div>
@@ -393,44 +393,38 @@
         <div class="notice-list-card">
           <div class="panel-head">
             <h3><i class="bi bi-megaphone-fill me-2"></i> Latest Notices & Circulars</h3>
-            <a href="#" class="outline-btn">View All</a>
+            <a href="{{ route('frontend.notices.index') }}" class="outline-btn">View All</a>
           </div>
 
-          <a href="#" class="notice-item">
-            <div class="notice-date"><strong>05</strong><span>Jun</span></div>
-            <div>
-              <h4>Admission Notice for Undergraduate Courses Session 2026</h4>
-              <p>Admission notice, eligibility, important dates and prospectus details.</p>
-            </div>
-            <i class="bi bi-arrow-right"></i>
-          </a>
+          @forelse($frontendLatestNotices as $notice)
+            @php
+              $noticeDate = $notice->notice_date;
+              $noticeUrl = $notice->download_url ?: route('frontend.notices.index');
+            @endphp
 
-          <a href="#" class="notice-item">
-            <div class="notice-date"><strong>03</strong><span>Jun</span></div>
-            <div>
-              <h4>Examination Form Fill-up Schedule and Instructions</h4>
-              <p>Important examination form and student guidelines.</p>
-            </div>
-            <i class="bi bi-arrow-right"></i>
-          </a>
-
-          <a href="#" class="notice-item">
-            <div class="notice-date"><strong>30</strong><span>May</span></div>
-            <div>
-              <h4>Scholarship Document Submission Notice</h4>
-              <p>Student scholarship related documents and deadline information.</p>
-            </div>
-            <i class="bi bi-arrow-right"></i>
-          </a>
-
-          <a href="#" class="notice-item">
-            <div class="notice-date"><strong>27</strong><span>May</span></div>
-            <div>
-              <h4>Holiday Notice as per University / Government Circular</h4>
-              <p>Official holiday circular for students and staff.</p>
-            </div>
-            <i class="bi bi-arrow-right"></i>
-          </a>
+            <a href="{{ $noticeUrl }}"
+               class="notice-item"
+               @if($notice->download_url) target="_blank" rel="noopener" @endif>
+              <div class="notice-date">
+                <strong>{{ $noticeDate ? $noticeDate->format('d') : '--' }}</strong>
+                <span>{{ $noticeDate ? $noticeDate->format('M') : 'New' }}</span>
+              </div>
+              <div>
+                <h4>{{ $notice->title }}</h4>
+                <p>{{ $notice->short_description ?: ($notice->category ?: 'Official college notice and circular.') }}</p>
+              </div>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          @empty
+            <a href="{{ route('frontend.notices.index') }}" class="notice-item">
+              <div class="notice-date"><strong>--</strong><span>New</span></div>
+              <div>
+                <h4>No notices published yet</h4>
+                <p>Latest college notices and circulars will appear here after publication.</p>
+              </div>
+              <i class="bi bi-arrow-right"></i>
+            </a>
+          @endforelse
         </div>
 
         <div class="admission-card">
@@ -448,7 +442,7 @@
             <div><i class="bi bi-check-circle-fill"></i> Prospectus Download</div>
           </div>
 
-          <a href="admissions.html" class="white-btn">View Admission Details <i class="bi bi-arrow-right"></i></a>
+          <a href="{{ route('frontend.admissions.index') }}" class="white-btn">View Admission Details <i class="bi bi-arrow-right"></i></a>
         </div>
 
       </div>
@@ -491,7 +485,7 @@
         <p>College notices, circulars and announcements.</p>
       </a>
 
-      <a href="admissions.html" class="premium-card">
+      <a href="{{ route('frontend.admissions.index') }}" class="premium-card">
         <div class="icon-box"><i class="bi bi-person-check-fill"></i></div>
         <h4>Admissions</h4>
         <p>Admission notice, dates and merit list.</p>
@@ -737,7 +731,7 @@
             </div>
           </a>
 
-          <a href="admissions.html" class="download-row">
+          <a href="{{ route('frontend.admissions.index') }}" class="download-row">
             <i class="bi bi-person-check-fill"></i>
             <div>
               <strong>Admission Form</strong>
@@ -834,7 +828,7 @@
         <div class="col-lg-2 col-md-4">
           <h4>Students</h4>
           <div class="footer-links">
-            <a href="admissions.html">Admissions</a>
+            <a href="{{ route('frontend.admissions.index') }}">Admissions</a>
             <a href="{{ route('frontend.notices.index') }}">Notices</a>
             <a href="download.html">Downloads</a>
             <a href="students-corner.html">Students Corner</a>

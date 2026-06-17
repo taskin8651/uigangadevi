@@ -468,7 +468,7 @@
         </div>
 
         <div class="cp-cta-actions">
-          <a href="notices.html" class="cp-btn primary">
+          <a href="{{ route('frontend.notices.index') }}" class="cp-btn primary">
             <i class="bi bi-megaphone-fill"></i>
             Latest Notices
           </a>

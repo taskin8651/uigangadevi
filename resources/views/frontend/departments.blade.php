@@ -103,7 +103,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="admissions.html">Admissions</a>
+            <a class="nav-link" href="{{ route('frontend.admissions.index') }}">Admissions</a>
           </li>
 
           <li class="nav-item">
@@ -419,108 +419,78 @@
           and academic announcements.
         </p>
 
-        <a href="notices.html" class="notice-main-btn">
+        <a href="{{ route('frontend.notices.index') }}" class="notice-main-btn">
           View All Notices <i class="bi bi-arrow-right"></i>
         </a>
       </div>
 
       <div class="notices-list">
 
-        <a href="admissions.html" class="notice-item">
-          <div class="notice-date">
-            <strong>08</strong>
-            <span>Jun</span>
-          </div>
+        @forelse($frontendLatestNotices as $notice)
+          @php
+            $noticeDate = $notice->notice_date;
+            $noticeUrl = $notice->download_url ?: route('frontend.notices.index');
+            $categoryClass = \Illuminate\Support\Str::slug($notice->category ?: 'notice');
+          @endphp
 
-          <div class="notice-content">
-            <div class="notice-top">
-              <span class="notice-category admission">Admission</span>
-              <small><i class="bi bi-clock-fill"></i> New</small>
+          <a href="{{ $noticeUrl }}"
+             class="notice-item"
+             @if($notice->download_url) target="_blank" rel="noopener" @endif>
+            <div class="notice-date">
+              <strong>{{ $noticeDate ? $noticeDate->format('d') : '--' }}</strong>
+              <span>{{ $noticeDate ? $noticeDate->format('M') : 'New' }}</span>
             </div>
 
-            <h4>Admission related important information for upcoming academic session</h4>
+            <div class="notice-content">
+              <div class="notice-top">
+                <span class="notice-category {{ $categoryClass }}">{{ $notice->category ?: 'Notice' }}</span>
+                <small>
+                  @if($notice->document)
+                    <i class="bi bi-file-earmark-pdf-fill"></i> PDF
+                  @elseif($notice->is_latest)
+                    <i class="bi bi-clock-fill"></i> New
+                  @else
+                    <i class="bi bi-file-earmark-text-fill"></i> Notice
+                  @endif
+                </small>
+              </div>
 
-            <p>
-              Students can check admission guidelines, required documents and latest instructions.
-            </p>
-          </div>
+              <h4>{{ $notice->title }}</h4>
 
-          <div class="notice-arrow">
-            <i class="bi bi-arrow-right"></i>
-          </div>
-        </a>
-
-        <a href="examination.html" class="notice-item">
-          <div class="notice-date">
-            <strong>05</strong>
-            <span>Jun</span>
-          </div>
-
-          <div class="notice-content">
-            <div class="notice-top">
-              <span class="notice-category exam">Examination</span>
-              <small><i class="bi bi-file-earmark-pdf-fill"></i> PDF</small>
+              <p>
+                {{ $notice->short_description ?: 'Official college notice and circular information.' }}
+              </p>
             </div>
 
-            <h4>Examination form fill-up and schedule related notification</h4>
-
-            <p>
-              Examination related dates, form submission process and official guidelines.
-            </p>
-          </div>
-
-          <div class="notice-arrow">
-            <i class="bi bi-arrow-right"></i>
-          </div>
-        </a>
-
-        <a href="Academic-Calendar.html" class="notice-item">
-          <div class="notice-date">
-            <strong>02</strong>
-            <span>Jun</span>
-          </div>
-
-          <div class="notice-content">
-            <div class="notice-top">
-              <span class="notice-category academic">Academic</span>
-              <small><i class="bi bi-calendar2-week-fill"></i> Update</small>
+            <div class="notice-arrow">
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </a>
+        @empty
+          <a href="{{ route('frontend.notices.index') }}" class="notice-item">
+            <div class="notice-date">
+              <strong>--</strong>
+              <span>New</span>
             </div>
 
-            <h4>Academic calendar and departmental activity schedule update</h4>
+            <div class="notice-content">
+              <div class="notice-top">
+                <span class="notice-category student">Notice</span>
+                <small><i class="bi bi-info-circle-fill"></i> Info</small>
+              </div>
 
-            <p>
-              Department-wise academic activities, calendar updates and institutional schedule.
-            </p>
-          </div>
+              <h4>No notices published yet</h4>
 
-          <div class="notice-arrow">
-            <i class="bi bi-arrow-right"></i>
-          </div>
-        </a>
-
-        <a href="students-corner.html" class="notice-item">
-          <div class="notice-date">
-            <strong>28</strong>
-            <span>May</span>
-          </div>
-
-          <div class="notice-content">
-            <div class="notice-top">
-              <span class="notice-category student">Student</span>
-              <small><i class="bi bi-info-circle-fill"></i> Info</small>
+              <p>
+                Latest college notices and circulars will appear here after publication.
+              </p>
             </div>
 
-            <h4>Student support, document verification and office notice</h4>
-
-            <p>
-              Important information for students regarding college office and documents.
-            </p>
-          </div>
-
-          <div class="notice-arrow">
-            <i class="bi bi-arrow-right"></i>
-          </div>
-        </a>
+            <div class="notice-arrow">
+              <i class="bi bi-arrow-right"></i>
+            </div>
+          </a>
+        @endforelse
 
       </div>
 

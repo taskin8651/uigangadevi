@@ -396,7 +396,7 @@
         </div>
 
         <div class="vm-cta-actions">
-          <a href="notices.html" class="vm-btn primary">
+          <a href="{{ route('frontend.notices.index') }}" class="vm-btn primary">
             <i class="bi bi-megaphone-fill"></i>
             Latest Notices
           </a>

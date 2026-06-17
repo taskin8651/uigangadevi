@@ -34,7 +34,7 @@
               Download Calendar
             </a>
 
-            <a href="notices.html" class="calendar-btn light">
+            <a href="{{ route('frontend.notices.index') }}" class="calendar-btn light">
               <i class="bi bi-megaphone-fill"></i>
               Latest Notices
             </a>
@@ -105,7 +105,7 @@
               government or college notifications.
             </p>
 
-            <a href="notices.html" class="calendar-text-link">
+            <a href="{{ route('frontend.notices.index') }}" class="calendar-text-link">
               Check Latest Updates
               <i class="bi bi-arrow-right"></i>
             </a>
@@ -373,7 +373,7 @@
               admission, registration, examination, result and academic events.
             </p>
 
-            <a href="notices.html" class="calendar-btn primary">
+            <a href="{{ route('frontend.notices.index') }}" class="calendar-btn primary">
               <i class="bi bi-megaphone-fill"></i>
               View Notices
             </a>
@@ -449,7 +449,7 @@
             </div>
           </a>
 
-          <a href="notices.html" class="calendar-download-card">
+          <a href="{{ route('frontend.notices.index') }}" class="calendar-download-card">
             <i class="bi bi-calendar-x-fill"></i>
             <div>
               <h4>Holiday List</h4>
@@ -465,7 +465,7 @@
             </div>
           </a>
 
-          <a href="notices.html" class="calendar-download-card">
+          <a href="{{ route('frontend.notices.index') }}" class="calendar-download-card">
             <i class="bi bi-megaphone-fill"></i>
             <div>
               <h4>Latest Circulars</h4>
@@ -491,7 +491,7 @@
           </div>
 
           <div class="calendar-cta-actions">
-            <a href="notices.html" class="calendar-btn primary">
+            <a href="{{ route('frontend.notices.index') }}" class="calendar-btn primary">
               <i class="bi bi-megaphone-fill"></i>
               Latest Notices
             </a>

@@ -34,7 +34,7 @@
             Download Prospectus
           </a>
 
-          <a href="notices.html" class="cg-btn light">
+          <a href="{{ route('frontend.notices.index') }}" class="cg-btn light">
             <i class="bi bi-megaphone-fill"></i>
             Latest Notices
           </a>
@@ -489,7 +489,7 @@
 
       <div class="cg-links-grid">
 
-        <a href="notices.html" class="cg-link-card">
+        <a href="{{ route('frontend.notices.index') }}" class="cg-link-card">
           <i class="bi bi-megaphone-fill"></i>
           <span>Latest Notices</span>
         </a>
@@ -536,7 +536,7 @@
         </div>
 
         <div class="cg-cta-actions">
-          <a href="notices.html" class="cg-btn primary">
+          <a href="{{ route('frontend.notices.index') }}" class="cg-btn primary">
             <i class="bi bi-megaphone-fill"></i>
             Latest Notices
           </a>

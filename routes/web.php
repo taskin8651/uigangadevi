@@ -91,6 +91,8 @@ Route::get('/about',[\App\Http\Controllers\Frontend\AboutController::class, 'ind
 Route::get('/mission',[\App\Http\Controllers\Frontend\AboutController::class, 'mission'])->name('frontend.mission');
 Route::get('/principal',[\App\Http\Controllers\Frontend\AboutController::class, 'principal'])->name('frontend.principal');
 Route::get('/college',[\App\Http\Controllers\Frontend\AboutController::class, 'college'])->name('frontend.college');
+Route::get('/index', [\App\Http\Controllers\Frontend\IndexController::class, 'index'])->name('frontend.index');
+Route::get('/admissions', [\App\Http\Controllers\Frontend\AdmissionController::class, 'index'])->name('frontend.admissions.index');
 Route::get('/courses', [\App\Http\Controllers\Frontend\AcademicController::class, 'courses'])->name('frontend.courses');
 Route::get('/departments', [\App\Http\Controllers\Frontend\AcademicController::class, 'departments'])->name('frontend.departments');
 Route::get('/departments/{subject:slug}', [\App\Http\Controllers\Frontend\AcademicController::class, 'departmentDetail'])->name('frontend.departments.show');

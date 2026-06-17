@@ -104,7 +104,7 @@
             Always verify the latest applicable syllabus before examination preparation.
           </p>
 
-          <a href="notices.html" class="syllabus-text-link">
+          <a href="{{ route('frontend.notices.index') }}" class="syllabus-text-link">
             View Latest Notice
             <i class="bi bi-arrow-right"></i>
           </a>
@@ -707,7 +707,7 @@
           <span>Downloads</span>
         </a>
 
-        <a href="notices.html" class="syllabus-link-card">
+        <a href="{{ route('frontend.notices.index') }}" class="syllabus-link-card">
           <i class="bi bi-megaphone-fill"></i>
           <span>Latest Notices</span>
         </a>

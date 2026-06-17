@@ -32,7 +32,7 @@
         </p>
 
         <div class="exam-hero-actions">
-          <a href="notices.html" class="exam-btn primary">
+          <a href="{{ route('frontend.notices.index') }}" class="exam-btn primary">
             <i class="bi bi-megaphone-fill"></i>
             Latest Exam Notices
           </a>
@@ -108,7 +108,7 @@
             university notifications. Students must verify the latest updates.
           </p>
 
-          <a href="notices.html" class="exam-text-link">
+          <a href="{{ route('frontend.notices.index') }}" class="exam-text-link">
             View Latest Circular
             <i class="bi bi-arrow-right"></i>
           </a>
@@ -210,7 +210,7 @@
             correction window and required documents.
           </p>
 
-          <a href="notices.html" class="exam-card-link">
+          <a href="{{ route('frontend.notices.index') }}" class="exam-card-link">
             View Details <i class="bi bi-arrow-right"></i>
           </a>
         </div>
@@ -227,7 +227,7 @@
             verification and examination centre instructions.
           </p>
 
-          <a href="notices.html" class="exam-card-link">
+          <a href="{{ route('frontend.notices.index') }}" class="exam-card-link">
             View Details <i class="bi bi-arrow-right"></i>
           </a>
         </div>
@@ -244,7 +244,7 @@
             practical schedule and important deadlines.
           </p>
 
-          <a href="notices.html" class="exam-card-link">
+          <a href="{{ route('frontend.notices.index') }}" class="exam-card-link">
             View Details <i class="bi bi-arrow-right"></i>
           </a>
         </div>
@@ -261,7 +261,7 @@
             and related student guidance.
           </p>
 
-          <a href="notices.html" class="exam-card-link">
+          <a href="{{ route('frontend.notices.index') }}" class="exam-card-link">
             View Details <i class="bi bi-arrow-right"></i>
           </a>
         </div>
@@ -410,7 +410,7 @@
 
       <div class="exam-download-grid">
 
-        <a href="notices.html" class="exam-download-card">
+        <a href="{{ route('frontend.notices.index') }}" class="exam-download-card">
           <i class="bi bi-file-earmark-pdf-fill"></i>
           <div>
             <h4>Exam Schedule</h4>
@@ -418,7 +418,7 @@
           </div>
         </a>
 
-        <a href="notices.html" class="exam-download-card">
+        <a href="{{ route('frontend.notices.index') }}" class="exam-download-card">
           <i class="bi bi-file-earmark-text-fill"></i>
           <div>
             <h4>Exam Form Notice</h4>
@@ -426,7 +426,7 @@
           </div>
         </a>
 
-        <a href="notices.html" class="exam-download-card">
+        <a href="{{ route('frontend.notices.index') }}" class="exam-download-card">
           <i class="bi bi-person-vcard-fill"></i>
           <div>
             <h4>Admit Card Notice</h4>
@@ -434,7 +434,7 @@
           </div>
         </a>
 
-        <a href="notices.html" class="exam-download-card">
+        <a href="{{ route('frontend.notices.index') }}" class="exam-download-card">
           <i class="bi bi-award-fill"></i>
           <div>
             <h4>Result Notice</h4>
@@ -468,7 +468,7 @@
 
       <div class="exam-links-grid">
 
-        <a href="notices.html" class="exam-link-card">
+        <a href="{{ route('frontend.notices.index') }}" class="exam-link-card">
           <i class="bi bi-megaphone-fill"></i>
           <span>Latest Notices</span>
         </a>
@@ -516,7 +516,7 @@
         </div>
 
         <div class="exam-cta-actions">
-          <a href="notices.html" class="exam-btn primary">
+          <a href="{{ route('frontend.notices.index') }}" class="exam-btn primary">
             <i class="bi bi-megaphone-fill"></i>
             Exam Notices
           </a>

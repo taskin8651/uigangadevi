@@ -100,7 +100,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="admissions.html">Admissions</a>
+            <a class="nav-link" href="{{ route('frontend.admissions.index') }}">Admissions</a>
           </li>
 
           <li class="nav-item">
@@ -163,7 +163,7 @@
         <div class="col-lg-2 col-md-4">
           <h4>Students</h4>
           <div class="footer-links">
-            <a href="admissions.html">Admissions</a>
+            <a href="{{ route('frontend.admissions.index') }}">Admissions</a>
             <a href="{{ route('frontend.notices.index') }}">Notices</a>
             <a href="download.html">Downloads</a>
             <a href="students-corner.html">Students Corner</a>
