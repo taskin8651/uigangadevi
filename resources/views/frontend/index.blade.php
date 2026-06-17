@@ -32,9 +32,9 @@
 
         <div class="col-lg-6">
           <div class="top-links">
-            <a href="rti.html"><i class="bi bi-file-earmark-text me-1"></i> RTI</a>
-            <a href="naac.html"><i class="bi bi-shield-check me-1"></i> NAAC / IQAC</a>
-            <a href="download.html"><i class="bi bi-download me-1"></i> Downloads</a>
+            <a href="#"><i class="bi bi-file-earmark-text me-1"></i> RTI</a>
+            <a href="#"><i class="bi bi-shield-check me-1"></i> NAAC / IQAC</a>
+            <a href="#"><i class="bi bi-download me-1"></i> Downloads</a>
             <a href="#"><i class="bi bi-person-lock me-1"></i> Admin Login</a>
           </div>
         </div>
@@ -66,19 +66,19 @@
         <ul class="navbar-nav ms-auto align-items-lg-center">
 
           <li class="nav-item">
-            <a class="nav-link active" href="/">Home</a>
+            <a class="nav-link active" href="{{ route('frontend.index') }}">Home</a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="about.html" data-bs-toggle="dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ route('frontend.about') }}" data-bs-toggle="dropdown">
               About Us
             </a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="about.html">College Profile</a></li>
-              <li><a class="dropdown-item" href="mission.html">Vision & Mission</a></li>
-              <li><a class="dropdown-item" href="principal.html">Principal's Message</a></li>
-              <li><a class="dropdown-item" href="college.html">College at a Glance</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.about') }}">College Profile</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.mission') }}">Vision & Mission</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.principal') }}">Principal's Message</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.college') }}">College at a Glance</a></li>
             </ul>
           </li>
 
@@ -88,15 +88,15 @@
             </a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="courses.html">Courses Offered</a></li>
-              <li><a class="dropdown-item" href="Academic-Calendar.html">Academic Calendar</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.courses') }}">Courses Offered</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.academic-calendar.index') }}">Academic Calendar</a></li>
               <li><a class="dropdown-item" href="{{ route('frontend.syllabus.index') }}">Syllabus</a></li>
-              <li><a class="dropdown-item" href="examination.html">Examination</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.examination') }}">Examination</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="departments.html">Departments</a>
+            <a class="nav-link" href="{{ route('frontend.departments') }}">Departments</a>
           </li>
 
           <li class="nav-item">
@@ -108,18 +108,18 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="students-corner.html" data-bs-toggle="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
               Students Corner
             </a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="online-admission.html">Online-Admission</a></li>
-              <li><a class="dropdown-item" href="online-fee.html">Online Fee</a></li>
+              <li><a class="dropdown-item" href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">Online-Admission</a></li>
+              <li><a class="dropdown-item" href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">Online Fee</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="{{ route('frontend.contact') }}">Contact</a>
           </li>
 
         </ul>
@@ -145,7 +145,9 @@
       </button>
 
       <div class="admission-popup-image">
-        <img src="assets/img/admission-popup.jpeg" alt="Admission Open">
+        <a href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">
+          <img src="assets/img/admission-popup.jpeg" alt="Admission Open">
+        </a>
       </div>
     </div>
   </div>
@@ -201,8 +203,8 @@
         </p>
 
         <div class="hero-actions">
-          <a href="courses.html" class="hero-btn primary">View Academics</a>
-          <a href="naac.html" class="hero-btn light">NAAC / IQAC</a>
+          <a href="{{ route('frontend.courses') }}" class="hero-btn primary">View Academics</a>
+          <a href="#" class="hero-btn light">NAAC / IQAC</a>
         </div>
       </div>
     </div>
@@ -226,8 +228,8 @@
         </p>
 
         <div class="hero-actions">
-          <a href="download.html" class="hero-btn primary">Downloads</a>
-          <a href="rti.html" class="hero-btn light">RTI / Disclosure</a>
+          <a href="#" class="hero-btn primary">Downloads</a>
+          <a href="#" class="hero-btn light">RTI / Disclosure</a>
         </div>
       </div>
     </div>
@@ -353,7 +355,7 @@
               Education is not only about academic excellence, but also about
               building confidence, discipline, responsibility and values.
             </p>
-            <a href="contact.html" class="outline-btn">Read Full Message <i class="bi bi-arrow-right"></i></a>
+            <a href="{{ route('frontend.contact') }}" class="outline-btn">Read Full Message <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
 
@@ -442,7 +444,7 @@
             <div><i class="bi bi-check-circle-fill"></i> Prospectus Download</div>
           </div>
 
-          <a href="{{ route('frontend.admissions.index') }}" class="white-btn">View Admission Details <i class="bi bi-arrow-right"></i></a>
+          <a href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener" class="white-btn">Apply Online <i class="bi bi-arrow-right"></i></a>
         </div>
 
       </div>
@@ -473,7 +475,7 @@
         </p>
       </div>
 
-      <a href="naac.html" class="outline-btn">
+      <a href="#" class="outline-btn">
         View All Links <i class="bi bi-arrow-right"></i>
       </a>
     </div>
@@ -497,7 +499,7 @@
         <p>Course-wise and subject-wise syllabus PDFs.</p>
       </a>
 
-      <a href="download.html" class="premium-card">
+      <a href="#" class="premium-card">
         <div class="icon-box"><i class="bi bi-file-earmark-pdf-fill"></i></div>
         <h4>Downloads</h4>
         <p>Forms, documents, notices and prospectus.</p>
@@ -530,7 +532,7 @@
         </p>
       </div>
 
-      <a href="Academic-Calendar.html" class="outline-btn">
+      <a href="{{ route('frontend.academic-calendar.index') }}" class="outline-btn">
         View Academics <i class="bi bi-arrow-right"></i>
       </a>
     </div>
@@ -599,7 +601,7 @@
         </p>
       </div>
 
-      <a href="gallery.html" class="outline-btn">
+      <a href="#" class="outline-btn">
         View Gallery <i class="bi bi-arrow-right"></i>
       </a>
     </div>
@@ -681,13 +683,13 @@
         </p>
       </div>
 
-      <a href="naac.html" class="outline-btn">
+      <a href="#" class="outline-btn">
         View NAAC / IQAC <i class="bi bi-arrow-right"></i>
       </a>
     </div>
 
     <div class="card-grid-3">
-      <a href="naac.html" class="premium-card">
+      <a href="#" class="premium-card">
         <div class="icon-box"><i class="bi bi-people-fill"></i></div>
         <h4>IQAC Composition</h4>
         <p>Members, coordinators and quality cell details.</p>
@@ -699,7 +701,7 @@
         <p>Annual quality assurance reports and records.</p>
       </a>
 
-      <a href="naac.html" class="premium-card">
+      <a href="#" class="premium-card">
         <div class="icon-box"><i class="bi bi-award-fill"></i></div>
         <h4>NAAC Documents</h4>
         <p>SSR, DVV, certificates and accreditation files.</p>
@@ -723,7 +725,7 @@
           <span class="section-badge"><i class="bi bi-download"></i> Downloads</span>
           <h2 class="section-title">Important Downloads</h2>
 
-          <a href="college.html" class="download-row">
+          <a href="{{ route('frontend.college') }}" class="download-row">
             <i class="bi bi-file-earmark-pdf-fill"></i>
             <div>
               <strong>College Prospectus</strong>
@@ -818,10 +820,10 @@
         <div class="col-lg-2 col-md-4">
           <h4>Quick Links</h4>
           <div class="footer-links">
-            <a href="/">Home</a>
-            <a href="about.html">About College</a>
-            <a href="Academic-Calendar.html">Academics</a>
-            <a href="departments.html">Departments</a>
+            <a href="{{ route('frontend.index') }}">Home</a>
+            <a href="{{ route('frontend.about') }}">About College</a>
+            <a href="{{ route('frontend.academic-calendar.index') }}">Academics</a>
+            <a href="{{ route('frontend.departments') }}">Departments</a>
           </div>
         </div>
 
@@ -830,16 +832,16 @@
           <div class="footer-links">
             <a href="{{ route('frontend.admissions.index') }}">Admissions</a>
             <a href="{{ route('frontend.notices.index') }}">Notices</a>
-            <a href="download.html">Downloads</a>
-            <a href="students-corner.html">Students Corner</a>
+            <a href="#">Downloads</a>
+            <a href="#">Students Corner</a>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-4">
           <h4>Disclosure</h4>
           <div class="footer-links">
-            <a href="naac.html">NAAC / IQAC</a>
-            <a href="rti.html">RTI</a>
+            <a href="#">NAAC / IQAC</a>
+            <a href="#">RTI</a>
             <a href="#">Statutory Disclosure</a>
             <a href="#">Policies</a>
           </div>
@@ -874,3 +876,4 @@
 
 </body>
 </html>
+

@@ -37,7 +37,7 @@
             Latest Exam Notices
           </a>
 
-          <a href="download.html" class="exam-btn light">
+          <a href="#" class="exam-btn light">
             <i class="bi bi-download"></i>
             Download Schedule
           </a>
@@ -342,7 +342,7 @@
             reach examination centre on time and verify all details printed on admit card.
           </p>
 
-          <a href="examination.html" class="exam-btn primary">
+          <a href="{{ route('frontend.examination') }}" class="exam-btn primary">
             <i class="bi bi-file-earmark-text-fill"></i>
             Read Exam Guidelines
           </a>
@@ -473,27 +473,27 @@
           <span>Latest Notices</span>
         </a>
 
-        <a href="Academic-Calendar.html" class="exam-link-card">
+        <a href="{{ route('frontend.academic-calendar.index') }}" class="exam-link-card">
           <i class="bi bi-calendar2-week-fill"></i>
           <span>Academic Calendar</span>
         </a>
 
-        <a href="syllabus.html" class="exam-link-card">
+        <a href="{{ route('frontend.syllabus.index') }}" class="exam-link-card">
           <i class="bi bi-file-earmark-text-fill"></i>
           <span>Syllabus</span>
         </a>
 
-        <a href="download.html" class="exam-link-card">
+        <a href="#" class="exam-link-card">
           <i class="bi bi-download"></i>
           <span>Downloads</span>
         </a>
 
-        <a href="students-corner.html" class="exam-link-card">
+        <a href="#" class="exam-link-card">
           <i class="bi bi-person-lines-fill"></i>
           <span>Student Corner</span>
         </a>
 
-        <a href="contact.html" class="exam-link-card">
+        <a href="{{ route('frontend.contact') }}" class="exam-link-card">
           <i class="bi bi-telephone-fill"></i>
           <span>Contact Office</span>
         </a>
@@ -521,7 +521,7 @@
             Exam Notices
           </a>
 
-          <a href="download.html" class="exam-btn light">
+          <a href="#" class="exam-btn light">
             <i class="bi bi-download"></i>
             Downloads
           </a>
@@ -540,3 +540,4 @@
 
 
 @endsection
+

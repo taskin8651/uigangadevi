@@ -28,12 +28,12 @@
         </p>
 
         <div class="cp-hero-actions">
-          <a href="download.html" class="cp-btn primary">
+          <a href="#" class="cp-btn primary">
             <i class="bi bi-download"></i>
             Download Prospectus
           </a>
 
-          <a href="courses.html" class="cp-btn light">
+          <a href="{{ route('frontend.courses') }}" class="cp-btn light">
             <i class="bi bi-mortarboard-fill"></i>
             Courses Offered
           </a>
@@ -473,7 +473,7 @@
             Latest Notices
           </a>
 
-          <a href="contact.html" class="cp-btn light">
+          <a href="{{ route('frontend.contact') }}" class="cp-btn light">
             <i class="bi bi-telephone-fill"></i>
             Contact College
           </a>
@@ -489,3 +489,4 @@
 
 
 @endsection
+

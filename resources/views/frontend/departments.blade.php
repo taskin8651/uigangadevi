@@ -34,9 +34,9 @@
 
             <div class="col-lg-6">
                 <div class="top-links">
-                    <a href="rti.html"><i class="bi bi-file-earmark-text me-1"></i> RTI</a>
-                    <a href="naac.html"><i class="bi bi-shield-check me-1"></i> NAAC / IQAC</a>
-                    <a href="download.html"><i class="bi bi-download me-1"></i> Admission</a>
+                    <a href="#"><i class="bi bi-file-earmark-text me-1"></i> RTI</a>
+                    <a href="#"><i class="bi bi-shield-check me-1"></i> NAAC / IQAC</a>
+                    <a href="#"><i class="bi bi-download me-1"></i> Admission</a>
                     <a href="#"><i class="bi bi-person-lock me-1"></i> Admin Login</a>
                 </div>
             </div>
@@ -69,19 +69,19 @@
         <ul class="navbar-nav ms-auto align-items-lg-center">
 
           <li class="nav-item">
-            <a class="nav-link active" href="index.html">Home</a>
+            <a class="nav-link active" href="{{ route('frontend.index') }}">Home</a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="about.html" data-bs-toggle="dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ route('frontend.about') }}" data-bs-toggle="dropdown">
               About Us
             </a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="about.html">College Profile</a></li>
-              <li><a class="dropdown-item" href="mission.html">Vision & Mission</a></li>
-              <li><a class="dropdown-item" href="principal.html">Principal's Message</a></li>
-              <li><a class="dropdown-item" href="college.html">College at a Glance</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.about') }}">College Profile</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.mission') }}">Vision & Mission</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.principal') }}">Principal's Message</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.college') }}">College at a Glance</a></li>
             </ul>
           </li>
 
@@ -91,15 +91,15 @@
             </a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="courses.html">Courses Offered</a></li>
-              <li><a class="dropdown-item" href="Academic-Calendar.html">Academic Calendar</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.courses') }}">Courses Offered</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.academic-calendar.index') }}">Academic Calendar</a></li>
               <li><a class="dropdown-item" href="{{ route('frontend.syllabus.index') }}">Syllabus</a></li>
-              <li><a class="dropdown-item" href="examination.html">Examination</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.examination') }}">Examination</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/">Departments</a>
+            <a class="nav-link" href="{{ route('frontend.index') }}">Departments</a>
           </li>
 
           <li class="nav-item">
@@ -111,18 +111,18 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="students-corner.html" data-bs-toggle="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
               Students Corner
             </a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="online-admission.html">Online-Admission</a></li>
-              <li><a class="dropdown-item" href="online-fee.html">Online Fee</a></li>
+              <li><a class="dropdown-item" href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">Online-Admission</a></li>
+              <li><a class="dropdown-item" href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">Online Fee</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="{{ route('frontend.contact') }}">Contact</a>
           </li>
 
         </ul>
@@ -395,10 +395,10 @@
 
     <div class="notices-filter-box">
       <a href="#" class="active">All Notices</a>
-      <a href="admissions.html">Admission</a>
-      <a href="examination.html">Examination</a>
-      <a href="Academic-Calendar.html">Academic</a>
-      <a href="students-corner.html">Student</a>
+      <a href="{{ route('frontend.admissions.index') }}">Admission</a>
+      <a href="{{ route('frontend.examination') }}">Examination</a>
+      <a href="{{ route('frontend.academic-calendar.index') }}">Academic</a>
+      <a href="#">Student</a>
       <a href="#">Tender</a>
     </div>
 
@@ -539,14 +539,14 @@
           examination resources, study documents and important department materials.
         </p>
 
-        <a href="download.html" class="resources-main-btn">
+        <a href="#" class="resources-main-btn">
           View All Downloads <i class="bi bi-arrow-right"></i>
         </a>
       </div>
 
       <div class="resources-grid">
 
-        <a href="download.html" class="resource-card">
+        <a href="#" class="resource-card">
           <div class="resource-icon">
             <i class="bi bi-journal-richtext"></i>
           </div>
@@ -565,7 +565,7 @@
           </div>
         </a>
 
-        <a href="download.html" class="resource-card">
+        <a href="#" class="resource-card">
           <div class="resource-icon">
             <i class="bi bi-mortarboard-fill"></i>
           </div>
@@ -584,7 +584,7 @@
           </div>
         </a>
 
-        <a href="download.html" class="resource-card">
+        <a href="#" class="resource-card">
           <div class="resource-icon">
             <i class="bi bi-calendar2-week-fill"></i>
           </div>
@@ -603,7 +603,7 @@
           </div>
         </a>
 
-        <a href="download.html" class="resource-card">
+        <a href="#" class="resource-card">
           <div class="resource-icon">
             <i class="bi bi-pencil-square"></i>
           </div>
@@ -622,7 +622,7 @@
           </div>
         </a>
 
-        <a href="download.html" class="resource-card">
+        <a href="#" class="resource-card">
           <div class="resource-icon">
             <i class="bi bi-diagram-3-fill"></i>
           </div>
@@ -641,7 +641,7 @@
           </div>
         </a>
 
-        <a href="download.html" class="resource-card">
+        <a href="#" class="resource-card">
           <div class="resource-icon">
             <i class="bi bi-file-earmark-arrow-down-fill"></i>
           </div>
@@ -745,3 +745,4 @@
 
 </body>
 </html>
+

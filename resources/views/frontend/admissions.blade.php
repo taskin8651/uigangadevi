@@ -193,7 +193,7 @@
           </div>
         </div>
 
-        <a href="admissions.html" class="courses-main-btn">
+        <a href="{{ route('frontend.admissions.index') }}" class="courses-main-btn">
           View Admission Details <i class="bi bi-arrow-right"></i>
         </a>
       </div>
@@ -344,7 +344,7 @@
           </div>
         </div>
 
-        <a href="download.html" class="eligibility-main-btn">
+        <a href="#" class="eligibility-main-btn">
           Download Eligibility Notice <i class="bi bi-arrow-right"></i>
         </a>
       </div>
@@ -694,7 +694,7 @@
           </div>
         </div>
 
-        <a href="download.html" class="required-main-btn">
+        <a href="#" class="required-main-btn">
           Download Document List <i class="bi bi-arrow-right"></i>
         </a>
       </div>
@@ -899,14 +899,14 @@
           </div>
         </div>
 
-        <a href="download.html" class="merit-main-btn">
+        <a href="#" class="merit-main-btn">
           Download Latest Merit List <i class="bi bi-arrow-right"></i>
         </a>
       </div>
 
       <div class="merit-list-grid">
 
-        <a href="download.html" class="merit-list-card active">
+        <a href="#" class="merit-list-card active">
           <div class="merit-card-icon">
             <i class="bi bi-file-earmark-pdf-fill"></i>
           </div>
@@ -956,7 +956,7 @@
           </div>
         </a>
 
-        <a href="download.html" class="merit-list-card">
+        <a href="#" class="merit-list-card">
           <div class="merit-card-icon">
             <i class="bi bi-mortarboard-fill"></i>
           </div>
@@ -1112,7 +1112,7 @@
           </div>
         </div>
 
-        <a href="download.html" class="fee-main-btn">
+        <a href="#" class="fee-main-btn">
           Download Fee Notice <i class="bi bi-arrow-right"></i>
         </a>
       </div>
@@ -1125,7 +1125,7 @@
             <p>Course-wise fee details for student reference.</p>
           </div>
 
-          <a href="download.html" class="fee-download-btn">
+          <a href="#" class="fee-download-btn">
             <i class="bi bi-download"></i>
             Download
           </a>
@@ -1306,14 +1306,14 @@
           </div>
         </div>
 
-        <a href="download.html" class="prospectus-main-btn">
+        <a href="#" class="prospectus-main-btn">
           Download Prospectus <i class="bi bi-download"></i>
         </a>
       </div>
 
       <div class="downloads-grid">
 
-        <a href="download.html" class="download-card active">
+        <a href="#" class="download-card active">
           <div class="download-icon">
             <i class="bi bi-file-earmark-pdf-fill"></i>
           </div>
@@ -1338,7 +1338,7 @@
           </div>
         </a>
 
-        <a href="download.html" class="download-card">
+        <a href="#" class="download-card">
           <div class="download-icon">
             <i class="bi bi-pencil-square"></i>
           </div>
@@ -1363,7 +1363,7 @@
           </div>
         </a>
 
-        <a href="download.html" class="download-card">
+        <a href="#" class="download-card">
           <div class="download-icon">
             <i class="bi bi-folder-check"></i>
           </div>
@@ -1388,7 +1388,7 @@
           </div>
         </a>
 
-        <a href="download.html" class="download-card">
+        <a href="#" class="download-card">
           <div class="download-icon">
             <i class="bi bi-cash-coin"></i>
           </div>
@@ -1413,7 +1413,7 @@
           </div>
         </a>
 
-        <a href="download.html" class="download-card">
+        <a href="#" class="download-card">
           <div class="download-icon">
             <i class="bi bi-calendar2-week-fill"></i>
           </div>
@@ -1438,7 +1438,7 @@
           </div>
         </a>
 
-        <a href="download.html" class="download-card">
+        <a href="#" class="download-card">
           <div class="download-icon">
             <i class="bi bi-journal-bookmark-fill"></i>
           </div>
@@ -1474,17 +1474,17 @@
         <span>Latest Notices</span>
       </a>
 
-      <a href="admissions.html" class="prospectus-quick-card">
+      <a href="{{ route('frontend.admissions.index') }}" class="prospectus-quick-card">
         <i class="bi bi-person-plus-fill"></i>
         <span>Admission Updates</span>
       </a>
 
-      <a href="syllabus.html" class="prospectus-quick-card">
+      <a href="{{ route('frontend.syllabus.index') }}" class="prospectus-quick-card">
         <i class="bi bi-award-fill"></i>
         <span>Merit List</span>
       </a>
 
-      <a href="contact.html" class="prospectus-quick-card">
+      <a href="{{ route('frontend.contact') }}" class="prospectus-quick-card">
         <i class="bi bi-telephone-fill"></i>
         <span>Contact Office</span>
       </a>
@@ -1613,7 +1613,7 @@
           </div>
         </a>
 
-        <a href="contact.html" class="helpdesk-card">
+        <a href="{{ route('frontend.contact') }}" class="helpdesk-card">
           <div class="helpdesk-card-icon">
             <i class="bi bi-file-earmark-text-fill"></i>
           </div>
@@ -1633,7 +1633,7 @@
           </div>
         </a>
 
-        <a href="contact.html " class="helpdesk-card">
+        <a href="{{ route('frontend.contact') }}" class="helpdesk-card">
           <div class="helpdesk-card-icon">
             <i class="bi bi-cash-coin"></i>
           </div>
@@ -1709,3 +1709,4 @@
 <!-- ================= HELPDESK SECTION END ================= -->
 
 @endsection
+

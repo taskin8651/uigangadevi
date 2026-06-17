@@ -29,7 +29,7 @@
           </p>
 
           <div class="calendar-hero-actions">
-            <a href="download.html" class="calendar-btn primary">
+            <a href="#" class="calendar-btn primary">
               <i class="bi bi-download"></i>
               Download Calendar
             </a>
@@ -441,7 +441,7 @@
 
         <div class="calendar-download-grid">
 
-          <a href="Academic-Calendar.html" class="calendar-download-card">
+          <a href="{{ route('frontend.academic-calendar.index') }}" class="calendar-download-card">
             <i class="bi bi-file-earmark-pdf-fill"></i>
             <div>
               <h4>Academic Calendar PDF</h4>
@@ -457,7 +457,7 @@
             </div>
           </a>
 
-          <a href="examination.html" class="calendar-download-card">
+          <a href="{{ route('frontend.examination') }}" class="calendar-download-card">
             <i class="bi bi-pencil-square"></i>
             <div>
               <h4>Exam Schedule</h4>
@@ -496,7 +496,7 @@
               Latest Notices
             </a>
 
-            <a href="download.html" class="calendar-btn light">
+            <a href="#" class="calendar-btn light">
               <i class="bi bi-download"></i>
               Downloads
             </a>

@@ -31,12 +31,12 @@
         </p>
 
         <div class="course-hero-actions">
-          <a href="download.html" class="course-btn primary">
+          <a href="#" class="course-btn primary">
             <i class="bi bi-download"></i>
             Download Prospectus
           </a>
 
-          <a href="admissions.html" class="course-btn light">
+          <a href="{{ route('frontend.admissions.index') }}" class="course-btn light">
             <i class="bi bi-person-plus-fill"></i>
             Admission Updates
           </a>
@@ -107,7 +107,7 @@
             criteria, seat availability and current admission notifications.
           </p>
 
-          <a href="admissions.html" class="course-text-link">
+          <a href="{{ route('frontend.admissions.index') }}" class="course-text-link">
             View Admission Details
             <i class="bi bi-arrow-right"></i>
           </a>
@@ -232,7 +232,7 @@
             admission procedure must follow current university and government guidelines.
           </p>
 
-          <a href="admissions.html" class="course-btn primary">
+          <a href="{{ route('frontend.admissions.index') }}" class="course-btn primary">
             <i class="bi bi-file-earmark-text-fill"></i>
             Admission Guidelines
           </a>
@@ -342,12 +342,12 @@
         </div>
 
         <div class="course-cta-actions">
-          <a href="download.html" class="course-btn primary">
+          <a href="#" class="course-btn primary">
             <i class="bi bi-download"></i>
             Prospectus
           </a>
 
-          <a href="contact.html" class="course-btn light">
+          <a href="{{ route('frontend.contact') }}" class="course-btn light">
             <i class="bi bi-telephone-fill"></i>
             Contact Office
           </a>
@@ -365,3 +365,4 @@
 
 
 @endsection
+

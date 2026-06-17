@@ -1,10 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+@php
+  $websiteSetting = $websiteSetting ?? \App\Models\WebsiteSetting::current();
+  $siteName = $websiteSetting->site_name ?: 'Ganga Devi Mahila Mahavidyalaya';
+  $siteTagline = $websiteSetting->site_tagline ?: 'Official College Website | gdmm.ac.in';
+  $siteLogo = $websiteSetting->logo ?: asset('assets/img/logo.png');
+  $siteFavicon = $websiteSetting->favicon;
+  $siteAddress = $websiteSetting->full_address ?: 'Kankarbagh, Patna, Bihar';
+  $siteLocation = trim(($websiteSetting->city ?: 'Patna') . ', ' . ($websiteSetting->state ?: 'Bihar'), ', ');
+  $siteEmail = $websiteSetting->primary_email ?: 'gangadevimahilacollege@gmail.com';
+  $sitePhone = $websiteSetting->primary_phone ?: '';
+  $siteMapLink = $websiteSetting->map_link ?: route('frontend.contact');
+  $footerDescription = $websiteSetting->footer_description ?: 'Official college website for academic information, notices, admission updates, statutory disclosures and student support services.';
+  $copyrightText = $websiteSetting->copyright_text ?: 'Copyright ' . date('Y') . ' ' . $siteName . '. All Rights Reserved.';
+  $socialLinks = collect([
+      'facebook_url' => ['icon' => 'bi-facebook', 'label' => 'Facebook'],
+      'twitter_url' => ['icon' => 'bi-twitter-x', 'label' => 'Twitter'],
+      'instagram_url' => ['icon' => 'bi-instagram', 'label' => 'Instagram'],
+      'youtube_url' => ['icon' => 'bi-youtube', 'label' => 'YouTube'],
+      'linkedin_url' => ['icon' => 'bi-linkedin', 'label' => 'LinkedIn'],
+  ])->filter(fn ($item, $field) => filled($websiteSetting->{$field}));
+@endphp
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>@yield('title', 'Ganga Devi Mahila Mahavidyalaya | Official College Website')</title>
+  <title>@yield('title', $websiteSetting->meta_title ?: $siteName . ' | Official College Website')</title>
+  <meta name="description" content="@yield('meta_description', $websiteSetting->meta_description ?: $footerDescription)">
+  @if($websiteSetting->meta_keywords)
+    <meta name="keywords" content="{{ $websiteSetting->meta_keywords }}">
+  @endif
+  @if($siteFavicon)
+    <link rel="icon" href="{{ $siteFavicon }}">
+  @endif
 
   <!-- BOOTSTRAP -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,16 +54,16 @@
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6">
-          <span><i class="bi bi-geo-alt me-1"></i> Kankarbagh, Patna, Bihar</span>
-          <span class="ms-3"><i class="bi bi-envelope me-1"></i> gangadevimahilacollege@gmail.com</span>
+          <span><i class="bi bi-geo-alt me-1"></i> {{ $siteLocation }}</span>
+          <span class="ms-3"><i class="bi bi-envelope me-1"></i> {{ $siteEmail }}</span>
         </div>
 
         <div class="col-lg-6">
           <div class="top-links">
-            <a href="rti.html"><i class="bi bi-file-earmark-text me-1"></i> RTI</a>
-            <a href="naac.html"><i class="bi bi-shield-check me-1"></i> NAAC / IQAC</a>
-            <a href="download.html"><i class="bi bi-download me-1"></i> Downloads</a>
-            <a href="#"><i class="bi bi-person-lock me-1"></i> Admin Login</a>
+            <a href="#"><i class="bi bi-file-earmark-text me-1"></i> RTI</a>
+            <a href="#"><i class="bi bi-shield-check me-1"></i> NAAC / IQAC</a>
+            <a href="#"><i class="bi bi-download me-1"></i> Downloads</a>
+            <a href="{{ url('/login') }}"><i class="bi bi-person-lock me-1"></i> Admin Login</a>
           </div>
         </div>
       </div>
@@ -50,11 +78,11 @@
   <nav class="navbar navbar-expand-lg">
     <div class="container">
 
-      <a class="navbar-brand" href="#">
-        <img src="{{ asset('assets/img/logo.png') }}" alt="">
+      <a class="navbar-brand" href="{{ route('frontend.index') }}">
+        <img src="{{ $siteLogo }}" alt="{{ $siteName }}">
         <div class="brand-text">
-          <h1>Ganga Devi Mahila Mahavidyalaya</h1>
-          <span>Official College Website | gdmm.ac.in</span>
+          <h1>{{ $siteName }}</h1>
+          <span>{{ $siteTagline }}</span>
         </div>
       </a>
 
@@ -66,19 +94,19 @@
         <ul class="navbar-nav ms-auto align-items-lg-center">
 
           <li class="nav-item">
-            <a class="nav-link active" href="/">Home</a>
+            <a class="nav-link active" href="{{ route('frontend.index') }}">Home</a>
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="about.html" data-bs-toggle="dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ route('frontend.about') }}" data-bs-toggle="dropdown">
               About Us
             </a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="about.html">College Profile</a></li>
-              <li><a class="dropdown-item" href="mission.html">Vision & Mission</a></li>
-              <li><a class="dropdown-item" href="principal.html">Principal's Message</a></li>
-              <li><a class="dropdown-item" href="college.html">College at a Glance</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.about') }}">College Profile</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.mission') }}">Vision & Mission</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.principal') }}">Principal's Message</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.college') }}">College at a Glance</a></li>
             </ul>
           </li>
 
@@ -89,9 +117,9 @@
 
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{{ route('frontend.courses') }}">Courses Offered</a></li>
-              <li><a class="dropdown-item" href="Academic-Calendar.html">Academic Calendar</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.academic-calendar.index') }}">Academic Calendar</a></li>
               <li><a class="dropdown-item" href="{{ route('frontend.syllabus.index') }}">Syllabus</a></li>
-              <li><a class="dropdown-item" href="examination.html">Examination</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.examination') }}">Examination</a></li>
             </ul>
           </li>
 
@@ -108,18 +136,18 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="students-corner.html" data-bs-toggle="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
               Students Corner
             </a>
 
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="online-admission.html">Online-Admission</a></li>
-              <li><a class="dropdown-item" href="online-fee.html">Online Fee</a></li>
+              <li><a class="dropdown-item" href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">Online-Admission</a></li>
+              <li><a class="dropdown-item" href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">Online Fee</a></li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link" href="{{ route('frontend.contact') }}">Contact</a>
           </li>
 
         </ul>
@@ -141,21 +169,29 @@
   <footer class="footer">
     <div class="container">
       <div class="row g-4">
-          <img src="{{ asset('assets/img/logo.png') }}" alt="">
         <div class="col-lg-4">
-          <h4>Ganga Devi Mahila Mahavidyalaya</h4>
+          <img src="{{ $siteLogo }}" alt="{{ $siteName }}">
+          <h4>{{ $siteName }}</h4>
           <p>
-            Official college website for academic information, notices,
-            admission updates, statutory disclosures and student support services.
+            {{ $footerDescription }}
           </p>
+          @if($socialLinks->isNotEmpty())
+            <div class="footer-social">
+              @foreach($socialLinks as $field => $social)
+                <a href="{{ $websiteSetting->{$field} }}" target="_blank" aria-label="{{ $social['label'] }}">
+                  <i class="bi {{ $social['icon'] }}"></i>
+                </a>
+              @endforeach
+            </div>
+          @endif
         </div>
 
         <div class="col-lg-2 col-md-4">
           <h4>Quick Links</h4>
           <div class="footer-links">
-            <a href="/">Home</a>
-            <a href="about.html">About College</a>
-            <a href="Academic-Calendar.html">Academics</a>
+            <a href="{{ route('frontend.index') }}">Home</a>
+            <a href="{{ route('frontend.about') }}">About College</a>
+            <a href="{{ route('frontend.academic-calendar.index') }}">Academics</a>
             <a href="{{ route('frontend.departments') }}">Departments</a>
           </div>
         </div>
@@ -165,16 +201,16 @@
           <div class="footer-links">
             <a href="{{ route('frontend.admissions.index') }}">Admissions</a>
             <a href="{{ route('frontend.notices.index') }}">Notices</a>
-            <a href="download.html">Downloads</a>
-            <a href="students-corner.html">Students Corner</a>
+            <a href="#">Downloads</a>
+            <a href="#">Students Corner</a>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-4">
           <h4>Disclosure</h4>
           <div class="footer-links">
-            <a href="naac.html">NAAC / IQAC</a>
-            <a href="rti.html">RTI</a>
+            <a href="#">NAAC / IQAC</a>
+            <a href="#">RTI</a>
             <a href="#">Statutory Disclosure</a>
             <a href="#">Policies</a>
           </div>
@@ -183,17 +219,21 @@
         <div class="col-lg-2 col-md-4">
           <h4>Contact</h4>
           <div class="footer-links">
-            <a href="#">Kankarbagh, Patna</a>
-            <a href="#">Contact Office</a>
-            <a href="#">Google Map</a>
-            <a href="#">Admin Login</a>
+            <a href="{{ route('frontend.contact') }}">{{ $siteLocation }}</a>
+            @if($sitePhone)
+              <a href="tel:{{ preg_replace('/[^0-9+]/', '', $sitePhone) }}">Contact Office</a>
+            @else
+              <a href="{{ route('frontend.contact') }}">Contact Office</a>
+            @endif
+            <a href="{{ $siteMapLink }}" target="_blank">Google Map</a>
+            <a href="{{ url('/login') }}">Admin Login</a>
           </div>
         </div>
 
       </div>
 
       <div class="footer-bottom">
-        © 2026 Ganga Devi Mahila Mahavidyalaya. All Rights Reserved.
+        {{ $copyrightText }}
       </div>
     </div>
   </footer>
@@ -209,3 +249,4 @@
 
 </body>
 </html>
+

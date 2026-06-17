@@ -110,6 +110,14 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 75,
                 'title' => 'notice_access',
             ],
+            [
+                'id'    => 80,
+                'title' => 'website_setting_access',
+            ],
+            [
+                'id'    => 81,
+                'title' => 'website_setting_edit',
+            ],
         ];
 
         foreach ($permissions as $permission) {

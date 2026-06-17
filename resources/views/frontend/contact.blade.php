@@ -1,138 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('frontend.master')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+@section('title', ($websiteSetting->site_name ?: 'Contact Us') . ' - Contact')
+@section('content')
 
-    <title>Ganga Devi Mahila Mahavidyalaya | Official College Website</title>
-
-    <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- ICONS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- GOOGLE FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="assets/css/style.css">
-
-</head>
-
-<body>
-
-    <!-- TOP BAR START -->
-    <div class="topbar">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <span><i class="bi bi-geo-alt me-1"></i> Kankarbagh, Patna, Bihar</span>
-                    <span class="ms-3"><i class="bi bi-envelope me-1"></i> gangadevimahilacollege@gmail.com</span>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="top-links">
-                        <a href="rti.html"><i class="bi bi-file-earmark-text me-1"></i> RTI</a>
-                        <a href="naac.html"><i class="bi bi-shield-check me-1"></i> NAAC / IQAC</a>
-                        <a href="download.html"><i class="bi bi-download me-1"></i> Admission</a>
-                        <a href="#"><i class="bi bi-person-lock me-1"></i> Admin Login</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- TOP BAR END -->
-
-
-
-<!-- HEADER START -->
-<header class="main-header">
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-
-      <a class="navbar-brand" href="#">
-        <img src="assets/img/logo.png" alt="">
-        <div class="brand-text">
-          <h1>Ganga Devi Mahila Mahavidyalaya</h1>
-          <span>Official College Website | gdmm.ac.in</span>
-        </div>
-      </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html">Home</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="about.html" data-bs-toggle="dropdown">
-              About Us
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="about.html">College Profile</a></li>
-              <li><a class="dropdown-item" href="mission.html">Vision & Mission</a></li>
-              <li><a class="dropdown-item" href="principal.html">Principal's Message</a></li>
-              <li><a class="dropdown-item" href="college.html">College at a Glance</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-              Academics
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="courses.html">Courses Offered</a></li>
-              <li><a class="dropdown-item" href="Academic-Calendar.html">Academic Calendar</a></li>
-              <li><a class="dropdown-item" href="syllabus.html">Syllabus</a></li>
-              <li><a class="dropdown-item" href="examination.html">Examination</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="departments.html">Departments</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="admissions.html">Admissions</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="notices.html">Notices</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="students-corner.html" data-bs-toggle="dropdown">
-              Students Corner
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="online-admission.html">Online-Admission</a></li>
-              <li><a class="dropdown-item" href="online-fee.html">Online Fee</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="/">Contact</a>
-          </li>
-
-        </ul>
-      </div>
-
-    </div>
-  </nav>
-</header>
-<!-- HEADER END -->
-
-
+@php
+  $siteName = $websiteSetting->site_name ?: 'Ganga Devi Mahila Mahavidyalaya';
+  $address = $websiteSetting->full_address ?: 'Kankarbagh, Patna, Bihar, India';
+  $cityState = trim(($websiteSetting->city ?: 'Patna') . ', ' . ($websiteSetting->state ?: 'Bihar'), ', ');
+  $primaryEmail = $websiteSetting->primary_email ?: 'gangadevimahilacollege@gmail.com';
+  $admissionEmail = $websiteSetting->admission_email ?: $primaryEmail;
+  $examEmail = $websiteSetting->exam_email ?: $primaryEmail;
+  $documentsEmail = $websiteSetting->documents_email ?: $primaryEmail;
+  $primaryPhone = $websiteSetting->primary_phone ?: '+91 XXXXX XXXXX';
+  $admissionPhone = $websiteSetting->admission_phone ?: $primaryPhone;
+  $examPhone = $websiteSetting->exam_phone ?: $primaryPhone;
+  $documentsPhone = $websiteSetting->documents_phone ?: $primaryPhone;
+  $primaryPhoneLink = preg_replace('/[^0-9+]/', '', $primaryPhone) ?: '+91XXXXXXXXXX';
+  $admissionPhoneLink = preg_replace('/[^0-9+]/', '', $admissionPhone) ?: $primaryPhoneLink;
+  $examPhoneLink = preg_replace('/[^0-9+]/', '', $examPhone) ?: $primaryPhoneLink;
+  $documentsPhoneLink = preg_replace('/[^0-9+]/', '', $documentsPhone) ?: $primaryPhoneLink;
+  $officeDays = $websiteSetting->office_days ?: 'Monday to Saturday';
+  $officeTime = $websiteSetting->office_time ?: '10:00 AM - 5:00 PM';
+  $callingHours = $websiteSetting->calling_hours ?: 'During official college working hours';
+  $closedDays = $websiteSetting->closed_days ?: 'Sunday and notified holidays';
+  $mapLink = $websiteSetting->map_link ?: '#';
+  $mapEmbedUrl = $websiteSetting->map_embed_url;
+@endphp
 
 
 
@@ -150,7 +43,7 @@
       <h2>College Address & Location</h2>
 
       <p>
-        Visit the official campus of Ganga Devi Mahila Mahavidyalaya for admission,
+        Visit the official campus of {{ $siteName }} for admission,
         academic support, office work, student services and official communication.
       </p>
     </div>
@@ -164,10 +57,10 @@
 
         <span>Campus Location</span>
 
-        <h3>Ganga Devi Mahila Mahavidyalaya</h3>
+        <h3>{{ $siteName }}</h3>
 
         <p>
-          Kankarbagh, Patna, Bihar. The college office is available during official
+          {{ $cityState }}. The college office is available during official
           working hours for student support, admission enquiry and document-related assistance.
         </p>
 
@@ -177,7 +70,7 @@
             <i class="bi bi-geo-alt-fill"></i>
             <div>
               <h4>Campus Address</h4>
-              <p>Kankarbagh, Patna, Bihar, India</p>
+              <p>{{ $address }}</p>
             </div>
           </div>
 
@@ -185,7 +78,7 @@
             <i class="bi bi-envelope-fill"></i>
             <div>
               <h4>Email Address</h4>
-              <p>info@gdmm.ac.in</p>
+              <p>{{ $primaryEmail }}</p>
             </div>
           </div>
 
@@ -193,13 +86,13 @@
             <i class="bi bi-clock-fill"></i>
             <div>
               <h4>Office Hours</h4>
-              <p>As per official college working schedule</p>
+              <p>{{ $officeDays }} | {{ $officeTime }}</p>
             </div>
           </div>
 
         </div>
 
-        <a href="#" class="address-main-btn">
+        <a href="{{ $mapLink }}" target="_blank" rel="noopener" class="address-main-btn">
           Get Direction <i class="bi bi-arrow-right"></i>
         </a>
       </div>
@@ -215,9 +108,9 @@
 
             <div>
               <span>Location</span>
-              <h3>Kankarbagh, Patna</h3>
+              <h3>{{ $cityState }}</h3>
               <p>
-                The college is located in Kankarbagh, Patna and is accessible
+                The college is located at {{ $address }} and is accessible
                 through major city routes.
               </p>
             </div>
@@ -230,7 +123,7 @@
 
             <div>
               <span>Email</span>
-              <h3>info@gdmm.ac.in</h3>
+              <h3>{{ $primaryEmail }}</h3>
               <p>
                 Students can use the official email for academic, admission and
                 general communication.
@@ -271,31 +164,31 @@
         </div>
 
         <div class="address-map-box">
-          <div class="address-map-overlay">
-            <div>
-              <i class="bi bi-map-fill"></i>
-              <h3>Google Map Location</h3>
-              <p>
-                Embed official Google Map iframe here for accurate college location.
-              </p>
+          @if($mapEmbedUrl)
+            <iframe
+              src="{{ $mapEmbedUrl }}"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          @else
+            <div class="address-map-overlay">
+              <div>
+                <i class="bi bi-map-fill"></i>
+                <h3>Google Map Location</h3>
+                <p>
+                  Add Google Map embed URL from Website Settings.
+                </p>
+              </div>
+
+              <a href="{{ $mapLink }}" target="_blank" rel="noopener" class="address-map-btn">
+                Open Map <i class="bi bi-box-arrow-up-right"></i>
+              </a>
             </div>
-
-            <a href="#" class="address-map-btn">
-              Open Map <i class="bi bi-box-arrow-up-right"></i>
-            </a>
-          </div>
-
-          <!-- Replace this box with Google Map iframe -->
-          <!--
-          <iframe 
-            src="YOUR_GOOGLE_MAP_EMBED_LINK"
-            width="100%" 
-            height="100%" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy">
-          </iframe>
-          -->
+          @endif
         </div>
 
       </div>
@@ -332,7 +225,7 @@
         <i class="bi bi-clock-history"></i>
         <div>
           <h4>Office Timing</h4>
-          <p>Available during official working hours.</p>
+          <p>{{ $officeDays }} | {{ $officeTime }}</p>
         </div>
       </div>
 
@@ -402,7 +295,7 @@
             <i class="bi bi-telephone-fill"></i>
             <div>
               <h4>Main Office</h4>
-              <p>+91 XXXXX XXXXX</p>
+              <p>{{ $primaryPhone }}</p>
             </div>
           </div>
 
@@ -410,7 +303,7 @@
             <i class="bi bi-person-lines-fill"></i>
             <div>
               <h4>Admission Helpdesk</h4>
-              <p>+91 XXXXX XXXXX</p>
+              <p>{{ $admissionPhone }}</p>
             </div>
           </div>
 
@@ -418,13 +311,13 @@
             <i class="bi bi-clock-fill"></i>
             <div>
               <h4>Calling Hours</h4>
-              <p>During official college working hours</p>
+              <p>{{ $callingHours }}</p>
             </div>
           </div>
 
         </div>
 
-        <a href="tel:+91XXXXXXXXXX" class="phone-main-btn">
+        <a href="tel:{{ $primaryPhoneLink }}" class="phone-main-btn">
           Call Now <i class="bi bi-arrow-right"></i>
         </a>
       </div>
@@ -433,14 +326,14 @@
 
         <div class="phone-card-grid">
 
-          <a href="tel:+91XXXXXXXXXX" class="phone-card active">
+          <a href="tel:{{ $primaryPhoneLink }}" class="phone-card active">
             <div class="phone-card-icon">
               <i class="bi bi-building-fill"></i>
             </div>
 
             <div>
               <span>Main Office</span>
-              <h3>+91 XXXXX XXXXX</h3>
+              <h3>{{ $primaryPhone }}</h3>
               <p>
                 Contact the main college office for official communication,
                 general enquiry and institutional support.
@@ -448,14 +341,14 @@
             </div>
           </a>
 
-          <a href="tel:+91XXXXXXXXXX" class="phone-card">
+          <a href="tel:{{ $admissionPhoneLink }}" class="phone-card">
             <div class="phone-card-icon">
               <i class="bi bi-person-plus-fill"></i>
             </div>
 
             <div>
               <span>Admission</span>
-              <h3>+91 XXXXX XXXXX</h3>
+              <h3>{{ $admissionPhone }}</h3>
               <p>
                 Call for admission-related enquiry, form submission,
                 eligibility and document guidance.
@@ -463,14 +356,14 @@
             </div>
           </a>
 
-          <a href="tel:+91XXXXXXXXXX" class="phone-card">
+          <a href="tel:{{ $examPhoneLink }}" class="phone-card">
             <div class="phone-card-icon">
               <i class="bi bi-pencil-square"></i>
             </div>
 
             <div>
               <span>Examination</span>
-              <h3>+91 XXXXX XXXXX</h3>
+              <h3>{{ $examPhone }}</h3>
               <p>
                 Contact for examination form, admit card, result,
                 practical and academic examination support.
@@ -478,14 +371,14 @@
             </div>
           </a>
 
-          <a href="tel:+91XXXXXXXXXX" class="phone-card">
+          <a href="tel:{{ $documentsPhoneLink }}" class="phone-card">
             <div class="phone-card-icon">
               <i class="bi bi-file-earmark-text-fill"></i>
             </div>
 
             <div>
               <span>Documents</span>
-              <h3>+91 XXXXX XXXXX</h3>
+              <h3>{{ $documentsPhone }}</h3>
               <p>
                 Call for certificate, verification, scholarship documents,
                 downloads and student office support.
@@ -512,12 +405,12 @@
           </div>
 
           <div class="phone-action-buttons">
-            <a href="tel:+91XXXXXXXXXX" class="phone-action-btn primary">
+            <a href="tel:{{ $primaryPhoneLink }}" class="phone-action-btn primary">
               <i class="bi bi-telephone-fill"></i>
               Call Office
             </a>
 
-            <a href="mailto:info@gdmm.ac.in" class="phone-action-btn light">
+            <a href="mailto:{{ $primaryEmail }}" class="phone-action-btn light">
               <i class="bi bi-envelope-fill"></i>
               Send Email
             </a>
@@ -615,7 +508,7 @@
 
         <span>Official Email Address</span>
 
-        <h3>info@gdmm.ac.in</h3>
+        <h3>{{ $primaryEmail }}</h3>
 
         <p>
           For official communication, students should mention complete details such as
@@ -641,7 +534,7 @@
 
         </div>
 
-        <a href="mailto:info@gdmm.ac.in" class="email-main-btn">
+        <a href="mailto:{{ $primaryEmail }}" class="email-main-btn">
           Send Email <i class="bi bi-arrow-right"></i>
         </a>
       </div>
@@ -650,7 +543,7 @@
 
         <div class="email-card-grid">
 
-          <a href="mailto:info@gdmm.ac.in?subject=Admission Enquiry" class="email-card active">
+          <a href="mailto:{{ $admissionEmail }}?subject=Admission Enquiry" class="email-card active">
             <div class="email-card-icon">
               <i class="bi bi-person-plus-fill"></i>
             </div>
@@ -665,7 +558,7 @@
             </div>
           </a>
 
-          <a href="mailto:info@gdmm.ac.in?subject=Examination Support" class="email-card">
+          <a href="mailto:{{ $examEmail }}?subject=Examination Support" class="email-card">
             <div class="email-card-icon">
               <i class="bi bi-pencil-square"></i>
             </div>
@@ -680,7 +573,7 @@
             </div>
           </a>
 
-          <a href="mailto:info@gdmm.ac.in?subject=Document Support" class="email-card">
+          <a href="mailto:{{ $documentsEmail }}?subject=Document Support" class="email-card">
             <div class="email-card-icon">
               <i class="bi bi-file-earmark-check-fill"></i>
             </div>
@@ -695,7 +588,7 @@
             </div>
           </a>
 
-          <a href="mailto:info@gdmm.ac.in?subject=General Enquiry" class="email-card">
+          <a href="mailto:{{ $primaryEmail }}?subject=General Enquiry" class="email-card">
             <div class="email-card-icon">
               <i class="bi bi-chat-dots-fill"></i>
             </div>
@@ -763,7 +656,7 @@
         <i class="bi bi-envelope-fill"></i>
         <div>
           <h4>Official Email</h4>
-          <p>info@gdmm.ac.in</p>
+          <p>{{ $primaryEmail }}</p>
         </div>
       </div>
 
@@ -857,15 +750,15 @@
           <div class="office-timing-item">
             <i class="bi bi-calendar-week-fill"></i>
             <div>
-              <h4>Monday to Saturday</h4>
-              <p>10:00 AM to 04:00 PM</p>
+              <h4>{{ $officeDays }}</h4>
+              <p>{{ $officeTime }}</p>
             </div>
           </div>
 
           <div class="office-timing-item">
             <i class="bi bi-calendar-x-fill"></i>
             <div>
-              <h4>Sunday & Holidays</h4>
+              <h4>{{ $closedDays }}</h4>
               <p>Office Closed</p>
             </div>
           </div>
@@ -880,7 +773,7 @@
 
         </div>
 
-        <a href="#" class="office-timing-main-btn">
+        <a href="{{ route('frontend.notices.index') }}" class="office-timing-main-btn">
           View Notice Board <i class="bi bi-arrow-right"></i>
         </a>
       </div>
@@ -971,37 +864,37 @@
 
             <div class="office-hours-row">
               <strong>Monday</strong>
-              <span>10:00 AM - 04:00 PM</span>
+              <span>{{ $officeTime }}</span>
             </div>
 
             <div class="office-hours-row">
               <strong>Tuesday</strong>
-              <span>10:00 AM - 04:00 PM</span>
+              <span>{{ $officeTime }}</span>
             </div>
 
             <div class="office-hours-row">
               <strong>Wednesday</strong>
-              <span>10:00 AM - 04:00 PM</span>
+              <span>{{ $officeTime }}</span>
             </div>
 
             <div class="office-hours-row">
               <strong>Thursday</strong>
-              <span>10:00 AM - 04:00 PM</span>
+              <span>{{ $officeTime }}</span>
             </div>
 
             <div class="office-hours-row">
               <strong>Friday</strong>
-              <span>10:00 AM - 04:00 PM</span>
+              <span>{{ $officeTime }}</span>
             </div>
 
             <div class="office-hours-row">
               <strong>Saturday</strong>
-              <span>10:00 AM - 02:00 PM</span>
+              <span>{{ $officeTime }}</span>
             </div>
 
             <div class="office-hours-row closed">
               <strong>Sunday</strong>
-              <span>Closed</span>
+              <span>{{ $closedDays }}</span>
             </div>
 
           </div>
@@ -1085,7 +978,7 @@
       <h2>Find Us on Google Map</h2>
 
       <p>
-        Locate Ganga Devi Mahila Mahavidyalaya, Kankarbagh, Patna through Google Map
+        Locate {{ $siteName }}, {{ $cityState }} through Google Map
         for easy campus direction, visitor support and official college access.
       </p>
     </div>
@@ -1099,10 +992,10 @@
 
         <span>Campus Location</span>
 
-        <h3>Ganga Devi Mahila Mahavidyalaya</h3>
+        <h3>{{ $siteName }}</h3>
 
         <p>
-          The college is located at Kankarbagh, Patna, Bihar. Students, parents
+          The college is located at {{ $address }}. Students, parents
           and visitors can use Google Map for route direction and campus access.
         </p>
 
@@ -1112,7 +1005,7 @@
             <i class="bi bi-geo-alt-fill"></i>
             <div>
               <h4>College Address</h4>
-              <p>Kankarbagh, Patna, Bihar, India</p>
+              <p>{{ $address }}</p>
             </div>
           </div>
 
@@ -1128,13 +1021,13 @@
             <i class="bi bi-clock-fill"></i>
             <div>
               <h4>Visit Timing</h4>
-              <p>Visit during official college working hours.</p>
+              <p>{{ $officeDays }} | {{ $officeTime }}</p>
             </div>
           </div>
 
         </div>
 
-        <a href="#" class="google-map-main-btn" target="_blank">
+        <a href="{{ $mapLink }}" class="google-map-main-btn" target="_blank">
           Open in Google Map <i class="bi bi-box-arrow-up-right"></i>
         </a>
       </div>
@@ -1143,16 +1036,26 @@
 
         <div class="google-map-frame">
 
-          <!-- Replace src with official Google Map embed link -->
-          <iframe
-            src="https://www.google.com/maps?q=Ganga%20Devi%20Mahila%20Mahavidyalaya%20Kankarbagh%20Patna&output=embed"
-            width="100%"
-            height="100%"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+          @if($mapEmbedUrl)
+            <iframe
+              src="{{ $mapEmbedUrl }}"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          @else
+            <div class="google-map-placeholder">
+              <i class="bi bi-map-fill"></i>
+              <h3>Google Map Location</h3>
+              <p>Add Google Map embed URL from Website Settings.</p>
+              <a href="{{ $mapLink }}" target="_blank">
+                Open Map <i class="bi bi-box-arrow-up-right"></i>
+              </a>
+            </div>
+          @endif
 
         </div>
 
@@ -1163,7 +1066,7 @@
 
           <div>
             <span>Map Location</span>
-            <h3>Kankarbagh, Patna</h3>
+            <h3>{{ $cityState }}</h3>
             <p>
               Use this map to reach the official campus location conveniently.
             </p>
@@ -1296,7 +1199,7 @@
 
         </div>
 
-        <a href="mailto:info@gdmm.ac.in" class="contact-form-info-btn">
+        <a href="mailto:{{ $primaryEmail }}" class="contact-form-info-btn">
           Email Directly <i class="bi bi-arrow-right"></i>
         </a>
       </div>
@@ -1537,14 +1440,14 @@
               </p>
 
               <div class="department-contact-meta">
-                <a href="tel:+91XXXXXXXXXX">
+                <a href="tel:{{ $primaryPhoneLink }}">
                   <i class="bi bi-telephone-fill"></i>
-                  +91 XXXXX XXXXX
+                  {{ $primaryPhone }}
                 </a>
 
-                <a href="mailto:info@gdmm.ac.in">
+                <a href="mailto:{{ $primaryEmail }}">
                   <i class="bi bi-envelope-fill"></i>
-                  info@gdmm.ac.in
+                  {{ $primaryEmail }}
                 </a>
               </div>
             </div>
@@ -1564,14 +1467,14 @@
               </p>
 
               <div class="department-contact-meta">
-                <a href="tel:+91XXXXXXXXXX">
+                <a href="tel:{{ $admissionPhoneLink }}">
                   <i class="bi bi-telephone-fill"></i>
-                  +91 XXXXX XXXXX
+                  {{ $admissionPhone }}
                 </a>
 
-                <a href="mailto:info@gdmm.ac.in">
+                <a href="mailto:{{ $admissionEmail }}">
                   <i class="bi bi-envelope-fill"></i>
-                  admission@gdmm.ac.in
+                  {{ $admissionEmail }}
                 </a>
               </div>
             </div>
@@ -1591,14 +1494,14 @@
               </p>
 
               <div class="department-contact-meta">
-                <a href="tel:+91XXXXXXXXXX">
+                <a href="tel:{{ $examPhoneLink }}">
                   <i class="bi bi-telephone-fill"></i>
-                  +91 XXXXX XXXXX
+                  {{ $examPhone }}
                 </a>
 
-                <a href="mailto:info@gdmm.ac.in">
+                <a href="mailto:{{ $examEmail }}">
                   <i class="bi bi-envelope-fill"></i>
-                  exam@gdmm.ac.in
+                  {{ $examEmail }}
                 </a>
               </div>
             </div>
@@ -1618,14 +1521,14 @@
               </p>
 
               <div class="department-contact-meta">
-                <a href="tel:+91XXXXXXXXXX">
+                <a href="tel:{{ $primaryPhoneLink }}">
                   <i class="bi bi-telephone-fill"></i>
-                  +91 XXXXX XXXXX
+                  {{ $primaryPhone }}
                 </a>
 
-                <a href="mailto:info@gdmm.ac.in">
+                <a href="mailto:{{ $primaryEmail }}">
                   <i class="bi bi-envelope-fill"></i>
-                  library@gdmm.ac.in
+                  {{ $primaryEmail }}
                 </a>
               </div>
             </div>
@@ -1645,14 +1548,14 @@
               </p>
 
               <div class="department-contact-meta">
-                <a href="tel:+91XXXXXXXXXX">
+                <a href="tel:{{ $primaryPhoneLink }}">
                   <i class="bi bi-telephone-fill"></i>
-                  +91 XXXXX XXXXX
+                  {{ $primaryPhone }}
                 </a>
 
-                <a href="mailto:info@gdmm.ac.in">
+                <a href="mailto:{{ $primaryEmail }}">
                   <i class="bi bi-envelope-fill"></i>
-                  scholarship@gdmm.ac.in
+                  {{ $primaryEmail }}
                 </a>
               </div>
             </div>
@@ -1672,14 +1575,14 @@
               </p>
 
               <div class="department-contact-meta">
-                <a href="tel:+91XXXXXXXXXX">
+                <a href="tel:{{ $documentsPhoneLink }}">
                   <i class="bi bi-telephone-fill"></i>
-                  +91 XXXXX XXXXX
+                  {{ $documentsPhone }}
                 </a>
 
-                <a href="mailto:info@gdmm.ac.in">
+                <a href="mailto:{{ $documentsEmail }}">
                   <i class="bi bi-envelope-fill"></i>
-                  documents@gdmm.ac.in
+                  {{ $documentsEmail }}
                 </a>
               </div>
             </div>
@@ -1723,24 +1626,24 @@
             <tr>
               <td>College Office</td>
               <td>General enquiry and office support</td>
-              <td>+91 XXXXX XXXXX</td>
-              <td>info@gdmm.ac.in</td>
+              <td>{{ $primaryPhone }}</td>
+              <td>{{ $primaryEmail }}</td>
               <td><span class="contact-status active">Approved</span></td>
             </tr>
 
             <tr>
               <td>Admission Helpdesk</td>
               <td>Admission form and document support</td>
-              <td>+91 XXXXX XXXXX</td>
-              <td>admission@gdmm.ac.in</td>
+              <td>{{ $admissionPhone }}</td>
+              <td>{{ $admissionEmail }}</td>
               <td><span class="contact-status active">Approved</span></td>
             </tr>
 
             <tr>
               <td>Examination Cell</td>
               <td>Exam form, admit card and result support</td>
-              <td>+91 XXXXX XXXXX</td>
-              <td>exam@gdmm.ac.in</td>
+              <td>{{ $examPhone }}</td>
+              <td>{{ $examEmail }}</td>
               <td><span class="contact-status pending">If Approved</span></td>
             </tr>
           </tbody>
@@ -1804,78 +1707,4 @@
 </section>
 
 <!-- ================= DEPARTMENT / OFFICE CONTACTS SECTION END ================= -->
- 
-
-
-
-<footer class="footer">
-    <div class="container">
-      <div class="row g-4">
-          <img src="assets/img/logo.png" alt="">
-        <div class="col-lg-4">
-          <h4>Ganga Devi Mahila Mahavidyalaya</h4>
-          <p>
-            Official college website for academic information, notices,
-            admission updates, statutory disclosures and student support services.
-          </p>
-        </div>
-
-        <div class="col-lg-2 col-md-4">
-          <h4>Quick Links</h4>
-          <div class="footer-links">
-            <a href="#">Home</a>
-            <a href="#">About College</a>
-            <a href="#">Academics</a>
-            <a href="#">Departments</a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4">
-          <h4>Students</h4>
-          <div class="footer-links">
-            <a href="#">Admissions</a>
-            <a href="#">Notices</a>
-            <a href="#">Downloads</a>
-            <a href="#">Students Corner</a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4">
-          <h4>Disclosure</h4>
-          <div class="footer-links">
-            <a href="#">NAAC / IQAC</a>
-            <a href="#">RTI</a>
-            <a href="#">Statutory Disclosure</a>
-            <a href="#">Policies</a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4">
-          <h4>Contact</h4>
-          <div class="footer-links">
-            <a href="#">Kankarbagh, Patna</a>
-            <a href="#">Contact Office</a>
-            <a href="#">Google Map</a>
-            <a href="#">Admin Login</a>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-        © 2026 Ganga Devi Mahila Mahavidyalaya. All Rights Reserved.
-      </div>
-    </div>
-  </footer>
-  <!-- FOOTER END -->
-
-  <script src="assets/js/main.js"></script>
-
-
-  <!-- BOOTSTRAP JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
- 
-
-</body>
-</html>
+ @endsection

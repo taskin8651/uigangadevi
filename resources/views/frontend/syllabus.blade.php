@@ -28,12 +28,12 @@
         </p>
 
         <div class="syllabus-hero-actions">
-          <a href="download.html" class="syllabus-btn primary">
+          <a href="#" class="syllabus-btn primary">
             <i class="bi bi-download"></i>
             Download Syllabus
           </a>
 
-          <a href="courses.html" class="syllabus-btn light">
+          <a href="{{ route('frontend.courses') }}" class="syllabus-btn light">
             <i class="bi bi-journal-bookmark-fill"></i>
             Courses Offered
           </a>
@@ -619,7 +619,7 @@
             and examination preparation.
           </p>
 
-          <a href="Academic-Calendar.html" class="syllabus-btn primary">
+          <a href="{{ route('frontend.academic-calendar.index') }}" class="syllabus-btn primary">
             <i class="bi bi-megaphone-fill"></i>
             View Academic Notices
           </a>
@@ -687,22 +687,22 @@
 
       <div class="syllabus-links-grid">
 
-        <a href="courses.html" class="syllabus-link-card">
+        <a href="{{ route('frontend.courses') }}" class="syllabus-link-card">
           <i class="bi bi-journal-bookmark-fill"></i>
           <span>Courses Offered</span>
         </a>
 
-        <a href="Academic-Calendar.html" class="syllabus-link-card">
+        <a href="{{ route('frontend.academic-calendar.index') }}" class="syllabus-link-card">
           <i class="bi bi-calendar2-week-fill"></i>
           <span>Academic Calendar</span>
         </a>
 
-        <a href="examination.html" class="syllabus-link-card">
+        <a href="{{ route('frontend.examination') }}" class="syllabus-link-card">
           <i class="bi bi-pencil-square"></i>
           <span>Examination</span>
         </a>
 
-        <a href="download.html" class="syllabus-link-card">
+        <a href="#" class="syllabus-link-card">
           <i class="bi bi-file-earmark-arrow-down-fill"></i>
           <span>Downloads</span>
         </a>
@@ -712,7 +712,7 @@
           <span>Latest Notices</span>
         </a>
 
-        <a href="students-corner.html" class="syllabus-link-card">
+        <a href="#" class="syllabus-link-card">
           <i class="bi bi-person-lines-fill"></i>
           <span>Student Corner</span>
         </a>
@@ -735,12 +735,12 @@
         </div>
 
         <div class="syllabus-cta-actions">
-          <a href="download.html" class="syllabus-btn primary">
+          <a href="#" class="syllabus-btn primary">
             <i class="bi bi-download"></i>
             Download Syllabus
           </a>
 
-          <a href="contact.html" class="syllabus-btn light">
+          <a href="{{ route('frontend.contact') }}" class="syllabus-btn light">
             <i class="bi bi-telephone-fill"></i>
             Contact Office
           </a>
@@ -761,3 +761,4 @@
 
 
     @endsection
+

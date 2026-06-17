@@ -75,6 +75,10 @@ Route::resource('syllabus-documents','SyllabusDocumentsController');
 Route::delete('notices/destroy','NoticesController@massDestroy')->name('notices.massDestroy');
 
 Route::resource('notices','NoticesController');
+
+// Website Settings
+Route::get('website-settings','WebsiteSettingsController@index')->name('website-settings.index');
+Route::post('website-settings/update','WebsiteSettingsController@update')->name('website-settings.update');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password
@@ -93,6 +97,7 @@ Route::get('/principal',[\App\Http\Controllers\Frontend\AboutController::class, 
 Route::get('/college',[\App\Http\Controllers\Frontend\AboutController::class, 'college'])->name('frontend.college');
 Route::get('/index', [\App\Http\Controllers\Frontend\IndexController::class, 'index'])->name('frontend.index');
 Route::get('/admissions', [\App\Http\Controllers\Frontend\AdmissionController::class, 'index'])->name('frontend.admissions.index');
+Route::get('/contact', [\App\Http\Controllers\Frontend\ContactController::class, 'index'])->name('frontend.contact');
 Route::get('/courses', [\App\Http\Controllers\Frontend\AcademicController::class, 'courses'])->name('frontend.courses');
 Route::get('/departments', [\App\Http\Controllers\Frontend\AcademicController::class, 'departments'])->name('frontend.departments');
 Route::get('/departments/{subject:slug}', [\App\Http\Controllers\Frontend\AcademicController::class, 'departmentDetail'])->name('frontend.departments.show');

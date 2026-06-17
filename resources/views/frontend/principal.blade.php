@@ -28,11 +28,11 @@
         </p>
 
         <div class="pm-hero-actions">
-          <a href="college.html" class="pm-btn primary">
+          <a href="{{ route('frontend.college') }}" class="pm-btn primary">
             <i class="bi bi-building-fill"></i>
             College Profile
           </a>
-          <a href="Academic-Calendar.html" class="pm-btn light">
+          <a href="{{ route('frontend.academic-calendar.index') }}" class="pm-btn light">
             <i class="bi bi-mortarboard-fill"></i>
             Academics
           </a>
@@ -203,7 +203,7 @@
             go together.
           </p>
 
-          <a href="mission.html" class="pm-btn primary">
+          <a href="{{ route('frontend.mission') }}" class="pm-btn primary">
             <i class="bi bi-arrow-right-circle-fill"></i>
             View Vision & Mission
           </a>
@@ -317,7 +317,7 @@
             <i class="bi bi-megaphone-fill"></i>
             Latest Notices
           </a>
-          <a href="contact.html" class="pm-btn light">
+          <a href="{{ route('frontend.contact') }}" class="pm-btn light">
             <i class="bi bi-telephone-fill"></i>
             Contact College
           </a>
@@ -335,3 +335,4 @@
 
 
 @endsection
+

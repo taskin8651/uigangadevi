@@ -27,11 +27,11 @@
         </p>
 
         <div class="vm-hero-actions">
-          <a href="Academic-Calendar.html" class="vm-btn primary">
+          <a href="{{ route('frontend.academic-calendar.index') }}" class="vm-btn primary">
             <i class="bi bi-mortarboard-fill"></i>
             Explore Academics
           </a>
-          <a href="college.html" class="vm-btn light">
+          <a href="{{ route('frontend.college') }}" class="vm-btn light">
             <i class="bi bi-building-fill"></i>
             College Profile
           </a>
@@ -297,7 +297,7 @@
             provide student support and build confidence among young women.
           </p>
 
-          <a href="Academic-Calendar.html" class="vm-btn primary">
+          <a href="{{ route('frontend.academic-calendar.index') }}" class="vm-btn primary">
             <i class="bi bi-arrow-right-circle-fill"></i>
             View Academic Programmes
           </a>
@@ -400,7 +400,7 @@
             <i class="bi bi-megaphone-fill"></i>
             Latest Notices
           </a>
-          <a href="contact.html" class="vm-btn light">
+          <a href="{{ route('frontend.contact') }}" class="vm-btn light">
             <i class="bi bi-telephone-fill"></i>
             Contact College
           </a>
@@ -415,3 +415,4 @@
  <!-- ================= VISION & MISSION PAGE START  ================= -->
 
 @endsection
+

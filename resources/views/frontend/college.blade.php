@@ -29,7 +29,7 @@
         </p>
 
         <div class="cg-hero-actions">
-          <a href="download.html" class="cg-btn primary">
+          <a href="#" class="cg-btn primary">
             <i class="bi bi-download"></i>
             Download Prospectus
           </a>
@@ -105,7 +105,7 @@
             syllabus, examination updates, notices and student support resources.
           </p>
 
-          <a href="Academic-Calendar.html" class="cg-text-link">
+          <a href="{{ route('frontend.academic-calendar.index') }}" class="cg-text-link">
             Explore Academics
             <i class="bi bi-arrow-right"></i>
           </a>
@@ -421,7 +421,7 @@
             updates, NAAC / IQAC information, RTI related resources and institutional disclosures.
           </p>
 
-          <a href="download.html" class="cg-btn primary">
+          <a href="#" class="cg-btn primary">
             <i class="bi bi-folder-fill"></i>
             View Downloads
           </a>
@@ -494,27 +494,27 @@
           <span>Latest Notices</span>
         </a>
 
-        <a href="admissions.html" class="cg-link-card">
+        <a href="{{ route('frontend.admissions.index') }}" class="cg-link-card">
           <i class="bi bi-person-plus-fill"></i>
           <span>Admission Updates</span>
         </a>
 
-        <a href="Academic-Calendar.html" class="cg-link-card">
+        <a href="{{ route('frontend.academic-calendar.index') }}" class="cg-link-card">
           <i class="bi bi-calendar-event-fill"></i>
           <span>Academic Calendar</span>
         </a>
 
-        <a href="download.html" class="cg-link-card">
+        <a href="#" class="cg-link-card">
           <i class="bi bi-file-earmark-arrow-down-fill"></i>
           <span>Downloads</span>
         </a>
 
-        <a href="naac.html" class="cg-link-card">
+        <a href="#" class="cg-link-card">
           <i class="bi bi-award-fill"></i>
           <span>NAAC / IQAC</span>
         </a>
 
-        <a href="contact.html" class="cg-link-card">
+        <a href="{{ route('frontend.contact') }}" class="cg-link-card">
           <i class="bi bi-telephone-fill"></i>
           <span>Contact College</span>
         </a>
@@ -541,7 +541,7 @@
             Latest Notices
           </a>
 
-          <a href="contact.html" class="cg-btn light">
+          <a href="{{ route('frontend.contact') }}" class="cg-btn light">
             <i class="bi bi-telephone-fill"></i>
             Contact College
           </a>
@@ -562,3 +562,4 @@
 
 
 @endsection
+
