@@ -15699,6 +15699,59 @@
 
 /* ================= ACTIVITIES SECTION CSS START ================= */
 
+.activity-detail-hero .course-hero-bg::after {
+  background: linear-gradient(90deg, rgba(13, 45, 85, 0.86), rgba(181, 31, 42, 0.56));
+}
+
+.activity-gallery-section {
+  position: relative;
+  padding: 72px 0;
+  background: #ffffff;
+}
+
+.activity-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.activity-gallery-item {
+  display: block;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 42px rgba(13, 45, 85, 0.08);
+  background: var(--light-bg);
+}
+
+.activity-gallery-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.activity-gallery-item:hover img {
+  transform: scale(1.06);
+}
+
+@media (max-width: 991px) {
+  .activity-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575px) {
+  .activity-gallery-section {
+    padding: 52px 0;
+  }
+
+  .activity-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .activities-section {
   position: relative;
   padding: 10px 0;

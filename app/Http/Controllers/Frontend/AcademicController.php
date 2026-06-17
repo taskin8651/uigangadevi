@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\FacultyMember;
+use App\Models\StudentActivity;
 use App\Models\Subject;
 
 class AcademicController extends Controller
@@ -47,7 +48,18 @@ class AcademicController extends Controller
             ->orderBy('name')
             ->get();
 
-        return view('frontend.departments', compact('subjects', 'facultyMembers'));
+        $studentActivities = StudentActivity::query()
+            ->where('status', true)
+            ->orderByDesc('is_featured')
+            ->orderByDesc('activity_date')
+            ->orderBy('sort_order')
+            ->limit(6)
+            ->get();
+
+        return view(
+            'frontend.departments',
+            compact('subjects', 'facultyMembers', 'studentActivities')
+        );
     }
 
     public function departmentDetail(Subject $subject)

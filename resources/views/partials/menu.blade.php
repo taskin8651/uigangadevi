@@ -275,6 +275,71 @@
     </div>
 @endcan
 
+{{-- STUDENT ACTIVITIES GROUP --}}
+@can('student_activity_management_access')
+
+    @php
+        $studentActivityActive =
+            request()->is('admin/student-activities*');
+    @endphp
+
+    <div x-data="{ open: {{ $studentActivityActive ? 'true' : 'false' }} }">
+
+        <button type="button"
+                @click="open = !open"
+                data-tooltip="Student Activities"
+                class="nav-link nav-group-btn {{ $studentActivityActive ? 'active' : '' }}">
+
+            <div class="nav-group-left">
+
+                <i class="fas fa-running nav-icon"></i>
+
+                <span class="nav-label">
+                    Student Activities
+                </span>
+
+            </div>
+
+            <i class="fas fa-chevron-right chevron"
+               :style="open ? 'transform:rotate(90deg)' : ''"></i>
+        </button>
+
+        <div class="submenu"
+             x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-150"
+             x-transition:enter-start="opacity-0 -translate-y-1"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-100"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-1">
+
+            @can('student_activity_access')
+                <a href="{{ route('admin.student-activities.index') }}"
+                   class="sub-link {{ request()->is('admin/student-activities*') ? 'active' : '' }}">
+
+                    <i class="fas fa-calendar-check"></i>
+
+                    All Activities
+                </a>
+            @endcan
+
+            @can('student_activity_create')
+                <a href="{{ route('admin.student-activities.create') }}"
+                   class="sub-link {{ request()->is('admin/student-activities/create') ? 'active' : '' }}">
+
+                    <i class="fas fa-plus-circle"></i>
+
+                    Add Activity
+                </a>
+            @endcan
+
+        </div>
+
+    </div>
+
+@endcan
+
         <div class="nav-divider"></div>
 
         <p class="sidebar-section-title compact nav-label">Account</p>

@@ -291,151 +291,78 @@
       </p>
     </div>
 
+    @php
+      $activityIcons = [
+        'Academic' => 'bi-easel2-fill',
+        'Cultural' => 'bi-music-note-beamed',
+        'Social' => 'bi-people-fill',
+        'Sports' => 'bi-trophy-fill',
+        'Empowerment' => 'bi-heart-fill',
+        'Career' => 'bi-briefcase-fill',
+        'NSS' => 'bi-people-fill',
+        'NCC' => 'bi-shield-fill-check',
+        'Awareness' => 'bi-megaphone-fill',
+        'Workshop' => 'bi-tools',
+        'Seminar' => 'bi-easel2-fill',
+        'Administration' => 'bi-building-fill',
+      ];
+    @endphp
+
     <div class="activities-grid">
 
-      <div class="activity-card featured">
-        <div class="activity-image">
-          <img src="assets/img/activities.jpeg" alt="Seminar and Workshop">
-          <span>Academic</span>
-        </div>
+      @forelse($studentActivities as $studentActivity)
 
-        <div class="activity-content">
-          <div class="activity-icon">
-            <i class="bi bi-easel2-fill"></i>
+        <div class="activity-card {{ $studentActivity->is_featured ? 'featured' : '' }}">
+          <div class="activity-image">
+            <img
+              src="{{ $studentActivity->image ?: asset('assets/img/activities.jpeg') }}"
+              alt="{{ $studentActivity->title }}"
+            >
+
+            <span>{{ $studentActivity->category ?: 'Activity' }}</span>
           </div>
 
-          <h3>Seminars & Workshops</h3>
+          <div class="activity-content">
+            <div class="activity-icon">
+              <i class="bi {{ $activityIcons[$studentActivity->category] ?? 'bi-stars' }}"></i>
+            </div>
 
-          <p>
-            Department-wise seminars, lectures and workshops help students improve
-            subject knowledge, presentation skills and academic confidence.
-          </p>
+            <h3>{{ $studentActivity->title }}</h3>
 
-          <a href="gallery.html" class="activity-link">
-            View Details <i class="bi bi-arrow-right"></i>
-          </a>
+            <p>
+              {{ $studentActivity->short_description
+                  ?: 'Activity details, highlights and student outcomes are available here.' }}
+            </p>
+
+            <a href="{{ route('frontend.activities.show', $studentActivity->slug) }}"
+               class="activity-link">
+              View Details <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
         </div>
-      </div>
 
-      <div class="activity-card">
-        <div class="activity-image">
-          <img src="assets/img/activities-1.jpeg" alt="Cultural Activities">
-          <span>Cultural</span>
-        </div>
+      @empty
 
-        <div class="activity-content">
-          <div class="activity-icon">
-            <i class="bi bi-music-note-beamed"></i>
+        <div class="activity-card featured">
+          <div class="activity-image">
+            <img src="{{ asset('assets/img/activities.jpeg') }}" alt="Student Activities">
+            <span>Activities</span>
           </div>
 
-          <h3>Cultural Programmes</h3>
+          <div class="activity-content">
+            <div class="activity-icon">
+              <i class="bi bi-stars"></i>
+            </div>
 
-          <p>
-            Cultural activities promote creativity, confidence, teamwork and active
-            participation among students.
-          </p>
+            <h3>Activities will be updated soon</h3>
 
-          <a href="gallery.html" class="activity-link">
-            View Details <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="activity-card">
-        <div class="activity-image">
-          <img src="assets/img/activities-2.jpeg" alt="NSS Activities">
-          <span>Social</span>
-        </div>
-
-        <div class="activity-content">
-          <div class="activity-icon">
-            <i class="bi bi-people-fill"></i>
+            <p>
+              Academic and co-curricular activity information will appear here.
+            </p>
           </div>
-
-          <h3>NSS & Social Awareness</h3>
-
-          <p>
-            Social awareness drives and community activities develop responsibility,
-            leadership and service values.
-          </p>
-
-          <a href="gallery.html" class="activity-link">
-            View Details <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="activity-card">
-        <div class="activity-image">
-          <img src="assets/img/activities-3.jpeg" alt="Sports Activities">
-          <span>Sports</span>
         </div>
 
-        <div class="activity-content">
-          <div class="activity-icon">
-            <i class="bi bi-trophy-fill"></i>
-          </div>
-
-          <h3>Sports Activities</h3>
-
-          <p>
-            Sports activities support physical fitness, discipline, team spirit and
-            healthy competition among students.
-          </p>
-
-          <a href="gallery.html" class="activity-link">
-            View Details <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="activity-card">
-        <div class="activity-image">
-          <img src="assets/img/activities-4.jpeg" alt="Women Empowerment">
-          <span>Empowerment</span>
-        </div>
-
-        <div class="activity-content">
-          <div class="activity-icon">
-            <i class="bi bi-heart-fill"></i>
-          </div>
-
-          <h3>Women Empowerment</h3>
-
-          <p>
-            Programmes focused on confidence, awareness, career guidance and social
-            development of women students.
-          </p>
-
-          <a href="gallery.html" class="activity-link">
-            View Details <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="activity-card">
-        <div class="activity-image">
-          <img src="assets/img/activities-5.jpeg" alt="Career Guidance">
-          <span>Career</span>
-        </div>
-
-        <div class="activity-content">
-          <div class="activity-icon">
-            <i class="bi bi-briefcase-fill"></i>
-          </div>
-
-          <h3>Career Guidance</h3>
-
-          <p>
-            Career-oriented sessions help students understand opportunities, skills,
-            higher education and professional preparation.
-          </p>
-
-          <a href="gallery.html" class="activity-link">
-            View Details <i class="bi bi-arrow-right"></i>
-          </a>
-        </div>
-      </div>
+      @endforelse
 
     </div>
 
