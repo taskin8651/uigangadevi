@@ -90,7 +90,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="{{ route('frontend.courses') }}">Courses Offered</a></li>
               <li><a class="dropdown-item" href="Academic-Calendar.html">Academic Calendar</a></li>
-              <li><a class="dropdown-item" href="syllabus.html">Syllabus</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.syllabus.index') }}">Syllabus</a></li>
               <li><a class="dropdown-item" href="examination.html">Examination</a></li>
             </ul>
           </li>

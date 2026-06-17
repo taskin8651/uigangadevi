@@ -90,7 +90,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="courses.html">Courses Offered</a></li>
               <li><a class="dropdown-item" href="Academic-Calendar.html">Academic Calendar</a></li>
-              <li><a class="dropdown-item" href="syllabus.html">Syllabus</a></li>
+              <li><a class="dropdown-item" href="{{ route('frontend.syllabus.index') }}">Syllabus</a></li>
               <li><a class="dropdown-item" href="examination.html">Examination</a></li>
             </ul>
           </li>
@@ -497,7 +497,7 @@
         <p>Admission notice, dates and merit list.</p>
       </a>
 
-      <a href="syllabus.html" class="premium-card">
+      <a href="{{ route('frontend.syllabus.index') }}" class="premium-card">
         <div class="icon-box"><i class="bi bi-journal-text"></i></div>
         <h4>Syllabus</h4>
         <p>Course-wise and subject-wise syllabus PDFs.</p>
@@ -745,7 +745,7 @@
             </div>
           </a>
 
-          <a href="syllabus.html" class="download-row">
+          <a href="{{ route('frontend.syllabus.index') }}" class="download-row">
             <i class="bi bi-journal-text"></i>
             <div>
               <strong>Syllabus</strong>

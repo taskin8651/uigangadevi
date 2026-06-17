@@ -59,4 +59,11 @@ class Course extends Model implements HasMedia
 
         return $media ? $media->getUrl() : null;
     }
+
+    public function syllabusDocuments()
+{
+    return $this->hasMany(
+        SyllabusDocument::class
+    );
+}
 }

@@ -402,6 +402,71 @@
     </div>
 
 @endcan
+
+{{-- SYLLABUS DOCUMENTS GROUP --}}
+@can('syllabus_document_management_access')
+
+    @php
+        $syllabusActive =
+            request()->is('admin/syllabus-documents*');
+    @endphp
+
+    <div x-data="{ open: {{ $syllabusActive ? 'true' : 'false' }} }">
+
+        <button type="button"
+                @click="open = !open"
+                data-tooltip="Syllabus"
+                class="nav-link nav-group-btn {{ $syllabusActive ? 'active' : '' }}">
+
+            <div class="nav-group-left">
+
+                <i class="fas fa-book-open nav-icon"></i>
+
+                <span class="nav-label">
+                    Syllabus
+                </span>
+
+            </div>
+
+            <i class="fas fa-chevron-right chevron"
+               :style="open ? 'transform:rotate(90deg)' : ''"></i>
+
+        </button>
+
+        <div class="submenu"
+             x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-150"
+             x-transition:enter-start="opacity-0 -translate-y-1"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-100"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-1">
+
+            @can('syllabus_document_access')
+                <a href="{{ route('admin.syllabus-documents.index') }}"
+                   class="sub-link {{ request()->is('admin/syllabus-documents*') && !request()->is('admin/syllabus-documents/create') ? 'active' : '' }}">
+
+                    <i class="fas fa-folder-open"></i>
+                    All Syllabus
+                </a>
+            @endcan
+
+            @can('syllabus_document_create')
+                <a href="{{ route('admin.syllabus-documents.create') }}"
+                   class="sub-link {{ request()->is('admin/syllabus-documents/create') ? 'active' : '' }}">
+
+                    <i class="fas fa-plus-circle"></i>
+                    Add Syllabus
+                </a>
+            @endcan
+
+        </div>
+
+    </div>
+
+@endcan
+
         <div class="nav-divider"></div>
 
         <p class="sidebar-section-title compact nav-label">Account</p>
