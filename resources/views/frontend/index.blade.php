@@ -1,138 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Ganga Devi Mahila Mahavidyalaya | Official College Website</title>
-
-  <!-- BOOTSTRAP -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- ICONS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- GOOGLE FONT -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="assets/css/style.css">
-
-</head>
-
-<body>
-
-  <!-- TOP BAR START -->
-  <div class="topbar">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <span><i class="bi bi-geo-alt me-1"></i> Kankarbagh, Patna, Bihar</span>
-          <span class="ms-3"><i class="bi bi-envelope me-1"></i> gangadevimahilacollege@gmail.com</span>
-        </div>
-
-        <div class="col-lg-6">
-          <div class="top-links">
-            <a href="#"><i class="bi bi-file-earmark-text me-1"></i> RTI</a>
-            <a href="#"><i class="bi bi-shield-check me-1"></i> NAAC / IQAC</a>
-            <a href="#"><i class="bi bi-download me-1"></i> Downloads</a>
-            <a href="#"><i class="bi bi-person-lock me-1"></i> Admin Login</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- TOP BAR END -->
-
-
-
-<!-- HEADER START -->
-<header class="main-header">
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-
-      <a class="navbar-brand" href="#">
-        <img src="assets/img/logo.png" alt="">
-        <div class="brand-text">
-          <h1>Ganga Devi Mahila Mahavidyalaya</h1>
-          <span>Official College Website | gdmm.ac.in</span>
-        </div>
-      </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="mainNavbar">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-
-          <li class="nav-item">
-            <a class="nav-link active" href="{{ route('frontend.index') }}">Home</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="{{ route('frontend.about') }}" data-bs-toggle="dropdown">
-              About Us
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ route('frontend.about') }}">College Profile</a></li>
-              <li><a class="dropdown-item" href="{{ route('frontend.mission') }}">Vision & Mission</a></li>
-              <li><a class="dropdown-item" href="{{ route('frontend.principal') }}">Principal's Message</a></li>
-              <li><a class="dropdown-item" href="{{ route('frontend.college') }}">College at a Glance</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-              Academics
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ route('frontend.courses') }}">Courses Offered</a></li>
-              <li><a class="dropdown-item" href="{{ route('frontend.academic-calendar.index') }}">Academic Calendar</a></li>
-              <li><a class="dropdown-item" href="{{ route('frontend.syllabus.index') }}">Syllabus</a></li>
-              <li><a class="dropdown-item" href="{{ route('frontend.examination') }}">Examination</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('frontend.departments') }}">Departments</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('frontend.admissions.index') }}">Admissions</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('frontend.notices.index') }}">Notices</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('frontend.gallery') }}">Gallery</a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-              Students Corner
-            </a>
-
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">Online-Admission</a></li>
-              <li><a class="dropdown-item" href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">Online Fee</a></li>
-            </ul>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('frontend.contact') }}">Contact</a>
-          </li>
-
-        </ul>
-      </div>
-
-    </div>
-  </nav>
-</header>
-<!-- HEADER END -->
+@extends('frontend.master')
 
 
 
@@ -164,85 +30,96 @@
 <!-- HERO SLIDER START -->
 <section class="hero-slider">
 
-  <div class="hero-slide active">
-    <img src="assets/img/hero.png" alt="">
+  @php
+    $heroFallbackSlides = collect([
+      [
+        'image' => asset('assets/img/hero.png'),
+        'badge_icon' => 'bi-mortarboard-fill',
+        'badge_text' => 'Women College in Kankarbagh, Patna',
+        'title' => 'Empowering Women Through Quality Higher Education',
+        'description' => 'Official website of Ganga Devi Mahila Mahavidyalaya with notices, admissions, academics, departments, NAAC / IQAC documents and student support.',
+        'primary_button_text' => 'Latest Notices',
+        'primary_button_url' => route('frontend.notices.index'),
+        'secondary_button_text' => 'Admission Updates',
+        'secondary_button_url' => route('frontend.admissions.index'),
+      ],
+      [
+        'image' => asset('assets/img/hero-1.png'),
+        'badge_icon' => 'bi-award-fill',
+        'badge_text' => 'NAAC Accredited Institution',
+        'title' => 'Academic Excellence, Discipline and Student Development',
+        'description' => 'Access verified academic resources, syllabus, timetable, examination updates and quality assurance information in a structured format.',
+        'primary_button_text' => 'View Academics',
+        'primary_button_url' => route('frontend.courses'),
+        'secondary_button_text' => 'NAAC / IQAC',
+        'secondary_button_url' => '#',
+      ],
+      [
+        'image' => asset('assets/img/hero-2.png'),
+        'badge_icon' => 'bi-building-fill',
+        'badge_text' => 'Since 1971',
+        'title' => 'Official Documents, Downloads and Public Transparency',
+        'description' => 'Quick access to RTI, statutory disclosures, policies, prospectus, notices, circulars and other important public documents.',
+        'primary_button_text' => 'Downloads',
+        'primary_button_url' => '#',
+        'secondary_button_text' => 'RTI / Disclosure',
+        'secondary_button_url' => '#',
+      ],
+    ]);
 
-    <div class="container">
-      <div class="hero-content">
-        <span class="hero-badge">
-          <i class="bi bi-mortarboard-fill"></i>
-          Women’s College in Kankarbagh, Patna
-        </span>
+    $heroSlides = ($frontendHeroSlides ?? collect())->map(fn ($slide) => [
+      'image' => $slide->image ?: asset('assets/img/hero.png'),
+      'badge_icon' => $slide->badge_icon ?: 'bi-stars',
+      'badge_text' => $slide->badge_text,
+      'title' => $slide->title,
+      'description' => $slide->description,
+      'primary_button_text' => $slide->primary_button_text,
+      'primary_button_url' => $slide->primary_button_url,
+      'secondary_button_text' => $slide->secondary_button_text,
+      'secondary_button_url' => $slide->secondary_button_url,
+    ]);
 
-        <h2>Empowering Women Through Quality Higher Education</h2>
+    $heroSlides = $heroSlides->isNotEmpty() ? $heroSlides : $heroFallbackSlides;
+  @endphp
 
-        <p>
-          Official website of Ganga Devi Mahila Mahavidyalaya with notices,
-          admissions, academics, departments, NAAC / IQAC documents and student support.
-        </p>
+  @foreach($heroSlides as $heroSlide)
+    <div class="hero-slide {{ $loop->first ? 'active' : '' }}">
+      <img src="{{ $heroSlide['image'] }}" alt="{{ $heroSlide['title'] }}">
 
-        <div class="hero-actions">
-          <a href="{{ route('frontend.notices.index') }}" class="hero-btn primary">Latest Notices</a>
-          <a href="{{ route('frontend.admissions.index') }}" class="hero-btn light">Admission Updates</a>
+      <div class="container">
+        <div class="hero-content">
+          @if($heroSlide['badge_text'])
+            <span class="hero-badge">
+              <i class="bi {{ $heroSlide['badge_icon'] }}"></i>
+              {{ $heroSlide['badge_text'] }}
+            </span>
+          @endif
+
+          <h2>{{ $heroSlide['title'] }}</h2>
+
+          @if($heroSlide['description'])
+            <p>{{ $heroSlide['description'] }}</p>
+          @endif
+
+          @if($heroSlide['primary_button_text'] || $heroSlide['secondary_button_text'])
+            <div class="hero-actions">
+              @if($heroSlide['primary_button_text'])
+                <a href="{{ $heroSlide['primary_button_url'] ?: '#' }}" class="hero-btn primary">{{ $heroSlide['primary_button_text'] }}</a>
+              @endif
+              @if($heroSlide['secondary_button_text'])
+                <a href="{{ $heroSlide['secondary_button_url'] ?: '#' }}" class="hero-btn light">{{ $heroSlide['secondary_button_text'] }}</a>
+              @endif
+            </div>
+          @endif
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="hero-slide">
-    <img src="assets/img/hero-1.png" alt="">
-
-    <div class="container">
-      <div class="hero-content">
-        <span class="hero-badge">
-          <i class="bi bi-award-fill"></i>
-          NAAC Accredited Institution
-        </span>
-
-        <h2>Academic Excellence, Discipline and Student Development</h2>
-
-        <p>
-          Access verified academic resources, syllabus, timetable, examination updates
-          and quality assurance information in a structured format.
-        </p>
-
-        <div class="hero-actions">
-          <a href="{{ route('frontend.courses') }}" class="hero-btn primary">View Academics</a>
-          <a href="#" class="hero-btn light">NAAC / IQAC</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-slide">
-    <img src="assets/img/hero-2.png" alt="">
-
-    <div class="container">
-      <div class="hero-content">
-        <span class="hero-badge">
-          <i class="bi bi-building-fill"></i>
-          Since 1971
-        </span>
-
-        <h2>Official Documents, Downloads and Public Transparency</h2>
-
-        <p>
-          Quick access to RTI, statutory disclosures, policies, prospectus,
-          notices, circulars and other important public documents.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#" class="hero-btn primary">Downloads</a>
-          <a href="#" class="hero-btn light">RTI / Disclosure</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  @endforeach
 
   <div class="hero-controls">
-    <button class="active" type="button" aria-label="Slide 1"></button>
-    <button type="button" aria-label="Slide 2"></button>
-    <button type="button" aria-label="Slide 3"></button>
+    @foreach($heroSlides as $heroSlide)
+      <button class="{{ $loop->first ? 'active' : '' }}" type="button" aria-label="Slide {{ $loop->iteration }}"></button>
+    @endforeach
   </div>
 
 </section>
@@ -801,77 +678,4 @@
 
 
 
-
-  <!-- FOOTER START -->
-  <footer class="footer">
-    <div class="container">
-      <div class="row g-4">
-          <img src="assets/img/logo.png" alt="">
-        <div class="col-lg-4">
-          <h4>Ganga Devi Mahila Mahavidyalaya</h4>
-          <p>
-            Official college website for academic information, notices,
-            admission updates, statutory disclosures and student support services.
-          </p>
-        </div>
-
-        <div class="col-lg-2 col-md-4">
-          <h4>Quick Links</h4>
-          <div class="footer-links">
-            <a href="{{ route('frontend.index') }}">Home</a>
-            <a href="{{ route('frontend.about') }}">About College</a>
-            <a href="{{ route('frontend.academic-calendar.index') }}">Academics</a>
-            <a href="{{ route('frontend.departments') }}">Departments</a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4">
-          <h4>Students</h4>
-          <div class="footer-links">
-            <a href="{{ route('frontend.admissions.index') }}">Admissions</a>
-            <a href="{{ route('frontend.notices.index') }}">Notices</a>
-            <a href="#">Downloads</a>
-            <a href="#">Students Corner</a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4">
-          <h4>Disclosure</h4>
-          <div class="footer-links">
-            <a href="#">NAAC / IQAC</a>
-            <a href="#">RTI</a>
-            <a href="#">Statutory Disclosure</a>
-            <a href="#">Policies</a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-4">
-          <h4>Contact</h4>
-          <div class="footer-links">
-            <a href="#">Kankarbagh, Patna</a>
-            <a href="#">Contact Office</a>
-            <a href="#">Google Map</a>
-            <a href="#">Admin Login</a>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="footer-bottom">
-        © 2026 Ganga Devi Mahila Mahavidyalaya. All Rights Reserved.
-      </div>
-    </div>
-  </footer>
-  <!-- FOOTER END -->
-
-  <script src="assets/js/main.js"></script>
-
-
-  <!-- BOOTSTRAP JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
- 
-
-</body>
-</html>
-
+@endsection

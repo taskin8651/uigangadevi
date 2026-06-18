@@ -4,12 +4,19 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
+use App\Models\HeroSlide;
 use App\Models\Notice;
 
 class IndexController extends Controller
 {
     public function index()
     {
+        $frontendHeroSlides = HeroSlide::query()
+            ->where('status', true)
+            ->orderBy('sort_order')
+            ->orderByDesc('id')
+            ->get();
+
         $frontendLatestNotices = Notice::query()
             ->where('status', true)
             ->orderByDesc('is_latest')
@@ -30,7 +37,7 @@ class IndexController extends Controller
 
         return view(
             'frontend.index',
-            compact('frontendLatestNotices', 'frontendGalleryItems')
+            compact('frontendHeroSlides', 'frontendLatestNotices', 'frontendGalleryItems')
         );
     }
 }

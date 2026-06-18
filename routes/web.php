@@ -81,6 +81,13 @@ Route::delete('galleries/destroy','GalleriesController@massDestroy')->name('gall
 
 Route::resource('galleries','GalleriesController');
 
+// Hero Slides
+Route::delete('hero-slides/destroy','HeroSlidesController@massDestroy')->name('hero-slides.massDestroy');
+
+Route::resource('hero-slides','HeroSlidesController')->parameters([
+    'hero-slides' => 'heroSlide',
+]);
+
 // Website Settings
 Route::get('website-settings','WebsiteSettingsController@index')->name('website-settings.index');
 Route::post('website-settings/update','WebsiteSettingsController@update')->name('website-settings.update');

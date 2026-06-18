@@ -595,6 +595,70 @@
 
 @endcan
 
+{{-- HERO SLIDES GROUP --}}
+@can('hero_slide_management_access')
+
+    @php
+        $heroSlideActive =
+            request()->is('admin/hero-slides*');
+    @endphp
+
+    <div x-data="{ open: {{ $heroSlideActive ? 'true' : 'false' }} }">
+
+        <button type="button"
+                @click="open = !open"
+                data-tooltip="Hero Slides"
+                class="nav-link nav-group-btn {{ $heroSlideActive ? 'active' : '' }}">
+
+            <div class="nav-group-left">
+
+                <i class="fas fa-images nav-icon"></i>
+
+                <span class="nav-label">
+                    Hero Slides
+                </span>
+
+            </div>
+
+            <i class="fas fa-chevron-right chevron"
+               :style="open ? 'transform:rotate(90deg)' : ''"></i>
+
+        </button>
+
+        <div class="submenu"
+             x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-150"
+             x-transition:enter-start="opacity-0 -translate-y-1"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-100"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-1">
+
+            @can('hero_slide_access')
+                <a href="{{ route('admin.hero-slides.index') }}"
+                   class="sub-link {{ request()->is('admin/hero-slides*') && !request()->is('admin/hero-slides/create') ? 'active' : '' }}">
+
+                    <i class="fas fa-folder-open"></i>
+                    All Slides
+                </a>
+            @endcan
+
+            @can('hero_slide_create')
+                <a href="{{ route('admin.hero-slides.create') }}"
+                   class="sub-link {{ request()->is('admin/hero-slides/create') ? 'active' : '' }}">
+
+                    <i class="fas fa-plus-circle"></i>
+                    Add Slide
+                </a>
+            @endcan
+
+        </div>
+
+    </div>
+
+@endcan
+
 {{-- WEBSITE SETTINGS --}}
 @can('website_setting_access')
     <a href="{{ route('admin.website-settings.index') }}"
