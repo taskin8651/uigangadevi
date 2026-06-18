@@ -531,6 +531,70 @@
 
 @endcan
 
+{{-- GALLERY GROUP --}}
+@can('gallery_management_access')
+
+    @php
+        $galleryActive =
+            request()->is('admin/galleries*');
+    @endphp
+
+    <div x-data="{ open: {{ $galleryActive ? 'true' : 'false' }} }">
+
+        <button type="button"
+                @click="open = !open"
+                data-tooltip="Gallery"
+                class="nav-link nav-group-btn {{ $galleryActive ? 'active' : '' }}">
+
+            <div class="nav-group-left">
+
+                <i class="fas fa-images nav-icon"></i>
+
+                <span class="nav-label">
+                    Gallery
+                </span>
+
+            </div>
+
+            <i class="fas fa-chevron-right chevron"
+               :style="open ? 'transform:rotate(90deg)' : ''"></i>
+
+        </button>
+
+        <div class="submenu"
+             x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-150"
+             x-transition:enter-start="opacity-0 -translate-y-1"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-100"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-1">
+
+            @can('gallery_access')
+                <a href="{{ route('admin.galleries.index') }}"
+                   class="sub-link {{ request()->is('admin/galleries*') && !request()->is('admin/galleries/create') ? 'active' : '' }}">
+
+                    <i class="fas fa-folder-open"></i>
+                    All Gallery
+                </a>
+            @endcan
+
+            @can('gallery_create')
+                <a href="{{ route('admin.galleries.create') }}"
+                   class="sub-link {{ request()->is('admin/galleries/create') ? 'active' : '' }}">
+
+                    <i class="fas fa-plus-circle"></i>
+                    Add Gallery
+                </a>
+            @endcan
+
+        </div>
+
+    </div>
+
+@endcan
+
 {{-- WEBSITE SETTINGS --}}
 @can('website_setting_access')
     <a href="{{ route('admin.website-settings.index') }}"

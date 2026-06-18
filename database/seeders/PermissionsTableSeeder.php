@@ -118,6 +118,30 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 81,
                 'title' => 'website_setting_edit',
             ],
+            [
+                'id'    => 90,
+                'title' => 'gallery_management_access',
+            ],
+            [
+                'id'    => 91,
+                'title' => 'gallery_create',
+            ],
+            [
+                'id'    => 92,
+                'title' => 'gallery_edit',
+            ],
+            [
+                'id'    => 93,
+                'title' => 'gallery_show',
+            ],
+            [
+                'id'    => 94,
+                'title' => 'gallery_delete',
+            ],
+            [
+                'id'    => 95,
+                'title' => 'gallery_access',
+            ],
         ];
 
         foreach ($permissions as $permission) {

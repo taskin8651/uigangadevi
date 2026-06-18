@@ -135,6 +135,10 @@
             <a class="nav-link" href="{{ route('frontend.notices.index') }}">Notices</a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('frontend.gallery') }}">Gallery</a>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
               Students Corner

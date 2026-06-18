@@ -107,6 +107,10 @@
             <a class="nav-link" href="{{ route('frontend.notices.index') }}">Notices</a>
           </li>
 
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('frontend.gallery') }}">Gallery</a>
+          </li>
+
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
               Students Corner
@@ -601,58 +605,52 @@
         </p>
       </div>
 
-      <a href="#" class="outline-btn">
+      <a href="{{ route('frontend.gallery') }}" class="outline-btn">
         View Gallery <i class="bi bi-arrow-right"></i>
       </a>
     </div>
 
     <div class="gallery-wrap">
+      @php
+        $homeGalleryFallbacks = collect([
+          ['image' => asset('assets/img/gallery.png'), 'category' => 'Campus', 'title' => 'College Campus View'],
+          ['image' => asset('assets/img/gallery-1.jpeg'), 'category' => 'Seminar', 'title' => 'Academic Activities'],
+          ['image' => asset('assets/img/gallery-2.jpeg'), 'category' => 'Students', 'title' => 'Student Programmes'],
+          ['image' => asset('assets/img/gallery-3.jpeg'), 'category' => 'Culture', 'title' => 'Cultural Events'],
+          ['image' => asset('assets/img/gallery-4.jpeg'), 'category' => 'Workshop', 'title' => 'Workshops & Training'],
+        ]);
 
-      <a href="#" class="gallery-large">
-        <img src="assets/img/gallery.png" alt="">
+        $homeGalleryItems = ($frontendGalleryItems ?? collect())->map(fn ($item) => [
+          'image' => $item->image,
+          'category' => $item->category ?: 'Gallery',
+          'title' => $item->title,
+        ])->filter(fn ($item) => filled($item['image']))->values();
+
+        $homeGalleryItems = $homeGalleryItems->isNotEmpty()
+          ? $homeGalleryItems
+          : $homeGalleryFallbacks;
+      @endphp
+
+      <a href="{{ route('frontend.gallery') }}" class="gallery-large">
+        <img src="{{ $homeGalleryItems->first()['image'] }}" alt="{{ $homeGalleryItems->first()['title'] }}">
         <div class="gallery-overlay"></div>
         <div class="gallery-content">
-          <span>Campus</span>
-          <h3>College Campus View</h3>
+          <span>{{ $homeGalleryItems->first()['category'] }}</span>
+          <h3>{{ $homeGalleryItems->first()['title'] }}</h3>
         </div>
       </a>
 
       <div class="gallery-small-grid">
-        <a href="#" class="gallery-small">
-          <img src="assets/img/gallery-1.jpeg" alt="">
-          <div class="gallery-overlay"></div>
-          <div class="gallery-content">
-            <span>Seminar</span>
-            <h4>Academic Activities</h4>
-          </div>
-        </a>
-
-        <a href="#" class="gallery-small">
-          <img src="assets/img/gallery-2.jpeg" alt="">
-          <div class="gallery-overlay"></div>
-          <div class="gallery-content">
-            <span>Students</span>
-            <h4>Student Programmes</h4>
-          </div>
-        </a>
-
-        <a href="#" class="gallery-small">
-          <img src="assets/img/gallery-3.jpeg" alt="">
-          <div class="gallery-overlay"></div>
-          <div class="gallery-content">
-            <span>Culture</span>
-            <h4>Cultural Events</h4>
-          </div>
-        </a>
-
-        <a href="#" class="gallery-small">
-          <img src="assets/img/gallery-4.jpeg" alt="">
-          <div class="gallery-overlay"></div>
-          <div class="gallery-content">
-            <span>Workshop</span>
-            <h4>Workshops & Training</h4>
-          </div>
-        </a>
+        @foreach($homeGalleryItems->skip(1)->take(4) as $galleryItem)
+          <a href="{{ route('frontend.gallery') }}" class="gallery-small">
+            <img src="{{ $galleryItem['image'] }}" alt="{{ $galleryItem['title'] }}">
+            <div class="gallery-overlay"></div>
+            <div class="gallery-content">
+              <span>{{ $galleryItem['category'] }}</span>
+              <h4>{{ $galleryItem['title'] }}</h4>
+            </div>
+          </a>
+        @endforeach
       </div>
 
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gallery;
 use App\Models\Notice;
 
 class IndexController extends Controller
@@ -18,9 +19,18 @@ class IndexController extends Controller
             ->limit(4)
             ->get();
 
+        $frontendGalleryItems = Gallery::query()
+            ->where('status', true)
+            ->where('type', 'image')
+            ->orderByDesc('is_featured')
+            ->orderBy('sort_order')
+            ->orderByDesc('id')
+            ->limit(5)
+            ->get();
+
         return view(
             'frontend.index',
-            compact('frontendLatestNotices')
+            compact('frontendLatestNotices', 'frontendGalleryItems')
         );
     }
 }

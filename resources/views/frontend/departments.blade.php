@@ -99,7 +99,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('frontend.index') }}">Departments</a>
+            <a class="nav-link" href="{{ route('frontend.departments') }}">Departments</a>
           </li>
 
           <li class="nav-item">
@@ -108,6 +108,10 @@
 
           <li class="nav-item">
             <a class="nav-link" href="{{ route('frontend.notices.index') }}">Notices</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('frontend.gallery') }}">Gallery</a>
           </li>
 
           <li class="nav-item dropdown">

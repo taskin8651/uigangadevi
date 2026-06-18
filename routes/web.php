@@ -76,6 +76,11 @@ Route::delete('notices/destroy','NoticesController@massDestroy')->name('notices.
 
 Route::resource('notices','NoticesController');
 
+// Galleries
+Route::delete('galleries/destroy','GalleriesController@massDestroy')->name('galleries.massDestroy');
+
+Route::resource('galleries','GalleriesController');
+
 // Website Settings
 Route::get('website-settings','WebsiteSettingsController@index')->name('website-settings.index');
 Route::post('website-settings/update','WebsiteSettingsController@update')->name('website-settings.update');
@@ -125,4 +130,7 @@ Route::get('/syllabus/{slug}', [\App\Http\Controllers\Frontend\SyllabusControlle
 Route::get('/notices', [\App\Http\Controllers\Frontend\NoticeController::class, 'index'])
     ->name('frontend.notices.index');
 
-    Route::view('/examination', 'frontend.examination')->name('frontend.examination');
+Route::get('/gallery', [\App\Http\Controllers\Frontend\GalleryController::class, 'index'])
+    ->name('frontend.gallery');
+
+Route::view('/examination', 'frontend.examination')->name('frontend.examination');
