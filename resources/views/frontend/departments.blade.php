@@ -34,8 +34,8 @@
 
             <div class="col-lg-6">
                 <div class="top-links">
-                    <a href="#"><i class="bi bi-file-earmark-text me-1"></i> RTI</a>
-                    <a href="#"><i class="bi bi-shield-check me-1"></i> NAAC / IQAC</a>
+                    <a href="{{ route('frontend.rti') }}"><i class="bi bi-file-earmark-text me-1"></i> RTI</a>
+                    <a href="{{ route('frontend.naac') }}"><i class="bi bi-shield-check me-1"></i> NAAC / IQAC</a>
                     <a href="#"><i class="bi bi-download me-1"></i> Admission</a>
                     <a href="#"><i class="bi bi-person-lock me-1"></i> Admin Login</a>
                 </div>
@@ -713,8 +713,8 @@
         <div class="col-lg-2 col-md-4">
           <h4>Disclosure</h4>
           <div class="footer-links">
-            <a href="#">NAAC / IQAC</a>
-            <a href="#">RTI</a>
+            <a href="{{ route('frontend.naac') }}">NAAC / IQAC</a>
+            <a href="{{ route('frontend.rti') }}">RTI</a>
             <a href="#">Statutory Disclosure</a>
             <a href="#">Policies</a>
           </div>

@@ -88,6 +88,13 @@ Route::resource('hero-slides','HeroSlidesController')->parameters([
     'hero-slides' => 'heroSlide',
 ]);
 
+// Disclosure Documents
+Route::delete('disclosure-documents/destroy','DisclosureDocumentsController@massDestroy')->name('disclosure-documents.massDestroy');
+
+Route::resource('disclosure-documents','DisclosureDocumentsController')->parameters([
+    'disclosure-documents' => 'disclosureDocument',
+]);
+
 // Website Settings
 Route::get('website-settings','WebsiteSettingsController@index')->name('website-settings.index');
 Route::post('website-settings/update','WebsiteSettingsController@update')->name('website-settings.update');
@@ -139,5 +146,11 @@ Route::get('/notices', [\App\Http\Controllers\Frontend\NoticeController::class, 
 
 Route::get('/gallery', [\App\Http\Controllers\Frontend\GalleryController::class, 'index'])
     ->name('frontend.gallery');
+
+Route::get('/rti', [\App\Http\Controllers\Frontend\DisclosureController::class, 'rti'])
+    ->name('frontend.rti');
+
+Route::get('/naac', [\App\Http\Controllers\Frontend\DisclosureController::class, 'naac'])
+    ->name('frontend.naac');
 
 Route::view('/examination', 'frontend.examination')->name('frontend.examination');

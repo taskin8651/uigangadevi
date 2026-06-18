@@ -52,7 +52,7 @@
         'primary_button_text' => 'View Academics',
         'primary_button_url' => route('frontend.courses'),
         'secondary_button_text' => 'NAAC / IQAC',
-        'secondary_button_url' => '#',
+        'secondary_button_url' => route('frontend.naac'),
       ],
       [
         'image' => asset('assets/img/hero-2.png'),
@@ -63,7 +63,7 @@
         'primary_button_text' => 'Downloads',
         'primary_button_url' => '#',
         'secondary_button_text' => 'RTI / Disclosure',
-        'secondary_button_url' => '#',
+        'secondary_button_url' => route('frontend.rti'),
       ],
     ]);
 
@@ -558,25 +558,25 @@
         </p>
       </div>
 
-      <a href="#" class="outline-btn">
+      <a href="{{ route('frontend.naac') }}" class="outline-btn">
         View NAAC / IQAC <i class="bi bi-arrow-right"></i>
       </a>
     </div>
 
     <div class="card-grid-3">
-      <a href="#" class="premium-card">
+      <a href="{{ route('frontend.naac') }}" class="premium-card">
         <div class="icon-box"><i class="bi bi-people-fill"></i></div>
         <h4>IQAC Composition</h4>
         <p>Members, coordinators and quality cell details.</p>
       </a>
 
-      <a href="#" class="premium-card">
+      <a href="{{ route('frontend.naac') }}" class="premium-card">
         <div class="icon-box"><i class="bi bi-file-earmark-pdf-fill"></i></div>
         <h4>AQAR Reports</h4>
         <p>Annual quality assurance reports and records.</p>
       </a>
 
-      <a href="#" class="premium-card">
+      <a href="{{ route('frontend.naac') }}" class="premium-card">
         <div class="icon-box"><i class="bi bi-award-fill"></i></div>
         <h4>NAAC Documents</h4>
         <p>SSR, DVV, certificates and accreditation files.</p>

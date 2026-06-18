@@ -509,7 +509,7 @@
           <span>Downloads</span>
         </a>
 
-        <a href="#" class="cg-link-card">
+        <a href="{{ route('frontend.naac') }}" class="cg-link-card">
           <i class="bi bi-award-fill"></i>
           <span>NAAC / IQAC</span>
         </a>

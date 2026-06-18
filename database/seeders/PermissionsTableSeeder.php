@@ -166,6 +166,30 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 105,
                 'title' => 'hero_slide_access',
             ],
+            [
+                'id'    => 110,
+                'title' => 'disclosure_document_management_access',
+            ],
+            [
+                'id'    => 111,
+                'title' => 'disclosure_document_create',
+            ],
+            [
+                'id'    => 112,
+                'title' => 'disclosure_document_edit',
+            ],
+            [
+                'id'    => 113,
+                'title' => 'disclosure_document_show',
+            ],
+            [
+                'id'    => 114,
+                'title' => 'disclosure_document_delete',
+            ],
+            [
+                'id'    => 115,
+                'title' => 'disclosure_document_access',
+            ],
         ];
 
         foreach ($permissions as $permission) {
