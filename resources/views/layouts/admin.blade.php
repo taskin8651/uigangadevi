@@ -82,8 +82,9 @@
 
                 {{-- Search --}}
                 <div class="admin-search hidden md:flex">
-                    <input type="text" placeholder="Search...">
+                    <input type="text" id="admin-menu-search" placeholder="Search menu..." autocomplete="off">
                     <i class="fas fa-search"></i>
+                    <div id="admin-menu-search-results" class="admin-search-results" hidden></div>
                 </div>
 
                 {{-- Language --}}
