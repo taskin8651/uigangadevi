@@ -57,9 +57,14 @@
           </div>
         </div>
 
-        <a href="{{ route('frontend.notices.index') }}" class="admission-main-btn">
-          View All Admission Notices <i class="bi bi-arrow-right"></i>
-        </a>
+        <div class="admission-feature-actions">
+          <a href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener" class="admission-main-btn admission-open-apply">
+            Apply Online <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+          <a href="{{ route('frontend.notices.index') }}" class="admission-main-btn">
+            View All Admission Notices <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
       </div>
 
       <div class="admission-notice-list">

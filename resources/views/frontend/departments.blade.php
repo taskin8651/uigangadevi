@@ -36,7 +36,7 @@
                 <div class="top-links">
                     <a href="{{ route('frontend.rti') }}"><i class="bi bi-file-earmark-text me-1"></i> RTI</a>
                     <a href="{{ route('frontend.naac') }}"><i class="bi bi-shield-check me-1"></i> NAAC / IQAC</a>
-                    <a href="#"><i class="bi bi-download me-1"></i> Admission</a>
+                    <a href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener" class="admission-open-blink"><i class="bi bi-mortarboard-fill me-1"></i> Admission Open</a>
                     <a href="#"><i class="bi bi-person-lock me-1"></i> Admin Login</a>
                 </div>
             </div>

@@ -1,4 +1,22 @@
 @extends('frontend.master')
+@section('title', 'Home - Ganga Devi Mahila Mahavidyalaya')
+@section('content')
+
+@php
+  $siteName = $websiteSetting->site_name ?: 'Ganga Devi Mahila Mahavidyalaya';
+  $siteLogo = $websiteSetting->logo ?: asset('assets/img/logo.png');
+  $siteAddress = $websiteSetting->full_address ?: 'Kankarbagh, Patna, Bihar';
+  $siteEmail = $websiteSetting->primary_email ?: 'gangadevimahilacollege@gmail.com';
+  $sitePhone = $websiteSetting->primary_phone ?: 'Official phone number will be updated';
+  $officeTiming = trim(($websiteSetting->office_days ?: 'Monday to Saturday') . ' | ' . ($websiteSetting->office_time ?: '10:00 AM - 5:00 PM'), ' |');
+  $aboutTitle = $collegeProfile->about_title ?? 'A Supportive Academic Environment for Women Students';
+  $aboutText = $collegeProfile->about_description_one ?? 'Ganga Devi Mahila Mahavidyalaya is committed to providing a structured and student-friendly learning environment where students grow with knowledge, dignity, confidence and values.';
+  $aboutPoints = collect($collegeProfile->about_points ?? [])->filter(fn ($item) => ($item['status'] ?? true) && filled($item['text'] ?? null))->pluck('text')->take(6);
+  $aboutPoints = $aboutPoints->isNotEmpty() ? $aboutPoints : collect(['Women Empowerment', 'Academic Excellence', 'Inclusive Learning', 'Student Support', 'Quality Education', 'Institutional Values']);
+  $principalName = $principalMessage->principal_name ?? 'Prof. Dr. Shyama Roy';
+  $principalText = $principalMessage->description ?? 'Education is not only about academic excellence, but also about building confidence, discipline, responsibility and values.';
+  $principalImage = $principalMessage->image ?? asset('assets/img/principal.png');
+@endphp
 
 
 
@@ -133,12 +151,11 @@
       <div class="identity-wrap">
 
         <div class="college-card">
-          <img src="assets/img/logo.png" alt="">
+          <img src="{{ $siteLogo }}" alt="{{ $siteName }}">
           <div>
-            <h3>Ganga Devi Mahila Mahavidyalaya</h3>
+            <h3>{{ $siteName }}</h3>
             <p>
-              NAAC accredited women’s college located at Kankarbagh, Patna,
-              focused on higher education, values and women empowerment.
+              {{ $websiteSetting->footer_description ?: 'NAAC accredited women college located at Kankarbagh, Patna, focused on higher education, values and women empowerment.' }}
             </p>
           </div>
         </div>
@@ -150,7 +167,7 @@
           </div>
 
           <div class="stat-card">
-            <strong>19</strong>
+            <strong>{{ $frontendStats['departments'] ?: 0 }}</strong>
             <span>Departments</span>
           </div>
 
@@ -160,7 +177,7 @@
           </div>
 
           <div class="stat-card">
-            <strong>UG / PG</strong>
+            <strong>{{ $frontendStats['courses'] ?: 0 }}</strong>
             <span>Programmes</span>
           </div>
         </div>
@@ -227,35 +244,25 @@
 
         <div class="principal-card">
           <div class="principal-img">
-            <img src="assets/img/principal.png" alt="">
+            <img src="{{ $principalImage }}" alt="{{ $principalName }}">
           </div>
           <div class="principal-body">
-            <span class="section-badge"><i class="bi bi-chat-quote-fill"></i> Principal’s Message</span>
-            <h3> Prof. Dr. Shyama Roy</h3>
-            <p>
-              Education is not only about academic excellence, but also about
-              building confidence, discipline, responsibility and values.
-            </p>
-            <a href="{{ route('frontend.contact') }}" class="outline-btn">Read Full Message <i class="bi bi-arrow-right"></i></a>
+            <span class="section-badge"><i class="bi bi-chat-quote-fill"></i> Principal Message</span>
+            <h3>{{ $principalName }}</h3>
+            <p>{{ \Illuminate\Support\Str::limit(strip_tags($principalText), 150) }}</p>
+            <a href="{{ route('frontend.principal') }}" class="outline-btn">Read Full Message <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
 
         <div class="about-card">
-          <span class="section-badge"><i class="bi bi-building-fill"></i> About College</span>
-          <h2 class="section-title">A Supportive Academic Environment for Women Students</h2>
-          <p class="section-text">
-            Ganga Devi Mahila Mahavidyalaya is committed to providing a structured
-            and student-friendly learning environment where students grow with
-            knowledge, dignity, confidence and values.
-          </p>
+          <span class="section-badge"><i class="bi bi-building-fill"></i> {{ $collegeProfile->about_badge ?? 'About College' }}</span>
+          <h2 class="section-title">{{ $aboutTitle }}</h2>
+          <p class="section-text">{{ \Illuminate\Support\Str::limit(strip_tags($aboutText), 260) }}</p>
 
           <div class="about-points">
-            <div class="about-point"><i class="bi bi-check-circle-fill"></i> Women Empowerment</div>
-            <div class="about-point"><i class="bi bi-check-circle-fill"></i> Academic Excellence</div>
-            <div class="about-point"><i class="bi bi-check-circle-fill"></i> Inclusive Learning</div>
-            <div class="about-point"><i class="bi bi-check-circle-fill"></i> Student Support</div>
-            <div class="about-point"><i class="bi bi-check-circle-fill"></i> Quality Education</div>
-            <div class="about-point"><i class="bi bi-check-circle-fill"></i> Institutional Values</div>
+            @foreach($aboutPoints as $point)
+              <div class="about-point"><i class="bi bi-check-circle-fill"></i> {{ $point }}</div>
+            @endforeach
           </div>
         </div>
 
@@ -413,47 +420,49 @@
         </p>
       </div>
 
-      <a href="{{ route('frontend.academic-calendar.index') }}" class="outline-btn">
+      <a href="{{ route('frontend.courses') }}" class="outline-btn">
         View Academics <i class="bi bi-arrow-right"></i>
       </a>
     </div>
 
     <div class="card-grid-3">
-      <div class="premium-card">
+      <a href="{{ route('frontend.courses') }}" class="premium-card">
         <div class="icon-box"><i class="bi bi-mortarboard-fill"></i></div>
         <h4>Courses Offered</h4>
-        <p>UG, PG and vocational programme details with eligibility.</p>
-      </div>
+        <p>{{ $frontendCourses->count() }} active courses available.</p>
+      </a>
 
-      <div class="premium-card">
+      <a href="{{ route('frontend.departments') }}" class="premium-card">
         <div class="icon-box"><i class="bi bi-building-fill"></i></div>
         <h4>Departments</h4>
-        <p>Department-wise faculty, subjects, activities and resources.</p>
-      </div>
+        <p>{{ $frontendDepartments->count() }} highlighted departments on website.</p>
+      </a>
 
-      <div class="premium-card">
+      <a href="{{ route('frontend.academic-calendar.index') }}" class="premium-card">
         <div class="icon-box"><i class="bi bi-calendar2-week-fill"></i></div>
         <h4>Academic Calendar</h4>
-        <p>Session-wise academic calendar and important schedules.</p>
-      </div>
+        <p>{{ $frontendAcademicCalendar ? $frontendAcademicCalendar->title : 'Session-wise academic calendar and schedules.' }}</p>
+      </a>
 
-      <div class="premium-card">
-        <div class="icon-box"><i class="bi bi-clock-history"></i></div>
-        <h4>Time Table</h4>
-        <p>Class-wise and department-wise timetable updates.</p>
-      </div>
+      @foreach($frontendCourses->take(1) as $course)
+        <a href="{{ route('frontend.courses') }}" class="premium-card">
+          <div class="icon-box"><i class="bi bi-journal-bookmark-fill"></i></div>
+          <h4>{{ $course->name }}</h4>
+          <p>{{ $course->short_description ?: ($course->duration ?: 'View course details and eligibility.') }}</p>
+        </a>
+      @endforeach
 
-      <div class="premium-card">
+      <a href="{{ route('frontend.examination') }}" class="premium-card">
         <div class="icon-box"><i class="bi bi-clipboard-check-fill"></i></div>
         <h4>Examination</h4>
         <p>Exam notices, schedules, forms and result links.</p>
-      </div>
+      </a>
 
-      <div class="premium-card">
-        <div class="icon-box"><i class="bi bi-people-fill"></i></div>
-        <h4>Students Corner</h4>
-        <p>Scholarship, grievance, anti-ragging and support links.</p>
-      </div>
+      <a href="{{ route('frontend.syllabus.index') }}" class="premium-card">
+        <div class="icon-box"><i class="bi bi-file-earmark-text-fill"></i></div>
+        <h4>Syllabus</h4>
+        <p>{{ $frontendSyllabusDocuments->count() }} featured syllabus documents.</p>
+      </a>
     </div>
 
   </div>
@@ -564,23 +573,33 @@
     </div>
 
     <div class="card-grid-3">
-      <a href="{{ route('frontend.naac') }}" class="premium-card">
-        <div class="icon-box"><i class="bi bi-people-fill"></i></div>
-        <h4>IQAC Composition</h4>
-        <p>Members, coordinators and quality cell details.</p>
-      </a>
+      @forelse($frontendNaacDocuments as $document)
+        <a href="{{ $document->download_url ?: route('frontend.naac') }}"
+           class="premium-card"
+           @if($document->download_url) target="_blank" rel="noopener" @endif>
+          <div class="icon-box"><i class="bi bi-file-earmark-pdf-fill"></i></div>
+          <h4>{{ $document->title }}</h4>
+          <p>{{ $document->category ?: 'NAAC / IQAC document' }} @if($document->year) | {{ $document->year }} @endif</p>
+        </a>
+      @empty
+        <a href="{{ route('frontend.naac') }}" class="premium-card">
+          <div class="icon-box"><i class="bi bi-people-fill"></i></div>
+          <h4>IQAC Composition</h4>
+          <p>Members, coordinators and quality cell details.</p>
+        </a>
 
-      <a href="{{ route('frontend.naac') }}" class="premium-card">
-        <div class="icon-box"><i class="bi bi-file-earmark-pdf-fill"></i></div>
-        <h4>AQAR Reports</h4>
-        <p>Annual quality assurance reports and records.</p>
-      </a>
+        <a href="{{ route('frontend.naac') }}" class="premium-card">
+          <div class="icon-box"><i class="bi bi-file-earmark-pdf-fill"></i></div>
+          <h4>AQAR Reports</h4>
+          <p>Annual quality assurance reports and records.</p>
+        </a>
 
-      <a href="{{ route('frontend.naac') }}" class="premium-card">
-        <div class="icon-box"><i class="bi bi-award-fill"></i></div>
-        <h4>NAAC Documents</h4>
-        <p>SSR, DVV, certificates and accreditation files.</p>
-      </a>
+        <a href="{{ route('frontend.naac') }}" class="premium-card">
+          <div class="icon-box"><i class="bi bi-award-fill"></i></div>
+          <h4>NAAC Documents</h4>
+          <p>SSR, DVV, certificates and accreditation files.</p>
+        </a>
+      @endforelse
     </div>
 
   </div>
@@ -600,37 +619,39 @@
           <span class="section-badge"><i class="bi bi-download"></i> Downloads</span>
           <h2 class="section-title">Important Downloads</h2>
 
-          <a href="{{ route('frontend.college') }}" class="download-row">
-            <i class="bi bi-file-earmark-pdf-fill"></i>
-            <div>
-              <strong>College Prospectus</strong>
-              <span>Latest college prospectus PDF</span>
-            </div>
-          </a>
+          @forelse($frontendDownloadItems as $downloadItem)
+            <a href="{{ $downloadItem->download_url }}" target="_blank" rel="noopener" class="download-row">
+              <i class="bi bi-file-earmark-pdf-fill"></i>
+              <div>
+                <strong>{{ $downloadItem->title }}</strong>
+                <span>{{ $downloadItem->category ?? $downloadItem->document_type ?? 'Official document' }}</span>
+              </div>
+            </a>
+          @empty
+            <a href="{{ route('frontend.syllabus.index') }}" class="download-row">
+              <i class="bi bi-journal-text"></i>
+              <div>
+                <strong>Syllabus</strong>
+                <span>Course-wise syllabus documents</span>
+              </div>
+            </a>
 
-          <a href="{{ route('frontend.admissions.index') }}" class="download-row">
-            <i class="bi bi-person-check-fill"></i>
-            <div>
-              <strong>Admission Form</strong>
-              <span>Student admission application form</span>
-            </div>
-          </a>
+            <a href="{{ route('frontend.naac') }}" class="download-row">
+              <i class="bi bi-award-fill"></i>
+              <div>
+                <strong>NAAC / IQAC</strong>
+                <span>Quality assurance and accreditation documents</span>
+              </div>
+            </a>
 
-          <a href="{{ route('frontend.syllabus.index') }}" class="download-row">
-            <i class="bi bi-journal-text"></i>
-            <div>
-              <strong>Syllabus</strong>
-              <span>Course-wise syllabus documents</span>
-            </div>
-          </a>
-
-          <a href="#" class="download-row">
-            <i class="bi bi-clock-history"></i>
-            <div>
-              <strong>Time Table</strong>
-              <span>Class and department timetable</span>
-            </div>
-          </a>
+            <a href="{{ route('frontend.rti') }}" class="download-row">
+              <i class="bi bi-file-earmark-text-fill"></i>
+              <div>
+                <strong>RTI Documents</strong>
+                <span>Public disclosure and RTI files</span>
+              </div>
+            </a>
+          @endforelse
         </div>
 
         <div class="contact-box">
@@ -641,7 +662,7 @@
             <i class="bi bi-geo-alt-fill"></i>
             <div>
               <strong>College Address</strong>
-              <span>Kankarbagh, Patna, Bihar</span>
+              <span>{{ $siteAddress }}</span>
             </div>
           </div>
 
@@ -649,7 +670,7 @@
             <i class="bi bi-envelope-fill"></i>
             <div>
               <strong>Email Address</strong>
-              <span>gangadevimahilacollege@gmail.com</span>
+              <span>{{ $siteEmail }}</span>
             </div>
           </div>
 
@@ -657,7 +678,7 @@
             <i class="bi bi-telephone-fill"></i>
             <div>
               <strong>Office Contact</strong>
-              <span>Official phone number will be updated</span>
+              <span>{{ $sitePhone }}</span>
             </div>
           </div>
 
@@ -665,7 +686,7 @@
             <i class="bi bi-clock-fill"></i>
             <div>
               <strong>Office Timing</strong>
-              <span>Monday to Saturday | 10:00 AM - 5:00 PM</span>
+              <span>{{ $officeTiming }}</span>
             </div>
           </div>
         </div>
@@ -679,3 +700,4 @@
 
 
 @endsection
+

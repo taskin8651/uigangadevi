@@ -122,7 +122,7 @@ Route::get('/departments', [\App\Http\Controllers\Frontend\AcademicController::c
 Route::get('/departments/{subject:slug}', [\App\Http\Controllers\Frontend\AcademicController::class, 'departmentDetail'])->name('frontend.departments.show');
 
 
-
+Route::get('/',[\App\Http\Controllers\Frontend\IndexController::class, 'index'])->name('frontend.index');
 Route::get('/faculty/{slug}', [\App\Http\Controllers\Frontend\FacultyController::class, 'show'])
     ->name('frontend.faculty.show');
 

@@ -15462,6 +15462,33 @@
   overflow: hidden;
 }
 
+.top-links .admission-open-blink {
+  color: #ffffff;
+  background: var(--secondary);
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-weight: 900;
+  box-shadow: 0 0 0 rgba(244, 180, 0, 0.55);
+  animation: admissionBlink 1.05s ease-in-out infinite;
+}
+
+.top-links .admission-open-blink:hover {
+  color: #172334;
+  background: var(--accent);
+}
+
+@keyframes admissionBlink {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(244, 180, 0, 0.55);
+  }
+
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 0 8px rgba(244, 180, 0, 0);
+  }
+}
+
 .faculty-profile-hero::after {
   content: "";
   position: absolute;
@@ -17467,6 +17494,18 @@
   font-weight: 950;
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.16);
   transition: all 0.3s ease;
+}
+
+.admission-feature-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.admission-open-apply {
+  color: #172334;
+  background: var(--accent);
+  animation: admissionBlink 1.05s ease-in-out infinite;
 }
 
 .admission-main-btn i {
