@@ -24,21 +24,61 @@
 
  <!-- ================= ADMISSION POPUP START ================= -->
 
-  <div class="admission-popup" id="admissionPopup">
-    <div class="admission-popup-overlay" id="admissionPopupOverlay"></div>
+  @if(
+    isset($admissionPopup)
+    && $admissionPopup
+    && $admissionPopup->image
+)
 
-    <div class="admission-popup-box">
-      <button type="button" class="admission-popup-close" id="admissionPopupClose" aria-label="Close Popup">
-        <i class="bi bi-x-lg"></i>
-      </button>
+    <div class="admission-popup"
+         id="admissionPopup"
+         aria-hidden="true">
 
-      <div class="admission-popup-image">
-        <a href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">
-          <img src="assets/img/admission-popup.jpeg" alt="Admission Open">
-        </a>
-      </div>
+        <div class="admission-popup-overlay"
+             id="admissionPopupOverlay">
+        </div>
+
+        <div class="admission-popup-box"
+             role="dialog"
+             aria-modal="true"
+             aria-label="{{ $admissionPopup->title ?: 'Admission Open' }}">
+
+            <button type="button"
+                    class="admission-popup-close"
+                    id="admissionPopupClose"
+                    aria-label="Close Popup">
+
+                <i class="bi bi-x-lg"></i>
+            </button>
+
+            <div class="admission-popup-image">
+
+                @if($admissionPopup->url)
+
+                    <a href="{{ $admissionPopup->url }}"
+                       target="_blank"
+                       rel="noopener"
+                       aria-label="{{ $admissionPopup->title ?: 'Admission Open' }}">
+
+                        <img src="{{ $admissionPopup->image }}"
+                             alt="{{ $admissionPopup->title ?: 'Admission Open' }}">
+
+                    </a>
+
+                @else
+
+                    <img src="{{ $admissionPopup->image }}"
+                         alt="{{ $admissionPopup->title ?: 'Admission Open' }}">
+
+                @endif
+
+            </div>
+
+        </div>
+
     </div>
-  </div>
+
+@endif
 
   <!-- ================= ADMISSION POPUP END ================= -->
 

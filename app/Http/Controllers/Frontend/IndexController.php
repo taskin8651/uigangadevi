@@ -14,6 +14,7 @@ use App\Models\PrincipalMessage;
 use App\Models\Subject;
 use App\Models\SyllabusDocument;
 use App\Models\WebsiteSetting;
+use App\Models\AdmissionPopup;
 
 class IndexController extends Controller
 {
@@ -113,6 +114,10 @@ class IndexController extends Controller
             ->take(4)
             ->values();
 
+              $admissionPopup = AdmissionPopup::query()
+            ->latest()
+            ->first();
+
         return view(
             'frontend.index',
             compact(
@@ -129,7 +134,8 @@ class IndexController extends Controller
                 'frontendSyllabusDocuments',
                 'frontendNaacDocuments',
                 'frontendRtiDocuments',
-                'frontendDownloadItems'
+                'frontendDownloadItems',
+                    'admissionPopup'
             )
         );
     }

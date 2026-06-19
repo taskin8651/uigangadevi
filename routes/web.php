@@ -98,6 +98,11 @@ Route::resource('disclosure-documents','DisclosureDocumentsController')->paramet
 // Website Settings
 Route::get('website-settings','WebsiteSettingsController@index')->name('website-settings.index');
 Route::post('website-settings/update','WebsiteSettingsController@update')->name('website-settings.update');
+
+// Admission Popup
+Route::get('admission-popup','AdmissionPopupController@index')->name('admission-popups.index');
+
+Route::post('admission-popup/update','AdmissionPopupController@update')->name('admission-popups.update');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
     // Change password

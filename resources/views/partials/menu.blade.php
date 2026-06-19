@@ -712,6 +712,52 @@
     </div>
 
 @endcan
+@can('admission_popup_access')
+
+    @php
+        $admissionPopupActive =
+            request()->is('admin/admission-popup*');
+    @endphp
+
+    <div x-data="{ open: {{ $admissionPopupActive ? 'true' : 'false' }} }">
+
+        <button type="button"
+                @click="open = !open"
+                data-tooltip="Admission Popup"
+                class="nav-link nav-group-btn {{ $admissionPopupActive ? 'active' : '' }}">
+
+            <div class="nav-group-left">
+
+                <i class="fas fa-bullhorn nav-icon"></i>
+
+                <span class="nav-label">
+                    Admission Popup
+                </span>
+
+            </div>
+
+            <i class="fas fa-chevron-right chevron"
+               :style="open ? 'transform:rotate(90deg)' : ''"></i>
+
+        </button>
+
+        <div class="submenu"
+             x-show="open"
+             x-cloak
+             x-transition>
+
+            <a href="{{ route('admin.admission-popups.index') }}"
+               class="sub-link {{ request()->is('admin/admission-popup*') ? 'active' : '' }}">
+
+                <i class="fas fa-edit"></i>
+                Manage Popup
+            </a>
+
+        </div>
+
+    </div>
+
+@endcan
 
 {{-- WEBSITE SETTINGS --}}
 @can('website_setting_access')
