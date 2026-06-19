@@ -56,14 +56,14 @@
 
                 {{-- Mobile hamburger --}}
                 <button type="button"
-                        class="header-btn header-btn-sm lg:hidden"
+                        class="header-btn header-btn-sm mobile-sidebar-toggle"
                         onclick="toggleMobileSidebar()">
                     <i class="fas fa-bars"></i>
                 </button>
 
                 {{-- Desktop collapse --}}
                 <button type="button"
-                        class="header-btn header-btn-sm hidden lg:flex"
+                        class="header-btn header-btn-sm desktop-sidebar-toggle"
                         id="sidebar-toggle"
                         onclick="toggleSidebar()">
                     <i class="fas fa-bars"></i>

@@ -391,6 +391,14 @@ body {
     font-size: 13px;
 }
 
+.desktop-sidebar-toggle {
+    display: none;
+}
+
+.mobile-sidebar-toggle {
+    display: flex;
+}
+
 /* Breadcrumb */
 .breadcrumb-wrap {
     display: flex;
@@ -728,6 +736,16 @@ body {
     }
 }
 
+@media (min-width: 1025px) {
+    .desktop-sidebar-toggle {
+        display: flex;
+    }
+
+    .mobile-sidebar-toggle {
+        display: none;
+    }
+}
+
 @media (max-width: 640px) {
     #main-header {
         padding: 0 14px;
@@ -737,4 +755,3 @@ body {
         padding: 16px;
     }
 }
-
