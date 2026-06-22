@@ -147,7 +147,7 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">Online-Admission</a></li>
               <li><a class="dropdown-item" href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">Online Fee</a></li>
-              <li><a class="dropdown-item" href="https://gdmm.tcspatna.in/" target="_blank" rel="noopener">CLC Apply</a></li>
+              <li><a class="dropdown-item" href="http://gdmmclc.tcspatna.in/" target="_blank" rel="noopener">CLC Apply</a></li>
             </ul>
           </li>
 
